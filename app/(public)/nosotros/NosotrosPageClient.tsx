@@ -45,17 +45,6 @@ export default function NosotrosPageClient() {
       <section className="relative py-28 bg-gradient-to-br from-primary via-primary/90 to-cyan-500 text-white">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(255,255,255,0.15),transparent_60%)] animate-pulse pointer-events-none" />
 
-        <div className="absolute top-16 left-8 hidden md:flex flex-col gap-4 animate-floatSlow">
-          <span className="text-gray-900 px-4 py-2 rounded-full bg-white/50 backdrop-blur text-sm font-semibold">
-            <AnimatedCount end={12} duration={5.2} delay={0.2} suffix="+" />{" "}
-            años de experiencia
-          </span>
-          <span className="text-gray-900 px-4 py-2 rounded-full bg-white/50 backdrop-blur text-sm font-semibold">
-            <AnimatedCount end={8000} duration={5.2} delay={0.2} suffix="+" />{" "}
-            ingresantes
-          </span>
-        </div>
-
         <div className="container mx-auto px-6 text-center max-w-4xl relative z-10">
           <span className="text-gray-900 inline-flex items-center gap-2 mb-6 px-5 py-2 rounded-full bg-white/50 backdrop-blur text-sm font-semibold tracking-wide animate-bounceSlow">
             🎓 Educación que transforma futuros
