@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Slider from "../../components/home/Slider";
 import FeaturedCards from "../../components/home/FeaturedCards";
 import Testimonials from "../../components/home/Testimonials";
+import WelcomeModal from "../../components/home/WelcomeModal";
 import { getSiteUrl, siteConfig } from "@/lib/site";
 
 const siteUrl = getSiteUrl();
@@ -41,6 +42,7 @@ export default function Home() {
           __html: JSON.stringify(organizationSchema),
         }}
       />
+      <WelcomeModal />
       <Slider />
       <FeaturedCards />
       <Testimonials />

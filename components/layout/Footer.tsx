@@ -1,122 +1,139 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Sparkles, ArrowRight } from "lucide-react";
+import { siteConfig } from "@/lib/site";
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { publicNavigationLinks } from "./navigation";
+
+const legalLinks = [
+  {
+    label: "Términos y Condiciones",
+    href: "/terminos-y-condiciones",
+  },
+  {
+    label: "Política de Privacidad",
+    href: "/politica-de-privacidad",
+  },
+];
+
+const contactLinks = [
+  {
+    label: "Ubica nuestras sedes",
+    href: "/contacto",
+  },
+  {
+    label: "Escríbenos por WhatsApp",
+    href: buildWhatsAppUrl(
+      "Hola, quiero informacion sobre ciclos, horarios y proceso de matricula.",
+    ),
+    external: true,
+  },
+];
 
 export default function Footer() {
   return (
-    <footer className="relative bg-gradient-to-br from-gray-950 via-gray-900 to-black text-gray-300">
-      <div className="relative z-10 container mx-auto px-6 pt-24 pb-16">
-        <div className="relative rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-xl p-10 flex flex-col md:flex-row items-center justify-between gap-8 overflow-hidden group">
-          <div className="absolute inset-0 bg-gradient-to-r from-[#2ef4ed]/30 to-yellow-400/30 opacity-40 blur-2xl group-hover:opacity-70 transition" />
+    <footer className="relative overflow-hidden border-t border-[#d8edf3] bg-white text-slate-700">
+      <div className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,#78fff0_0%,#01b8db_45%,#7ceff7_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(1,184,219,0.08),transparent_26%),radial-gradient(circle_at_bottom_right,rgba(1,184,219,0.05),transparent_28%)]" />
 
-          <div className="relative z-10">
-            <h3 className="text-2xl md:text-3xl font-extrabold text-white mb-2 flex items-center gap-2">
-              ¿Listo para asegurar tu ingreso? 🚀
-            </h3>
-            <p className="text-gray-400 max-w-xl">
-              Únete hoy a SuperAcademy y prepárate con docentes expertos,
-              simulacros reales y acompañamiento continuo.
+      <div className="container relative z-10 mx-auto px-6 py-16 md:py-20">
+        <div className="grid gap-12 border-b border-slate-200/80 pb-12 md:grid-cols-[1.2fr_0.8fr_0.8fr_0.9fr]">
+          <div className="max-w-md space-y-5">
+            <Link href="/" className="inline-flex items-center gap-4">
+              <Image
+                src="/logo.png"
+                alt="SuperAcademy"
+                width={64}
+                height={64}
+                className="h-14 w-14 object-contain"
+              />
+              <div>
+                <p className="text-2xl font-black tracking-tight text-primary">
+                  {siteConfig.name}
+                </p>
+                <p className="text-xs font-bold uppercase tracking-[0.28em] text-slate-500">
+                  Academia preuniversitaria
+                </p>
+              </div>
+            </Link>
+
+            <p className="text-base leading-8 text-slate-600">
+              Preparacion clara, exigente y bien guiada para estudiantes que
+              buscan ingresar con mejor estrategia y mejores resultados.
             </p>
-          </div>
 
-          <Link
-            href="/ciclos"
-            className="relative z-10 inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-black bg-yellow-400 shadow-[0_0_40px_rgba(255,200,0,.6)] hover:scale-105 transition-transform overflow-hidden group"
-          >
-            <span className="relative z-10 flex items-center gap-2">
-              Ver ciclos <Sparkles className="w-5 h-5" />
-            </span>
-            <span className="absolute inset-0 bg-gradient-to-r from-yellow-300 to-yellow-500 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-          </Link>
-        </div>
-      </div>
-
-      <div className="relative z-10 container mx-auto px-6 pb-16 grid gap-12 md:grid-cols-3">
-        <div className="space-y-4">
-          <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#2ef4ed] to-[#01b8db] text-black font-extrabold flex items-center justify-center shadow-lg animate-bounce">
-              SA
+            <div className="flex flex-wrap gap-2">
+              {[
+                "San Marcos",
+                "UNI",
+                "Villarreal",
+              ].map((label) => (
+                <span
+                  key={label}
+                  className="rounded-full border border-[#d7eef4] bg-[#f3fbfe] px-3 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-primary"
+                >
+                  {label}
+                </span>
+              ))}
             </div>
-            <h3 className="text-xl font-bold text-white tracking-wide">
-              SuperAcademy
-            </h3>
           </div>
 
-          <p className="text-gray-400 leading-relaxed">
-            Formación preuniversitaria de alto nivel enfocada en resultados
-            reales, metodología moderna y acompañamiento constante.
-          </p>
+          <div>
+            <h3 className="text-lg font-black text-slate-950">Explorar</h3>
+            <ul className="mt-5 space-y-3">
+              {publicNavigationLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-base text-slate-600 transition hover:text-primary"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-          <div className="flex flex-wrap gap-2 pt-2">
-            <span className="px-3 py-1 text-xs rounded-full bg-primary/20 text-primary font-semibold animate-pulse">
-              San Marcos
-            </span>
-            <span className="px-3 py-1 text-xs rounded-full bg-indigo-400/20 text-indigo-300 font-semibold animate-pulse delay-100">
-              UNI
-            </span>
-            <span className="px-3 py-1 text-xs rounded-full bg-orange-400/20 text-orange-300 font-semibold animate-pulse delay-200">
-              Villarreal
-            </span>
+          <div>
+            <h3 className="text-lg font-black text-slate-950">Legales</h3>
+            <ul className="mt-5 space-y-3">
+              {legalLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-base text-slate-600 transition hover:text-primary"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-black text-slate-950">Contáctanos</h3>
+            <ul className="mt-5 space-y-3">
+              {contactLinks.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    target={link.external ? "_blank" : undefined}
+                    rel={link.external ? "noreferrer" : undefined}
+                    className="text-base text-slate-600 transition hover:text-primary"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
-        <div>
-          <h4 className="font-bold text-white mb-4">Explorar</h4>
-          <ul className="space-y-3">
-            {publicNavigationLinks.map((link) => (
-              <li key={link.label}>
-                <Link
-                  href={link.href}
-                  className="group inline-flex items-center gap-2 text-gray-400 hover:text-white transition"
-                >
-                  <span className="relative">
-                    {link.label}
-                    <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-                  </span>
-                  <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition" />
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="font-bold text-white mb-4">Legales</h4>
-
-          <ul className="space-y-3">
-            {[
-              {
-                label: "Términos y Condiciones",
-                href: "/terminos-y-condiciones",
-              },
-              {
-                label: "Política de Privacidad",
-                href: "/politica-de-privacidad",
-              },
-            ].map((link) => (
-              <li key={link.label}>
-                <Link
-                  href={link.href}
-                  className="group inline-flex items-center gap-2 text-gray-400 hover:text-white transition"
-                >
-                  <span className="relative">
-                    {link.label}
-                    <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-                  </span>
-                  <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition" />
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      <div className="relative z-10 border-t border-white/10 py-6">
-        <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white">
-          <span>
-            © {new Date().getFullYear()} SuperAcademy. Todos los derechos
+        <div className="flex flex-col gap-3 pt-6 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
+          <p>
+            © {new Date().getFullYear()} {siteConfig.name}. Todos los derechos
             reservados.
-          </span>
+          </p>
+          <p>Formacion enfocada en ingreso, disciplina y acompanamiento real.</p>
         </div>
       </div>
     </footer>

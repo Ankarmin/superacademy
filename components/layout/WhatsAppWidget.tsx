@@ -5,7 +5,7 @@ import { FaWhatsapp, FaTimes } from "react-icons/fa";
 import { useState } from "react";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
-export const handleSendMessage = () => {
+function handleSendMessage() {
   const mensaje =
     "Hola, vengo desde la web de SuperAcademy y me interesa obtener mas informacion sobre sus servicios.";
   window.open(
@@ -13,13 +13,13 @@ export const handleSendMessage = () => {
     "_blank",
     "noopener,noreferrer",
   );
-};
+}
 
 export default function WhatsAppWidget() {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleWhatsAppClick = () => {
-    setIsOpen(!isOpen);
+    setIsOpen((currentValue) => !currentValue);
   };
 
   return (

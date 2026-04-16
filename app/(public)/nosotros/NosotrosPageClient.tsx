@@ -41,21 +41,21 @@ function AnimatedCount({
 
 export default function NosotrosPageClient() {
   return (
-    <main className="bg-white overflow-hidden">
-      <section className="relative py-28 bg-gradient-to-br from-primary via-primary/90 to-cyan-500 text-white">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(255,255,255,0.15),transparent_60%)] animate-pulse pointer-events-none" />
+    <main className="overflow-hidden bg-white">
+      <section className="relative bg-[linear-gradient(180deg,#e9fcff_0%,#9ef4fb_100%)] py-28 text-slate-950">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(255,255,255,0.35),transparent_60%)] animate-pulse" />
 
-        <div className="container mx-auto px-6 text-center max-w-4xl relative z-10">
-          <span className="text-gray-900 inline-flex items-center gap-2 mb-6 px-5 py-2 rounded-full bg-white/50 backdrop-blur text-sm font-semibold tracking-wide animate-bounceSlow">
+        <div className="container relative z-10 mx-auto max-w-4xl px-6 text-center">
+          <span className="animate-bounceSlow mb-6 inline-flex items-center gap-2 rounded-full bg-white/60 px-5 py-2 text-sm font-semibold tracking-wide text-slate-950 backdrop-blur">
             🎓 Educación que transforma futuros
           </span>
 
           <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
             Formamos ingresantes
-            <span className="block text-gray-900">que hacen historia</span>
+            <span className="block text-primary">que hacen historia</span>
           </h1>
 
-          <p className="text-lg md:text-xl opacity-90 mb-10">
+          <p className="mb-10 text-lg text-slate-700 md:text-xl">
             Más de una década preparando estudiantes que ingresan a las mejores
             universidades del Perú.
           </p>
@@ -63,15 +63,15 @@ export default function NosotrosPageClient() {
           <div className="flex flex-wrap justify-center gap-5">
             <Link
               href="/ciclos"
-              className="group relative inline-flex items-center gap-2 bg-white text-primary px-8 py-4 rounded-xl font-bold shadow-xl hover:scale-105 transition-all overflow-hidden"
+              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-white px-8 py-4 font-bold text-primary shadow-xl transition-all hover:scale-105"
             >
-              <span className="absolute inset-0 bg-gradient-to-r from-cyan-200 to-cyan-400 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-              <span className="relative z-10 hover:text-white">Ver ciclos</span>
+              <span className="absolute inset-0 translate-y-full bg-gradient-to-r from-[#ccfbff] to-[#7ff6f1] transition-transform duration-500 group-hover:translate-y-0" />
+              <span className="relative z-10 group-hover:text-slate-950">Ver ciclos</span>
             </Link>
 
             <Link
               href="/contacto"
-              className="px-8 py-4 rounded-xl border border-white/50 hover:bg-white hover:text-primary transition font-semibold"
+              className="rounded-xl border border-white/70 bg-white/30 px-8 py-4 font-semibold transition hover:bg-white hover:text-primary"
             >
               Contáctanos
             </Link>
@@ -79,12 +79,12 @@ export default function NosotrosPageClient() {
         </div>
       </section>
 
-      <section className="relative py-24">
-        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-cyan-400/10 blur-3xl rounded-full pointer-events-none" />
+      <section className="relative bg-white py-24">
+        <div className="pointer-events-none absolute -top-32 left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-cyan-400/10 blur-3xl" />
 
         <div className="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center relative z-10">
           <div>
-            <span className="inline-block mb-4 px-4 py-1 rounded-full bg-primary/50 text-gray-900 text-sm font-semibold">
+            <span className="mb-4 inline-block rounded-full bg-primary/14 px-4 py-1 text-sm font-semibold text-slate-950">
               Nuestra historia
             </span>
 
@@ -117,8 +117,8 @@ export default function NosotrosPageClient() {
               ].map((stat, i) => (
                 <div
                   key={i}
-                  className="group bg-white rounded-2xl p-5 shadow hover:shadow-xl transition-all hover:-translate-y-1 text-center"
-                >
+                   className="group rounded-2xl border border-[#d8eef3] bg-[#f4fdff] p-5 text-center shadow transition-all hover:-translate-y-1 hover:shadow-xl"
+                 >
                   <div className="text-2xl font-extrabold text-primary group-hover:scale-110 transition">
                     <AnimatedCount
                       end={stat.value}
@@ -136,7 +136,7 @@ export default function NosotrosPageClient() {
           </div>
 
           <div className="relative group">
-            <div className="absolute -inset-3 bg-gradient-to-r from-cyan-300 to-primary blur-2xl opacity-30 group-hover:opacity-50 transition" />
+            <div className="absolute -inset-3 bg-gradient-to-r from-[#c8fbff] to-primary blur-2xl opacity-30 transition group-hover:opacity-50" />
             <div className="relative rounded-3xl overflow-hidden shadow-2xl">
               <Image
                 src="/images/hero-1.jpg"
@@ -146,7 +146,7 @@ export default function NosotrosPageClient() {
                 height={1000}
               />
 
-              <div className="absolute top-6 left-6 px-4 py-2 rounded-full bg-primary text-gray-900 text-sm font-semibold shadow animate-floatSlow">
+              <div className="animate-floatSlow absolute left-6 top-6 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-slate-950 shadow">
                 🎓 Metodología activa
               </div>
             </div>
@@ -154,10 +154,10 @@ export default function NosotrosPageClient() {
         </div>
       </section>
 
-      <section className="relative py-24 bg-gradient-to-b from-gray-50 to-white">
+      <section className="relative bg-[linear-gradient(180deg,#f2fcff_0%,#ffffff_100%)] py-24">
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="inline-block mb-3 px-4 py-1 rounded-full bg-primary/50 text-gray-900 text-sm font-semibold">
+            <span className="mb-3 inline-block rounded-full bg-primary/14 px-4 py-1 text-sm font-semibold text-slate-950">
               Nuestra esencia
             </span>
             <h2 className="text-3xl md:text-4xl font-extrabold">
@@ -185,9 +185,9 @@ export default function NosotrosPageClient() {
             ].map((item, i) => (
               <div
                 key={i}
-                className="group relative bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-3 overflow-hidden"
+                className="group relative overflow-hidden rounded-3xl border border-[#d8eef3] bg-white p-8 shadow-lg transition-all hover:-translate-y-3 hover:shadow-2xl"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-300/10 to-primary/10 opacity-0 group-hover:opacity-100 transition" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#c8fbff]/40 to-primary/10 opacity-0 transition group-hover:opacity-100" />
 
                 <div className="relative z-10">
                   <div className="w-14 h-14 mb-6 flex items-center justify-center rounded-xl bg-primary/10 text-2xl group-hover:scale-110 transition">
@@ -202,12 +202,12 @@ export default function NosotrosPageClient() {
         </div>
       </section>
 
-      <section className="relative py-24">
-        <div className="absolute right-0 top-1/3 w-[500px] h-[500px] bg-cyan-300/10 blur-3xl rounded-full pointer-events-none" />
+      <section className="relative bg-white py-24">
+        <div className="pointer-events-none absolute right-0 top-1/3 h-[500px] w-[500px] rounded-full bg-cyan-300/10 blur-3xl" />
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="inline-block mb-3 px-4 py-1 rounded-full bg-primary/50 text-gray-900 text-sm font-semibold">
+            <span className="mb-3 inline-block rounded-full bg-primary/14 px-4 py-1 text-sm font-semibold text-slate-950">
               Nuestra ventaja
             </span>
             <h2 className="text-3xl md:text-4xl font-extrabold">
@@ -244,9 +244,9 @@ export default function NosotrosPageClient() {
             ].map((item, i) => (
               <div
                 key={i}
-                className="group relative bg-white rounded-3xl p-7 shadow hover:shadow-2xl transition-all hover:-translate-y-2 overflow-hidden"
+                className="group relative overflow-hidden rounded-3xl border border-[#d8eef3] bg-[#f4fdff] p-7 shadow transition-all hover:-translate-y-2 hover:shadow-2xl"
               >
-                <span className="absolute top-4 right-4 text-xs px-3 py-1 rounded-full bg-primary/50 text-gray-900 font-semibold group-hover:bg-primary group-hover:text-white transition">
+                <span className="absolute right-4 top-4 rounded-full bg-primary/14 px-3 py-1 text-xs font-semibold text-slate-950 transition group-hover:bg-primary group-hover:text-slate-950">
                   {item.badge}
                 </span>
 
@@ -261,19 +261,19 @@ export default function NosotrosPageClient() {
                   {item.text}
                 </p>
 
-                <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-primary to-cyan-400 group-hover:w-full transition-all duration-500" />
+                <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-primary to-[#7ff6f1] transition-all duration-500 group-hover:w-full" />
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="relative py-28 bg-gradient-to-br from-primary to-cyan-500 text-white overflow-hidden">
+      <section className="relative overflow-hidden bg-[linear-gradient(180deg,#f2fcff_0%,#9ef4fb_100%)] py-28 text-slate-950">
         <div className="absolute -top-20 -left-20 w-[400px] h-[400px] bg-white/10 blur-3xl rounded-full animate-pulse" />
         <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-white/10 blur-3xl rounded-full animate-pulse delay-1000" />
 
-        <div className="container mx-auto px-6 text-center max-w-3xl relative z-10">
-          <span className="text-gray-900 inline-block mb-4 px-5 py-2 rounded-full bg-white/50 backdrop-blur text-sm font-semibold">
+        <div className="container relative z-10 mx-auto max-w-3xl px-6 text-center">
+          <span className="mb-4 inline-block rounded-full bg-white/60 px-5 py-2 text-sm font-semibold text-slate-950 backdrop-blur">
             🚀 Empieza hoy mismo
           </span>
 
@@ -281,16 +281,16 @@ export default function NosotrosPageClient() {
             Tu ingreso empieza aquí
           </h2>
 
-          <p className="opacity-90 mb-10 text-lg">
+          <p className="mb-10 text-lg text-slate-700">
             Da el primer paso hacia tu futuro universitario con nosotros.
           </p>
 
           <Link
             href="/ciclos"
-            className="group relative inline-flex items-center gap-2 bg-white text-primary px-10 py-5 rounded-2xl font-bold shadow-2xl hover:scale-105 transition-all overflow-hidden"
+            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-2xl bg-white px-10 py-5 font-bold text-primary shadow-2xl transition-all hover:scale-105"
           >
-            <span className="absolute inset-0 bg-gradient-to-r from-cyan-200 to-cyan-400 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-            <span className="relative z-10 hover:text-white">
+            <span className="absolute inset-0 translate-y-full bg-gradient-to-r from-[#ccfbff] to-[#7ff6f1] transition-transform duration-500 group-hover:translate-y-0" />
+            <span className="relative z-10 group-hover:text-slate-950">
               Ver ciclos disponibles
             </span>
           </Link>

@@ -79,21 +79,20 @@ export default function Slider() {
                   />
                 </div>
 
-                {/* Overlays (sin blur costoso) */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#01b8db]/85 via-[#01b8db]/70 to-black/70" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(1,184,219,0.35),transparent_60%)]" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#effdff]/90 via-[#bff7ff]/72 to-[#01b8db]/78" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(255,255,255,0.26),transparent_60%)]" />
 
                 <div className="relative z-10 container mx-auto px-6 h-full flex items-center">
-                  <div className="max-w-xl space-y-6 bg-white/10 backdrop-blur-md p-8 md:p-10 rounded-3xl border border-white/20 shadow-[0_0_35px_rgba(1,184,219,.25)] transition-all duration-700">
-                    <span className="text-gray-900 font-bold inline-block px-4 py-1 rounded-full bg-white/50 text-xs tracking-wide uppercase">
+                  <div className="max-w-xl space-y-6 rounded-3xl border border-white/60 bg-white/72 p-8 shadow-[0_0_35px_rgba(1,184,219,.18)] backdrop-blur-md transition-all duration-700 md:p-10">
+                    <span className="inline-block rounded-full bg-primary/14 px-4 py-1 text-xs font-bold tracking-wide text-slate-950 uppercase">
                       Super Academy
                     </span>
 
                     <h2
-                      className={`text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight transition-all duration-700 delay-200 ${
-                        isActive
-                          ? "opacity-100 translate-y-0"
-                          : "opacity-0 translate-y-6"
+                        className={`text-4xl md:text-6xl font-extrabold text-slate-950 leading-tight transition-all duration-700 delay-200 ${
+                          isActive
+                            ? "opacity-100 translate-y-0"
+                            : "opacity-0 translate-y-6"
                       }`}
                     >
                       {isActive && (
@@ -109,10 +108,10 @@ export default function Slider() {
                     </h2>
 
                     <p
-                      className={`text-lg md:text-xl text-white/90 transition-all duration-700 delay-500 ${
-                        isActive
-                          ? "opacity-100 translate-y-0"
-                          : "opacity-0 translate-y-6"
+                        className={`text-lg md:text-xl text-slate-700 transition-all duration-700 delay-500 ${
+                          isActive
+                            ? "opacity-100 translate-y-0"
+                            : "opacity-0 translate-y-6"
                       }`}
                     >
                       {slide.description}
@@ -127,23 +126,23 @@ export default function Slider() {
                     >
                       <Link
                         href={slide.cta}
-                        className="group relative inline-flex items-center justify-center overflow-hidden rounded-xl px-8 py-3 font-bold text-black transition-transform duration-300 hover:scale-105 bg-gradient-to-r from-[#2ef4ed] to-[#01b8db] shadow-[0_0_24px_rgba(46,244,237,.55)]"
-                      >
-                        <span className="absolute inset-0 bg-gradient-to-r from-[#01b8db] to-[#2ef4ed] origin-bottom scale-y-0 transition-transform duration-500 ease-out group-hover:scale-y-100" />
-                        <span className="absolute inset-0 rounded-xl blur-lg opacity-30 bg-[#2ef4ed] group-hover:opacity-50 transition-opacity duration-500" />
-                        <span className="relative z-10">Ver ciclos</span>
-                      </Link>
+                          className="group relative inline-flex items-center justify-center overflow-hidden rounded-xl bg-gradient-to-r from-[#7ff6f1] to-[#01b8db] px-8 py-3 font-bold text-slate-950 shadow-[0_0_24px_rgba(46,244,237,.32)] transition-transform duration-300 hover:scale-105"
+                        >
+                          <span className="absolute inset-0 origin-bottom scale-y-0 bg-gradient-to-r from-[#01b8db] to-[#7ff6f1] transition-transform duration-500 ease-out group-hover:scale-y-100" />
+                          <span className="absolute inset-0 rounded-xl bg-[#7ff6f1] opacity-20 blur-lg transition-opacity duration-500 group-hover:opacity-35" />
+                          <span className="relative z-10">Ver ciclos</span>
+                        </Link>
 
                       <button
                         type="button"
                         onClick={handleSlideWhatsapp}
-                        className="group relative inline-flex items-center justify-center overflow-hidden rounded-xl px-8 py-3 font-semibold text-white border border-white/40 transition-all duration-300 hover:scale-105 cursor-pointer"
-                      >
-                        <span className="absolute inset-0 bg-white origin-bottom scale-y-0 transition-transform duration-500 ease-out group-hover:scale-y-100" />
-                        <span className="relative z-10 group-hover:text-black transition-colors duration-300">
-                          Escríbenos
-                        </span>
-                      </button>
+                          className="group relative inline-flex cursor-pointer items-center justify-center overflow-hidden rounded-xl border border-primary/35 bg-white/58 px-8 py-3 font-semibold text-slate-950 transition-all duration-300 hover:scale-105"
+                        >
+                          <span className="absolute inset-0 origin-bottom scale-y-0 bg-primary/14 transition-transform duration-500 ease-out group-hover:scale-y-100" />
+                          <span className="relative z-10 transition-colors duration-300 group-hover:text-primary">
+                            Escríbenos
+                          </span>
+                        </button>
                     </div>
                   </div>
                 </div>

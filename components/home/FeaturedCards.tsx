@@ -14,7 +14,7 @@ export default function FeaturedCards() {
       image: "/images/hero-1.jpg",
       icon: <GraduationCap className="w-5 h-5" />,
       href: "/ciclos",
-      accent: "from-[#2ef4ed] to-[#01b8db]",
+      accent: "from-[#7ff6f1] to-[#01b8db]",
     },
     {
       badge: "Clases grabadas",
@@ -24,7 +24,7 @@ export default function FeaturedCards() {
       image: "/images/hero-1.jpg",
       icon: <Video className="w-5 h-5" />,
       href: "/videoteca",
-      accent: "from-purple-400 to-indigo-500",
+      accent: "from-[#d9fbff] to-[#48d8ea]",
     },
     {
       badge: "Material exclusivo",
@@ -34,23 +34,23 @@ export default function FeaturedCards() {
       image: "/images/hero-1.jpg",
       icon: <BookOpen className="w-5 h-5" />,
       href: "/recursos",
-      accent: "from-amber-400 to-orange-500",
+      accent: "from-[#8ef8f2] to-[#0eb5cf]",
     },
   ];
 
   return (
-    <section className="relative py-28 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
+    <section className="relative overflow-hidden bg-[linear-gradient(180deg,#ffffff_0%,#f2fcff_100%)] py-28">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(46,244,237,0.18),transparent_60%)] pointer-events-none" />
 
       <div className="absolute top-20 left-10 w-2 h-2 rounded-full bg-cyan-400/50 blur-sm animate-floatSlow" />
-      <div className="absolute bottom-20 right-16 w-3 h-3 rounded-full bg-indigo-400/40 blur-sm animate-floatMedium" />
-      <div className="absolute top-1/2 right-1/3 w-2 h-2 rounded-full bg-amber-400/40 blur-sm animate-floatFast" />
+      <div className="absolute bottom-20 right-16 h-3 w-3 rounded-full bg-[#7ff6f1]/40 blur-sm animate-floatMedium" />
+      <div className="absolute top-1/2 right-1/3 h-2 w-2 rounded-full bg-primary/35 blur-sm animate-floatFast" />
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="inline-block mb-4 px-4 py-1 rounded-full bg-primary/50 text-gray-900 text-sm font-semibold">
-            🚀 Aprende más rápido
-          </span>
+            <span className="mb-4 inline-block rounded-full bg-primary/14 px-4 py-1 text-sm font-semibold text-slate-950">
+              🚀 Aprende más rápido
+            </span>
           <h2 className="text-gray-900 text-3xl md:text-4xl font-extrabold mb-4">
             Todo lo que necesitas para ingresar
           </h2>
@@ -115,9 +115,9 @@ export default function FeaturedCards() {
                   </div>
                 </div>
 
-                <div className="absolute inset-0 rounded-[28px] ring-1 ring-transparent group-hover:ring-cyan-400/40 transition pointer-events-none" />
+                <div className="pointer-events-none absolute inset-0 rounded-[28px] ring-1 ring-transparent transition group-hover:ring-primary/30" />
 
-                <div className="absolute -top-24 -right-24 w-60 h-60 bg-cyan-400/20 blur-3xl opacity-0 group-hover:opacity-100 transition" />
+                <div className="absolute -top-24 -right-24 h-60 w-60 bg-primary/16 blur-3xl opacity-0 transition group-hover:opacity-100" />
               </div>
             </Link>
           ))}

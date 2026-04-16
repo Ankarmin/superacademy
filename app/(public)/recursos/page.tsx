@@ -29,7 +29,7 @@ const recursos = [
     badge: "🔥 Más usado",
     cta: "Descargar",
     icon: <FileText className="w-5 h-5" />,
-    color: "from-cyan-400 to-emerald-400",
+    color: "from-[#7ff6f1] to-[#01b8db]",
     image: "/images/hero-1.jpg",
     link: "#",
   },
@@ -41,7 +41,7 @@ const recursos = [
     badge: "⭐ Recomendado",
     cta: "Resolver ahora",
     icon: <BookOpen className="w-5 h-5" />,
-    color: "from-violet-400 to-fuchsia-400",
+    color: "from-[#d7fbff] to-[#58ddea]",
     image: "/images/hero-1.jpg",
     link: "#",
   },
@@ -53,7 +53,7 @@ const recursos = [
     badge: "🏆 Top",
     cta: "Empezar simulacro",
     icon: <GraduationCap className="w-5 h-5" />,
-    color: "from-orange-400 to-yellow-400",
+    color: "from-[#9ef4fb] to-[#0eaec8]",
     image: "/images/hero-1.jpg",
     link: "#",
   },
@@ -65,7 +65,7 @@ const recursos = [
     badge: "🗓️ Nuevo",
     cta: "Descargar",
     icon: <Clock className="w-5 h-5" />,
-    color: "from-indigo-400 to-sky-400",
+    color: "from-[#e8fdff] to-[#7eeff4]",
     image: "/images/hero-1.jpg",
     link: "#",
   },
@@ -77,7 +77,7 @@ const recursos = [
     badge: "🎥 Popular",
     cta: "Ver ahora",
     icon: <PlayCircle className="w-5 h-5" />,
-    color: "from-pink-400 to-rose-400",
+    color: "from-[#d2fbff] to-[#3cd3e5]",
     image: "/images/hero-1.jpg",
     link: "#",
   },
@@ -89,7 +89,7 @@ const recursos = [
     badge: "🧠 Pro tips",
     cta: "Leer",
     icon: <Sparkles className="w-5 h-5" />,
-    color: "from-green-400 to-lime-400",
+    color: "from-[#cffff8] to-[#01b8db]",
     image: "/images/hero-1.jpg",
     link: "#",
   },
@@ -97,35 +97,32 @@ const recursos = [
 
 export default function RecursosPage() {
   return (
-    <div className="bg-gradient-to-b from-white to-gray-50 overflow-hidden">
-      {/* HERO */}
-      <section className="relative py-36 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/90 to-primary/80" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,.25),transparent_60%)]" />
+    <div className="overflow-hidden bg-white">
+      <section className="relative overflow-hidden bg-[linear-gradient(180deg,#e9fcff_0%,#9ef4fb_100%)] py-36">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,.35),transparent_60%)]" />
 
-        <div className="relative z-10 container mx-auto px-6 text-center max-w-4xl text-white">
-          <h1 className="text-gray-900 text-5xl md:text-6xl font-extrabold mb-6">
+        <div className="container relative z-10 mx-auto max-w-4xl px-6 text-center text-slate-950">
+          <h1 className="mb-6 text-5xl font-extrabold text-slate-950 md:text-6xl">
             Recursos académicos 📚
           </h1>
-          <p className="text-lg md:text-xl opacity-90 leading-relaxed mb-10">
+          <p className="mb-10 text-lg leading-relaxed text-slate-700 md:text-xl">
             Guías, simulacros, clases gratuitas y herramientas para potenciar tu
             ingreso universitario.
           </p>
 
           <a
             href="#recursos"
-            className="relative inline-flex items-center gap-2 px-10 py-4 rounded-xl font-bold text-black bg-yellow-400 shadow-[0_0_40px_rgba(255,200,0,.6)] transition-transform hover:scale-105 overflow-hidden group"
+            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-white px-10 py-4 font-bold text-primary shadow-[0_0_32px_rgba(1,184,219,.2)] transition-transform hover:scale-105"
           >
             <span className="relative z-10 flex items-center gap-2">
               Explorar recursos <Sparkles className="w-5 h-5" />
             </span>
-            <span className="absolute inset-0 bg-gradient-to-r from-yellow-300 to-yellow-500 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+            <span className="absolute inset-0 translate-y-full bg-gradient-to-r from-[#ccfbff] to-[#7ff6f1] transition-transform duration-500 group-hover:translate-y-0" />
           </a>
         </div>
       </section>
 
-      {/* GRID */}
-      <section id="recursos" className="py-28 relative z-10">
+      <section id="recursos" className="relative z-10 bg-white py-28">
         <div className="container mx-auto px-6">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-gray-900 text-4xl font-extrabold mb-4">
@@ -143,9 +140,8 @@ export default function RecursosPage() {
                 key={recurso.id}
                 href={recurso.link}
                 rel="noreferrer"
-                className="group relative rounded-3xl overflow-hidden bg-white/80 backdrop-blur-sm hover:backdrop-blur-xl border border-white/40 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 will-change-transform"
+                className="group relative overflow-hidden rounded-3xl border border-[#d8eef3] bg-white/85 shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl will-change-transform"
               >
-                {/* IMAGE */}
                 <div className="relative h-44 overflow-hidden">
                   <Image
                     src={recurso.image}
@@ -162,7 +158,6 @@ export default function RecursosPage() {
                   </span>
                 </div>
 
-                {/* CONTENT */}
                 <div className="p-7 space-y-4">
                   <div
                     className={`w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br ${recurso.color} text-black shadow group-hover:scale-110 transition`}
@@ -181,9 +176,9 @@ export default function RecursosPage() {
                     <span className="px-3 py-1 text-xs rounded-full bg-primary/10 text-gray-900 font-semibold">
                       {recurso.tipo}
                     </span>
-                    <span className="px-3 py-1 text-xs rounded-full bg-emerald-100 text-emerald-700 font-semibold">
-                      Gratis
-                    </span>
+                      <span className="rounded-full bg-[#d9fbff] px-3 py-1 text-xs font-semibold text-[#0e7f93]">
+                        Gratis
+                      </span>
                     <span className="px-3 py-1 text-xs rounded-full bg-gray-100 text-gray-700 font-semibold">
                       Actualizado
                     </span>
@@ -198,9 +193,8 @@ export default function RecursosPage() {
                   </div>
                 </div>
 
-                {/* GLOW */}
                 <div
-                  className={`absolute -inset-px rounded-3xl bg-gradient-to-r ${recurso.color} opacity-0 group-hover:opacity-20 blur-lg transition`}
+                  className={`absolute -inset-px rounded-3xl bg-gradient-to-r ${recurso.color} opacity-0 blur-lg transition group-hover:opacity-20`}
                 />
               </a>
             ))}
@@ -208,8 +202,7 @@ export default function RecursosPage() {
         </div>
       </section>
 
-      {/* BENEFITS */}
-      <section className="relative py-28 overflow-hidden bg-gradient-to-b from-gray-50 to-white">
+      <section className="relative overflow-hidden bg-[linear-gradient(180deg,#f2fcff_0%,#ffffff_100%)] py-28">
         <div className="container mx-auto px-6 grid md:grid-cols-3 gap-10 text-center relative z-10">
           {[
             {
@@ -230,39 +223,37 @@ export default function RecursosPage() {
           ].map((b, i) => (
             <div
               key={i}
-              className="relative group rounded-3xl bg-white/80 backdrop-blur-sm hover:backdrop-blur-xl border border-white/40 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 p-10 will-change-transform"
-            >
+                className="relative group rounded-3xl border border-[#d8eef3] bg-white/85 p-10 shadow-xl transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl will-change-transform"
+              >
               <div className="text-4xl mb-4">{b.icon}</div>
               <h4 className="font-bold text-lg mb-2">{b.title}</h4>
               <p className="text-gray-600 text-sm leading-relaxed">{b.desc}</p>
-              <div className="absolute -inset-px rounded-3xl bg-gradient-to-r from-primary/40 to-yellow-400/40 opacity-0 group-hover:opacity-20 blur-lg transition" />
+               <div className="absolute -inset-px rounded-3xl bg-gradient-to-r from-primary/40 to-[#7ff6f1]/40 opacity-0 blur-lg transition group-hover:opacity-20" />
             </div>
           ))}
         </div>
       </section>
 
-      {/* CTA FINAL */}
-      <section className="relative py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,.2),transparent_60%)]" />
+      <section className="relative overflow-hidden bg-[linear-gradient(180deg,#ffffff_0%,#e9fcff_100%)] py-32">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(1,184,219,.12),transparent_60%)]" />
 
-        <div className="relative z-10 container mx-auto px-6 text-center max-w-3xl text-white">
-          <h2 className="text-4xl font-extrabold mb-6 text-gray-900">
+        <div className="container relative z-10 mx-auto max-w-3xl px-6 text-center text-slate-950">
+          <h2 className="mb-6 text-4xl font-extrabold text-slate-950">
             ¿Quieres una preparación completa? 🚀
           </h2>
-          <p className="opacity-90 mb-10 text-lg text-gray-900">
+          <p className="mb-10 text-lg text-slate-700">
             Inscríbete en nuestros ciclos y maximiza tus oportunidades de
             ingreso.
           </p>
 
           <Link
             href="/ciclos"
-            className="relative inline-flex items-center gap-2 px-10 py-4 rounded-xl font-bold text-black bg-yellow-400 shadow-[0_0_40px_rgba(255,200,0,.6)] transition-transform hover:scale-105 overflow-hidden group"
+            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-primary px-10 py-4 font-bold text-slate-950 shadow-[0_0_32px_rgba(1,184,219,.22)] transition-transform hover:scale-105"
           >
             <span className="relative z-10 flex items-center gap-2">
               Ver ciclos disponibles <Sparkles className="w-5 h-5" />
             </span>
-            <span className="absolute inset-0 bg-gradient-to-r from-yellow-300 to-yellow-500 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+            <span className="absolute inset-0 translate-y-full bg-gradient-to-r from-[#7ff6f1] to-[#ccfbff] transition-transform duration-500 group-hover:translate-y-0" />
           </Link>
         </div>
       </section>

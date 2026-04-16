@@ -45,31 +45,31 @@ export default async function CicloPage({ params }: CicloPageProps) {
 
   return (
     <main className="bg-white">
-      <section className="bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 py-24 text-white">
+      <section className="bg-[linear-gradient(180deg,#e9fcff_0%,#9ef4fb_100%)] py-24 text-slate-950">
         <div className="container mx-auto grid gap-10 px-6 lg:grid-cols-[1.4fr_0.9fr] lg:items-center">
           <div>
-            <span className="rounded-full bg-primary/20 px-4 py-2 text-sm font-semibold text-primary">
+            <span className="rounded-full bg-white/70 px-4 py-2 text-sm font-semibold text-primary">
               {program.badge}
             </span>
             <h1 className="mt-6 text-4xl font-extrabold md:text-5xl">
               {program.title}
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300">
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-700">
               {program.description}
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-4 text-sm text-slate-200">
-              <span className="rounded-full border border-white/15 px-4 py-2">
+            <div className="mt-8 flex flex-wrap gap-4 text-sm text-slate-700">
+              <span className="rounded-full border border-white/70 bg-white/45 px-4 py-2">
                 {program.audience}
               </span>
-              <span className="rounded-full border border-white/15 px-4 py-2">
+              <span className="rounded-full border border-white/70 bg-white/45 px-4 py-2">
                 {program.mode}
               </span>
             </div>
           </div>
 
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
-            <div className="space-y-5 text-sm text-slate-200">
+          <div className="rounded-3xl border border-white/75 bg-white/55 p-8 backdrop-blur">
+            <div className="space-y-5 text-sm text-slate-700">
               <div className="flex items-center gap-3">
                 <Clock3 className="h-4 w-4 text-primary" />
                 <span>{program.duration}</span>
@@ -99,8 +99,9 @@ export default async function CicloPage({ params }: CicloPageProps) {
         </div>
       </section>
 
-      <section className="container mx-auto grid gap-8 px-6 py-20 lg:grid-cols-[1.1fr_0.9fr]">
-        <article className="rounded-3xl border border-slate-200 bg-slate-50 p-8">
+      <section className="bg-[linear-gradient(180deg,#ffffff_0%,#f2fcff_100%)] py-20">
+        <div className="container mx-auto grid gap-8 px-6 lg:grid-cols-[1.1fr_0.9fr]">
+        <article className="rounded-3xl border border-[#d8eef3] bg-white p-8">
           <h2 className="text-2xl font-extrabold text-slate-950">
             Lo que incluye este ciclo
           </h2>
@@ -114,7 +115,7 @@ export default async function CicloPage({ params }: CicloPageProps) {
           </ul>
         </article>
 
-        <article className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+        <article className="rounded-3xl border border-[#d8eef3] bg-[#f4fdff] p-8 shadow-sm">
           <h2 className="text-2xl font-extrabold text-slate-950">
             Cursos principales
           </h2>
@@ -129,6 +130,7 @@ export default async function CicloPage({ params }: CicloPageProps) {
             ))}
           </div>
         </article>
+        </div>
       </section>
     </main>
   );

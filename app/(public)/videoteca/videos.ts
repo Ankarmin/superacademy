@@ -9,7 +9,6 @@ const getYouTubeVideoId = (url: string) => {
 export type Video = {
   id: number;
   titulo: string;
-  youtubeUrl: string;
   videoId: string;
 };
 
@@ -22,7 +21,6 @@ export type Curso = {
 const createVideo = (id: number, titulo: string, youtubeUrl: string): Video => ({
   id,
   titulo,
-  youtubeUrl,
   videoId: getYouTubeVideoId(youtubeUrl),
 });
 

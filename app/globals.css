@@ -22,15 +22,15 @@ body {
   width: 10px !important;
   height: 10px !important;
   margin: 0 6px !important;
-  background: white !important;
-  opacity: 0.6 !important;
+  background: #01b8db !important;
+  opacity: 0.3 !important;
   transition: all 0.3s ease !important;
 }
 
 .swiper-pagination-bullet-active {
   width: 30px !important;
   border-radius: 5px !important;
-  background: #101828 !important;
+  background: #01b8db !important;
   opacity: 1 !important;
 }
 

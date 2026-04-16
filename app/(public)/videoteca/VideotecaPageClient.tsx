@@ -11,41 +11,40 @@ export default function VideotecaPageClient() {
   const [videoActivo, setVideoActivo] = useState<Video | null>(null);
 
   return (
-    <main className="bg-gradient-to-b from-white to-gray-50 overflow-hidden">
-      <section className="relative py-36 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/90 to-primary/80" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,.2),transparent_60%)]" />
+    <main className="overflow-hidden bg-white">
+      <section className="relative overflow-hidden bg-[linear-gradient(180deg,#e9fcff_0%,#9ef4fb_100%)] py-36">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,.38),transparent_60%)]" />
 
-        <div className="flex flex-col items-center relative z-10 container mx-auto px-6 text-center max-w-4xl text-white">
-          <h1 className="flex items-center justify-center gap-2 text-gray-900 text-5xl md:text-6xl font-extrabold mb-6">
+        <div className="container relative z-10 mx-auto flex max-w-4xl flex-col items-center px-6 text-center text-slate-950">
+          <h1 className="mb-6 flex items-center justify-center gap-2 text-5xl font-extrabold text-slate-950 md:text-6xl">
             Videoteca <Film className="w-12 h-12 text-gray-900" />
           </h1>
-          <p className="text-lg md:text-xl opacity-90 leading-relaxed mb-10">
+          <p className="mb-10 text-lg leading-relaxed text-slate-700 md:text-xl">
             Aprende a tu ritmo con cientos de clases grabadas por docentes
             expertos.
           </p>
 
           <a
             href="#videos"
-            className="relative inline-flex items-center gap-2 px-10 py-4 rounded-xl font-bold text-black bg-yellow-400 shadow-[0_0_40px_rgba(255,200,0,.6)] transition-transform hover:scale-105 overflow-hidden group"
+            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-white px-10 py-4 font-bold text-primary shadow-[0_0_30px_rgba(1,184,219,.18)] transition-transform hover:scale-105"
           >
             <span className="relative z-10 flex items-center gap-2">
               Explorar videoteca <PlayCircle className="w-5 h-5" />
             </span>
-            <span className="absolute inset-0 bg-gradient-to-r from-yellow-300 to-yellow-500 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+            <span className="absolute inset-0 translate-y-full bg-gradient-to-r from-[#ccfbff] to-[#7ff6f1] transition-transform duration-500 group-hover:translate-y-0" />
           </a>
         </div>
 
         <div className="absolute -top-24 -left-24 w-96 h-96 bg-cyan-400/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 -right-24 w-96 h-96 bg-yellow-400/30 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 -right-24 w-96 h-96 bg-[#7ff6f1]/30 rounded-full blur-3xl" />
       </section>
 
       <section
         id="videos"
-        className="py-24 relative bg-gradient-to-b from-white to-gray-50"
+        className="relative bg-white py-24"
       >
         <div className="container mx-auto px-6 flex gap-10">
-          <aside className="w-72 shrink-0 bg-white/70 backdrop-blur-xl rounded-3xl shadow-xl border border-white/40 p-6 space-y-4 overflow-y-auto h-[70vh] sticky top-28">
+          <aside className="sticky top-28 h-[70vh] w-72 shrink-0 space-y-4 overflow-y-auto rounded-3xl border border-[#d8eef3] bg-[#f4fdff] p-6 shadow-xl backdrop-blur-xl">
             <h2 className="text-xl font-extrabold mb-4 flex items-center gap-2">
               Cursos <Sparkles className="w-5 h-5 text-primary" />
             </h2>
@@ -60,8 +59,8 @@ export default function VideotecaPageClient() {
                 }}
                 className={`cursor-pointer group flex w-full items-center px-4 py-3 rounded-xl font-semibold transition-all duration-300 ${
                   cursoActivo.id === curso.id
-                    ? "bg-gradient-to-r from-primary to-primary/80 text-white shadow-lg scale-[1.02]"
-                    : "hover:bg-gray-100"
+                    ? "bg-gradient-to-r from-primary to-[#7ff6f1] text-slate-950 shadow-lg scale-[1.02]"
+                    : "bg-white hover:bg-[#eefbff]"
                 }`}
               >
                 <span>{curso.nombre}</span>
@@ -73,12 +72,12 @@ export default function VideotecaPageClient() {
             <div className="flex items-center justify-between mb-8">
               <div>
                 <h2 className="text-3xl font-extrabold">{cursoActivo.nombre}</h2>
-                <p className="text-sm text-gray-500 mt-1">
+                <p className="mt-1 text-sm text-gray-500">
                   {cursoActivo.videos.length} clases disponibles
                 </p>
               </div>
 
-              <span className="px-4 py-1.5 rounded-full text-sm font-bold bg-primary/50 text-gray-900">
+              <span className="rounded-full bg-primary/14 px-4 py-1.5 text-sm font-bold text-slate-950">
                 Acceso ilimitado
               </span>
             </div>
@@ -93,7 +92,7 @@ export default function VideotecaPageClient() {
                   <button
                     type="button"
                     onClick={() => setVideoActivo(null)}
-                    className="cursor-pointer absolute top-5 right-5 z-40 bg-primary/80 hover:bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center text-xl transition"
+                    className="absolute right-5 top-5 z-40 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-primary/80 text-white text-xl transition hover:bg-primary"
                   >
                     ✕
                   </button>
@@ -120,7 +119,7 @@ export default function VideotecaPageClient() {
                     type="button"
                     key={`${video.id}-${index}`}
                     onClick={() => setVideoActivo(video)}
-                    className="group cursor-pointer relative rounded-2xl overflow-hidden shadow-lg transition-all duration-500 bg-white hover:-translate-y-2 hover:shadow-2xl"
+                    className="group relative cursor-pointer overflow-hidden rounded-2xl border border-[#d8eef3] bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
                   >
                     <div className="relative h-44 overflow-hidden">
                       <Image
@@ -145,7 +144,7 @@ export default function VideotecaPageClient() {
                       </p>
                     </div>
 
-                    <div className="absolute -inset-px rounded-2xl bg-gradient-to-r from-primary/40 to-yellow-400/40 opacity-0 group-hover:opacity-30 blur-xl transition" />
+                    <div className="absolute -inset-px rounded-2xl bg-gradient-to-r from-primary/40 to-[#7ff6f1]/40 opacity-0 blur-xl transition group-hover:opacity-30" />
                   </button>
                 ))}
               </div>
@@ -154,7 +153,7 @@ export default function VideotecaPageClient() {
         </div>
       </section>
 
-      <section className="relative pb-28 overflow-hidden bg-gradient-to-b from-gray-50 to-white">
+      <section className="relative overflow-hidden bg-[linear-gradient(180deg,#f2fcff_0%,#ffffff_100%)] pb-28 pt-4">
         <div className="container mx-auto px-6 grid md:grid-cols-3 gap-10 text-center relative z-10">
           {[
             {
@@ -175,39 +174,38 @@ export default function VideotecaPageClient() {
           ].map((b, i) => (
             <div
               key={i}
-              className="relative group rounded-3xl bg-white/70 backdrop-blur-xl border border-white/40 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 p-10"
-            >
+                className="relative group rounded-3xl border border-[#d8eef3] bg-white/85 p-10 shadow-xl backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl"
+              >
               <div className="text-4xl mb-4">{b.icon}</div>
               <h3 className="font-bold text-lg mb-2">{b.title}</h3>
               <p className="text-gray-600 text-sm leading-relaxed">{b.desc}</p>
 
-              <div className="absolute -inset-px rounded-3xl bg-gradient-to-r from-primary/40 to-yellow-400/40 opacity-0 group-hover:opacity-20 blur-xl transition" />
-            </div>
-          ))}
-        </div>
+                <div className="absolute -inset-px rounded-3xl bg-gradient-to-r from-primary/40 to-[#7ff6f1]/40 opacity-0 blur-xl transition group-hover:opacity-20" />
+              </div>
+            ))}
+          </div>
       </section>
 
-      <section className="relative py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,.2),transparent_60%)]" />
+      <section className="relative overflow-hidden bg-[linear-gradient(180deg,#ffffff_0%,#e9fcff_100%)] py-32">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(1,184,219,.12),transparent_60%)]" />
 
-        <div className="relative z-10 container mx-auto px-6 text-center max-w-3xl text-white">
-          <h2 className="text-gray-900 text-4xl font-extrabold mb-6">
+        <div className="container relative z-10 mx-auto max-w-3xl px-6 text-center text-slate-950">
+          <h2 className="mb-6 text-4xl font-extrabold text-slate-950">
             Empieza hoy tu preparación 🚀
           </h2>
-          <p className="text-gray-900 mb-10 text-lg">
+          <p className="mb-10 text-lg text-slate-700">
             Accede ahora a toda nuestra videoteca y potencia tu rendimiento
             académico.
           </p>
 
           <Link
             href="/ciclos"
-            className="relative inline-flex items-center gap-2 px-10 py-4 rounded-xl font-bold text-black bg-yellow-400 shadow-[0_0_40px_rgba(255,200,0,.6)] transition-transform hover:scale-105 overflow-hidden group"
+            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-primary px-10 py-4 font-bold text-slate-950 shadow-[0_0_32px_rgba(1,184,219,.22)] transition-transform hover:scale-105"
           >
             <span className="relative z-10 flex items-center gap-2">
               Ver ciclos disponibles <Sparkles className="w-5 h-5" />
             </span>
-            <span className="absolute inset-0 bg-gradient-to-r from-yellow-300 to-yellow-500 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+            <span className="absolute inset-0 translate-y-full bg-gradient-to-r from-[#7ff6f1] to-[#ccfbff] transition-transform duration-500 group-hover:translate-y-0" />
           </Link>
         </div>
       </section>
