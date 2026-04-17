@@ -11,7 +11,9 @@ export default function PublicLayout({
   return (
     <div className="flex flex-col min-h-[100dvh]">
       <Header />
-      <div className="flex-1 pt-[73px]">{children}</div>
+      <main id="main-content" className="flex-1 pt-[80px] md:pt-[84px] lg:pt-[88px]">
+        {children}
+      </main>
       <Footer />
       <WhatsAppWidget />
       <SocialWidget />

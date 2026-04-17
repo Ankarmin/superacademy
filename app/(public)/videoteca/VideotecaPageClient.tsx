@@ -1,212 +1,339 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
-import { Play, PlayCircle, Sparkles, Film } from "lucide-react";
+import { useMemo, useRef, useState } from "react";
+import {
+  Film,
+  LoaderCircle,
+  Play,
+  Search,
+  Sparkles,
+  X,
+} from "lucide-react";
+import ModalShell from "@/components/ui/ModalShell";
+import SuperSectionHero from "@/components/ui/SuperSectionHero";
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { videotecaCursos, type Curso, type Video } from "./videos";
 
+function normalizeText(value: string) {
+  return value.toLowerCase();
+}
+
+function matchesSearch(curso: Curso, searchTerm: string) {
+  const normalizedSearchTerm = normalizeText(searchTerm.trim());
+
+  if (!normalizedSearchTerm) {
+    return true;
+  }
+
+  return (
+    normalizeText(curso.nombre).includes(normalizedSearchTerm) ||
+    curso.videos.some((video) => normalizeText(video.titulo).includes(normalizedSearchTerm))
+  );
+}
+
+function getVisibleVideos(curso: Curso, searchTerm: string) {
+  const normalizedSearchTerm = normalizeText(searchTerm.trim());
+
+  if (!normalizedSearchTerm) {
+    return curso.videos;
+  }
+
+  if (normalizeText(curso.nombre).includes(normalizedSearchTerm)) {
+    return curso.videos;
+  }
+
+  return curso.videos.filter((video) =>
+    normalizeText(video.titulo).includes(normalizedSearchTerm),
+  );
+}
+
 export default function VideotecaPageClient() {
-  const [cursoActivo, setCursoActivo] = useState<Curso>(videotecaCursos[0]);
+  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
+  const validCourses = useMemo(
+    () =>
+      videotecaCursos
+        .map((curso) => ({
+          ...curso,
+          videos: curso.videos.filter((video) => video.videoId),
+        }))
+        .filter((curso) => curso.videos.length > 0),
+    [],
+  );
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const [activeCourseId, setActiveCourseId] = useState<number | null>(
+    validCourses[0]?.id ?? null,
+  );
   const [videoActivo, setVideoActivo] = useState<Video | null>(null);
+  const [isVideoLoading, setIsVideoLoading] = useState(false);
+
+  const filteredCourses = useMemo(
+    () => validCourses.filter((curso) => matchesSearch(curso, searchTerm)),
+    [searchTerm, validCourses],
+  );
+
+  const cursoActivo =
+    filteredCourses.find((course) => course.id === activeCourseId) ??
+    filteredCourses[0] ??
+    null;
+
+  const visibleVideos = cursoActivo ? getVisibleVideos(cursoActivo, searchTerm) : [];
+  const totalVideos = validCourses.reduce(
+    (total, curso) => total + curso.videos.length,
+    0,
+  );
 
   return (
     <main className="overflow-hidden bg-white">
-      <section className="relative overflow-hidden bg-[linear-gradient(180deg,#e9fcff_0%,#9ef4fb_100%)] py-36">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,.38),transparent_60%)]" />
+      <section id="videos" className="relative bg-white py-16 sm:py-20">
+        <div className="container mx-auto px-6">
+          <SuperSectionHero
+            badge="Videos organizados por curso"
+            titleStart="Nuestra"
+            titleAccent="SuperVideoteca"
+            description="Explora nuestra videoteca con una navegacion clara por cursos y clases. Cada video aparece en tarjetas ordenadas para que encuentres rapido lo que quieres repasar."
+            stats={[
+              `${validCourses.length} cursos disponibles`,
+              `${totalVideos} clases visibles ahora`,
+              "Acceso ilimitado a la videoteca",
+            ]}
+          />
 
-        <div className="container relative z-10 mx-auto flex max-w-4xl flex-col items-center px-6 text-center text-slate-950">
-          <h1 className="mb-6 flex items-center justify-center gap-2 text-5xl font-extrabold text-slate-950 md:text-6xl">
-            Videoteca <Film className="w-12 h-12 text-gray-900" />
-          </h1>
-          <p className="mb-10 text-lg leading-relaxed text-slate-700 md:text-xl">
-            Aprende a tu ritmo con cientos de clases grabadas por docentes
-            expertos.
-          </p>
-
-          <a
-            href="#videos"
-            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-white px-10 py-4 font-bold text-primary shadow-[0_0_30px_rgba(1,184,219,.18)] transition-transform hover:scale-105"
-          >
-            <span className="relative z-10 flex items-center gap-2">
-              Explorar videoteca <PlayCircle className="w-5 h-5" />
-            </span>
-            <span className="absolute inset-0 translate-y-full bg-gradient-to-r from-[#ccfbff] to-[#7ff6f1] transition-transform duration-500 group-hover:translate-y-0" />
-          </a>
-        </div>
-
-        <div className="absolute -top-24 -left-24 w-96 h-96 bg-cyan-400/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 -right-24 w-96 h-96 bg-[#7ff6f1]/30 rounded-full blur-3xl" />
-      </section>
-
-      <section
-        id="videos"
-        className="relative bg-white py-24"
-      >
-        <div className="container mx-auto px-6 flex gap-10">
-          <aside className="sticky top-28 h-[70vh] w-72 shrink-0 space-y-4 overflow-y-auto rounded-3xl border border-[#d8eef3] bg-[#f4fdff] p-6 shadow-xl backdrop-blur-xl">
-            <h2 className="text-xl font-extrabold mb-4 flex items-center gap-2">
-              Cursos <Sparkles className="w-5 h-5 text-primary" />
-            </h2>
-
-            {videotecaCursos.map((curso) => (
-              <button
-                type="button"
-                key={curso.id}
-                onClick={() => {
-                  setCursoActivo(curso);
-                  setVideoActivo(null);
-                }}
-                className={`cursor-pointer group flex w-full items-center px-4 py-3 rounded-xl font-semibold transition-all duration-300 ${
-                  cursoActivo.id === curso.id
-                    ? "bg-gradient-to-r from-primary to-[#7ff6f1] text-slate-950 shadow-lg scale-[1.02]"
-                    : "bg-white hover:bg-[#eefbff]"
-                }`}
-              >
-                <span>{curso.nombre}</span>
-              </button>
-            ))}
-          </aside>
-
-          <section className="flex-1 relative">
-            <div className="flex items-center justify-between mb-8">
+          <div className="mt-12 flex flex-col gap-8 sm:mt-14 lg:flex-row lg:gap-10">
+            <aside className="w-full space-y-4 rounded-3xl border border-[#d8eef3] bg-[#f4fdff] p-5 shadow-xl backdrop-blur-xl lg:sticky lg:top-32 lg:h-[70vh] lg:w-80 lg:shrink-0 lg:overflow-y-auto lg:p-6">
               <div>
-                <h2 className="text-3xl font-extrabold">{cursoActivo.nombre}</h2>
-                <p className="mt-1 text-sm text-gray-500">
-                  {cursoActivo.videos.length} clases disponibles
+                <h2 className="mb-2 flex items-center gap-2 text-xl font-extrabold">
+                  Cursos <Sparkles className="h-5 w-5 text-primary" />
+                </h2>
+                <p className="text-sm leading-6 text-slate-600">
+                  Busca y cambia de curso sin cerrar la pantalla actual.
                 </p>
               </div>
 
-              <span className="rounded-full bg-primary/14 px-4 py-1.5 text-sm font-bold text-slate-950">
-                Acceso ilimitado
-              </span>
-            </div>
+              <label className="block">
+                <span className="text-sm font-semibold text-slate-900">Buscar curso o clase</span>
+                <div className="relative mt-2">
+                  <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+                  <input
+                    type="search"
+                    value={searchTerm}
+                    onChange={(event) => setSearchTerm(event.target.value)}
+                    placeholder="Ejemplo: química, lenguaje, filosofía"
+                    className="min-h-11 w-full rounded-2xl border border-slate-200 bg-white pl-11 pr-11 text-slate-900 shadow-sm transition placeholder:text-slate-400 focus:border-primary focus:outline-none"
+                  />
+                  {searchTerm ? (
+                    <button
+                      type="button"
+                      aria-label="Limpiar búsqueda"
+                      onClick={() => setSearchTerm("")}
+                      className="absolute right-3 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-slate-500 transition hover:bg-slate-100 hover:text-slate-900"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  ) : null}
+                </div>
+              </label>
 
-            <div
-              className={`relative min-h-[60vh] max-h-[60vh] pr-4 scrollbar-width-thin ${
-                videoActivo ? "overflow-hidden" : "overflow-y-auto"
-              }`}
-            >
-              {videoActivo && (
-                <div className="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm flex items-center justify-center animate-fade-in">
-                  <button
-                    type="button"
-                    onClick={() => setVideoActivo(null)}
-                    className="absolute right-5 top-5 z-40 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-primary/80 text-white text-xl transition hover:bg-primary"
-                  >
-                    ✕
-                  </button>
+              <p className="rounded-2xl border border-[#d8eef3] bg-white px-4 py-3 text-sm text-slate-600">
+                {filteredCourses.length
+                  ? `${filteredCourses.length} cursos coinciden con tu búsqueda.`
+                  : "No hay coincidencias con ese término."}
+              </p>
 
-                  <div className="w-full h-full max-w-6xl max-h-[80vh] rounded-2xl overflow-hidden shadow-2xl bg-black">
-                    <iframe
-                      src={`https://www.youtube.com/embed/${videoActivo.videoId}?autoplay=1`}
-                      title={videoActivo.titulo}
-                      className="w-full h-full"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    />
-                  </div>
+              {filteredCourses.length ? (
+                filteredCourses.map((curso) => {
+                  const isActive = cursoActivo?.id === curso.id;
+                  const courseVideoCount = getVisibleVideos(curso, searchTerm).length;
+
+                  return (
+                    <button
+                      type="button"
+                      key={curso.id}
+                      onClick={() => {
+                        setActiveCourseId(curso.id);
+                        setVideoActivo(null);
+                      }}
+                      className={`group flex min-h-11 w-full items-center justify-between gap-3 rounded-2xl px-4 py-3 text-left font-semibold transition-all duration-300 ${
+                        isActive
+                          ? "bg-gradient-to-r from-primary to-[#7ff6f1] text-slate-950 shadow-lg"
+                          : "bg-white hover:bg-[#eefbff]"
+                      }`}
+                    >
+                      <span className="break-words">{curso.nombre}</span>
+                      <span className="shrink-0 rounded-full bg-white/70 px-2 py-1 text-xs font-bold text-slate-700">
+                        {courseVideoCount}
+                      </span>
+                    </button>
+                  );
+                })
+              ) : (
+                <div className="rounded-2xl border border-dashed border-[#b9dfe8] bg-white px-4 py-5 text-sm leading-6 text-slate-600">
+                  <p className="font-semibold text-slate-950">No encontramos resultados.</p>
+                  <p className="mt-1">
+                    Prueba con el nombre del curso o borra la búsqueda para volver a ver todo el catálogo.
+                  </p>
                 </div>
               )}
+            </aside>
 
-              <div
-                className={`grid sm:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-500 ${
-                  videoActivo ? "blur-md brightness-50 scale-[0.98]" : ""
-                }`}
-              >
-                {cursoActivo.videos.map((video, index) => (
+            <section className="relative flex-1">
+              <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                <div className="min-w-0">
+                  <h2 className="break-words text-2xl font-extrabold text-slate-950 sm:text-3xl">
+                    {cursoActivo ? cursoActivo.nombre : "Sin resultados"}
+                  </h2>
+                  <p className="mt-1 text-sm text-gray-500">
+                    {cursoActivo
+                      ? `${visibleVideos.length} clase${visibleVideos.length === 1 ? "" : "s"} visible${visibleVideos.length === 1 ? "" : "s"}`
+                      : "Ajusta tu búsqueda o limpia el filtro para continuar."}
+                  </p>
+                </div>
+
+                <span className="rounded-full bg-primary/14 px-4 py-1.5 text-sm font-bold text-slate-950">
+                  {videoActivo ? `Reproduciendo: ${videoActivo.titulo}` : "Acceso ilimitado"}
+                </span>
+              </div>
+
+              <div className={`relative ${videoActivo ? "overflow-hidden" : ""}`}>
+                <ModalShell
+                  open={Boolean(videoActivo)}
+                  onClose={() => {
+                    setVideoActivo(null);
+                    setIsVideoLoading(false);
+                  }}
+                  titleId="videoteca-player-title"
+                  initialFocusRef={closeButtonRef}
+                  panelClassName="relative w-full max-w-6xl overflow-hidden rounded-[28px] bg-black shadow-2xl"
+                >
                   <button
+                    ref={closeButtonRef}
                     type="button"
-                    key={`${video.id}-${index}`}
-                    onClick={() => setVideoActivo(video)}
-                    className="group relative cursor-pointer overflow-hidden rounded-2xl border border-[#d8eef3] bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+                    onClick={() => {
+                      setVideoActivo(null);
+                      setIsVideoLoading(false);
+                    }}
+                    aria-label="Cerrar reproductor"
+                    className="absolute right-4 top-4 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-black/60 text-white transition hover:bg-black/80"
                   >
-                    <div className="relative h-44 overflow-hidden">
-                      <Image
-                        src={`https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg`}
-                        alt={`Miniatura de ${video.titulo}`}
-                        fill
-                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                        className="object-cover scale-105 group-hover:scale-110 transition-transform duration-700"
-                      />
-
-                      <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition group-hover:opacity-100">
-                        <Play className="w-12 h-12 text-white" />
-                      </div>
-                    </div>
-
-                    <div className="p-4 text-left space-y-1">
-                      <h3 className="font-bold leading-snug group-hover:text-primary transition">
-                        {video.titulo}
-                      </h3>
-                      <p className="text-xs text-gray-500">
-                        Click para reproducir
-                      </p>
-                    </div>
-
-                    <div className="absolute -inset-px rounded-2xl bg-gradient-to-r from-primary/40 to-[#7ff6f1]/40 opacity-0 blur-xl transition group-hover:opacity-30" />
+                    <X className="h-5 w-5" />
                   </button>
-                ))}
-              </div>
-            </div>
-          </section>
-        </div>
-      </section>
 
-      <section className="relative overflow-hidden bg-[linear-gradient(180deg,#f2fcff_0%,#ffffff_100%)] pb-28 pt-4">
-        <div className="container mx-auto px-6 grid md:grid-cols-3 gap-10 text-center relative z-10">
-          {[
-            {
-              title: "Acceso 24/7",
-              desc: "Estudia cuando quieras desde cualquier dispositivo.",
-              icon: "⏰",
-            },
-            {
-              title: "Docentes expertos",
-              desc: "Explicaciones claras por profesores especializados.",
-              icon: "🎓",
-            },
-            {
-              title: "Material descargable",
-              desc: "Guías, PDFs y ejercicios resueltos.",
-              icon: "📄",
-            },
-          ].map((b, i) => (
-            <div
-              key={i}
-                className="relative group rounded-3xl border border-[#d8eef3] bg-white/85 p-10 shadow-xl backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl"
-              >
-              <div className="text-4xl mb-4">{b.icon}</div>
-              <h3 className="font-bold text-lg mb-2">{b.title}</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">{b.desc}</p>
+                  <div className="aspect-video w-full bg-black">
+                    <h3 id="videoteca-player-title" className="sr-only">
+                      {videoActivo ? `Reproduciendo ${videoActivo.titulo}` : "Reproductor de video"}
+                    </h3>
 
-                <div className="absolute -inset-px rounded-3xl bg-gradient-to-r from-primary/40 to-[#7ff6f1]/40 opacity-0 blur-xl transition group-hover:opacity-20" />
+                    {videoActivo ? (
+                      <>
+                        {isVideoLoading ? (
+                          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 bg-black/85 text-white">
+                            <LoaderCircle className="h-6 w-6 animate-spin" />
+                            <p className="text-sm text-white/80">
+                              Cargando video, espera un momento...
+                            </p>
+                          </div>
+                        ) : null}
+
+                        <iframe
+                          src={`https://www.youtube.com/embed/${videoActivo.videoId}?autoplay=1`}
+                          title={videoActivo.titulo}
+                          className="h-full w-full"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                          onLoad={() => setIsVideoLoading(false)}
+                        />
+                      </>
+                    ) : null}
+                  </div>
+                </ModalShell>
+
+                {cursoActivo ? (
+                  visibleVideos.length ? (
+                    <div
+                      className={`grid gap-5 transition-all duration-500 sm:grid-cols-2 sm:gap-6 xl:grid-cols-3 xl:gap-8 ${
+                        videoActivo ? "blur-md brightness-50" : ""
+                      }`}
+                    >
+                      {visibleVideos.map((video, index) => (
+                        <button
+                          type="button"
+                          key={`${video.id}-${index}`}
+                          onClick={() => {
+                            setVideoActivo(video);
+                            setIsVideoLoading(true);
+                          }}
+                          className="group relative overflow-hidden rounded-2xl border border-[#d8eef3] bg-white text-left shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+                        >
+                          <div className="relative h-44 overflow-hidden">
+                            <Image
+                              src={`https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg`}
+                              alt={`Miniatura de ${video.titulo}`}
+                              fill
+                              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                              className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            />
+
+                            <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition group-hover:opacity-100">
+                              <Play className="h-12 w-12 text-white" />
+                            </div>
+                          </div>
+
+                          <div className="space-y-2 p-4 text-left">
+                            <h3 className="break-words font-bold leading-snug text-slate-950 transition group-hover:text-primary">
+                              {video.titulo}
+                            </h3>
+                            <p className="text-xs leading-5 text-gray-500">
+                              Pulsa para reproducir. El video se abrirá en un modal y podrás cerrarlo con la tecla Esc o el botón superior.
+                            </p>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="rounded-[2rem] border border-dashed border-[#bfdfe8] bg-[#f8fcff] px-6 py-10 text-center">
+                      <p className="text-lg font-bold text-slate-950">No hay clases para este filtro</p>
+                      <p className="mx-auto mt-3 max-w-xl text-sm leading-7 text-slate-600">
+                        Mantuvimos el curso seleccionado, pero ninguna clase coincide con tu búsqueda. Borra el filtro o cambia de curso desde la columna izquierda.
+                      </p>
+                      <button
+                        type="button"
+                        onClick={() => setSearchTerm("")}
+                        className="mt-5 inline-flex min-h-11 items-center justify-center rounded-2xl border border-slate-200 px-5 py-3 font-semibold text-slate-900 transition hover:border-primary hover:text-primary"
+                      >
+                        Limpiar búsqueda
+                      </button>
+                    </div>
+                  )
+                ) : (
+                  <div className="rounded-[2rem] border border-dashed border-[#bfdfe8] bg-[#f8fcff] px-6 py-10 text-center">
+                    <Film className="mx-auto h-10 w-10 text-primary" />
+                    <p className="mt-4 text-lg font-bold text-slate-950">No encontramos cursos con ese término</p>
+                    <p className="mx-auto mt-3 max-w-xl text-sm leading-7 text-slate-600">
+                      Revisa la palabra escrita o limpia la búsqueda para volver a ver la videoteca completa.
+                    </p>
+                    <div className="mt-5 flex flex-col justify-center gap-3 sm:flex-row">
+                      <button
+                        type="button"
+                        onClick={() => setSearchTerm("")}
+                        className="inline-flex min-h-11 items-center justify-center rounded-2xl bg-primary px-5 py-3 font-semibold text-slate-950 transition hover:-translate-y-0.5"
+                      >
+                        Ver todos los cursos
+                      </button>
+                      <a
+                        href={buildWhatsAppUrl("Hola, no encontre el contenido que buscaba en la videoteca de SuperAcademy. ¿Podrian orientarme?")}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex min-h-11 items-center justify-center rounded-2xl border border-slate-200 px-5 py-3 font-semibold text-slate-900 transition hover:border-primary hover:text-primary"
+                      >
+                        Pedir orientacion
+                      </a>
+                    </div>
+                  </div>
+                )}
               </div>
-            ))}
+            </section>
           </div>
-      </section>
-
-      <section className="relative overflow-hidden bg-[linear-gradient(180deg,#ffffff_0%,#e9fcff_100%)] py-32">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(1,184,219,.12),transparent_60%)]" />
-
-        <div className="container relative z-10 mx-auto max-w-3xl px-6 text-center text-slate-950">
-          <h2 className="mb-6 text-4xl font-extrabold text-slate-950">
-            Empieza hoy tu preparación 🚀
-          </h2>
-          <p className="mb-10 text-lg text-slate-700">
-            Accede ahora a toda nuestra videoteca y potencia tu rendimiento
-            académico.
-          </p>
-
-          <Link
-            href="/ciclos"
-            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-primary px-10 py-4 font-bold text-slate-950 shadow-[0_0_32px_rgba(1,184,219,.22)] transition-transform hover:scale-105"
-          >
-            <span className="relative z-10 flex items-center gap-2">
-              Ver ciclos disponibles <Sparkles className="w-5 h-5" />
-            </span>
-            <span className="absolute inset-0 translate-y-full bg-gradient-to-r from-[#7ff6f1] to-[#ccfbff] transition-transform duration-500 group-hover:translate-y-0" />
-          </Link>
         </div>
       </section>
     </main>

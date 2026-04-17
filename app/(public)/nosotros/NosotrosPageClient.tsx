@@ -4,6 +4,7 @@ import CountUp from "react-countup";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import usePrefersReducedMotion from "@/components/ui/usePrefersReducedMotion";
 
 type AnimatedCountProps = {
   end: number;
@@ -40,49 +41,14 @@ function AnimatedCount({
 }
 
 export default function NosotrosPageClient() {
+  const prefersReducedMotion = usePrefersReducedMotion();
+
   return (
-    <main className="overflow-hidden bg-white">
-      <section className="relative bg-[linear-gradient(180deg,#e9fcff_0%,#9ef4fb_100%)] py-28 text-slate-950">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(255,255,255,0.35),transparent_60%)] animate-pulse" />
-
-        <div className="container relative z-10 mx-auto max-w-4xl px-6 text-center">
-          <span className="animate-bounceSlow mb-6 inline-flex items-center gap-2 rounded-full bg-white/60 px-5 py-2 text-sm font-semibold tracking-wide text-slate-950 backdrop-blur">
-            🎓 Educación que transforma futuros
-          </span>
-
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
-            Formamos ingresantes
-            <span className="block text-primary">que hacen historia</span>
-          </h1>
-
-          <p className="mb-10 text-lg text-slate-700 md:text-xl">
-            Más de una década preparando estudiantes que ingresan a las mejores
-            universidades del Perú.
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-5">
-            <Link
-              href="/ciclos"
-              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-white px-8 py-4 font-bold text-primary shadow-xl transition-all hover:scale-105"
-            >
-              <span className="absolute inset-0 translate-y-full bg-gradient-to-r from-[#ccfbff] to-[#7ff6f1] transition-transform duration-500 group-hover:translate-y-0" />
-              <span className="relative z-10 group-hover:text-slate-950">Ver ciclos</span>
-            </Link>
-
-            <Link
-              href="/contacto"
-              className="rounded-xl border border-white/70 bg-white/30 px-8 py-4 font-semibold transition hover:bg-white hover:text-primary"
-            >
-              Contáctanos
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="relative bg-white py-24">
+    <div className="overflow-hidden bg-white">
+      <section className="relative bg-white py-16 sm:py-20">
         <div className="pointer-events-none absolute -top-32 left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-cyan-400/10 blur-3xl" />
 
-        <div className="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center relative z-10">
+        <div className="container relative z-10 mx-auto grid items-center gap-10 px-6 md:grid-cols-2 md:gap-14">
           <div>
             <span className="mb-4 inline-block rounded-full bg-primary/14 px-4 py-1 text-sm font-semibold text-slate-950">
               Nuestra historia
@@ -100,15 +66,19 @@ export default function NosotrosPageClient() {
             </p>
 
             <p className="text-gray-600 mb-8 leading-relaxed">
-              Nuestro objetivo es maximizar las probabilidades de ingreso a
-              universidades como San Marcos, UNI, Villarreal y otras
-              instituciones de prestigio.
+              Nuestro objetivo es fortalecer el rendimiento de cada estudiante
+              con rutas claras en ciencias, matematicas y letras para alcanzar
+              metas academicas exigentes.
             </p>
 
             <motion.div
-              className="grid grid-cols-3 gap-6 mt-10"
-              whileInView={{ opacity: 1, y: 0, transition: { duration: 1.5 } }}
-              initial={{ opacity: 0, y: 50 }}
+              className="mt-8 grid gap-4 sm:grid-cols-3 sm:gap-6"
+              whileInView={
+                prefersReducedMotion
+                  ? undefined
+                  : { opacity: 1, y: 0, transition: { duration: 1.5 } }
+              }
+              initial={prefersReducedMotion ? undefined : { opacity: 0, y: 50 }}
             >
               {[
                 { value: 8000, label: "Ingresantes", suffix: "+" },
@@ -147,16 +117,16 @@ export default function NosotrosPageClient() {
               />
 
               <div className="animate-floatSlow absolute left-6 top-6 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-slate-950 shadow">
-                🎓 Metodología activa
+                Metodología activa
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="relative bg-[linear-gradient(180deg,#f2fcff_0%,#ffffff_100%)] py-24">
+      <section className="relative bg-[linear-gradient(180deg,#f2fcff_0%,#ffffff_100%)] py-16 sm:py-20">
         <div className="container mx-auto px-6 relative z-10">
-          <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-14">
             <span className="mb-3 inline-block rounded-full bg-primary/14 px-4 py-1 text-sm font-semibold text-slate-950">
               Nuestra esencia
             </span>
@@ -165,22 +135,22 @@ export default function NosotrosPageClient() {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-10">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10">
             {[
               {
                 title: "Misión",
                 text: "Brindar formación académica de excelencia que permita a nuestros estudiantes alcanzar sus metas universitarias y profesionales.",
-                icon: "🎯",
+                icon: "M",
               },
               {
                 title: "Visión",
                 text: "Ser la academia líder en preparación preuniversitaria a nivel nacional, reconocida por sus resultados y calidad educativa.",
-                icon: "🚀",
+                icon: "V",
               },
               {
                 title: "Valores",
                 text: "Compromiso, excelencia, disciplina, responsabilidad y vocación de servicio.",
-                icon: "💎",
+                icon: "A",
               },
             ].map((item, i) => (
               <div
@@ -202,11 +172,11 @@ export default function NosotrosPageClient() {
         </div>
       </section>
 
-      <section className="relative bg-white py-24">
+      <section className="relative bg-white py-16 sm:py-20">
         <div className="pointer-events-none absolute right-0 top-1/3 h-[500px] w-[500px] rounded-full bg-cyan-300/10 blur-3xl" />
 
         <div className="container mx-auto px-6 relative z-10">
-          <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-14">
             <span className="mb-3 inline-block rounded-full bg-primary/14 px-4 py-1 text-sm font-semibold text-slate-950">
               Nuestra ventaja
             </span>
@@ -215,31 +185,31 @@ export default function NosotrosPageClient() {
             </h2>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
             {[
               {
                 title: "Docentes expertos",
                 text: "Profesores especializados en exámenes de admisión.",
-                badge: "Top teachers",
-                icon: "👨‍🏫",
+                badge: "Docencia",
+                icon: "D",
               },
               {
                 title: "Simulacros reales",
                 text: "Evaluaciones tipo examen universitario.",
-                badge: "Real test",
-                icon: "📝",
+                badge: "Evaluación",
+                icon: "S",
               },
               {
                 title: "Material exclusivo",
                 text: "Guías, resúmenes y videoclases.",
-                badge: "Premium",
-                icon: "📚",
+                badge: "Recursos",
+                icon: "R",
               },
               {
                 title: "Acompañamiento",
                 text: "Seguimiento personalizado al estudiante.",
-                badge: "1 a 1",
-                icon: "🤝",
+                badge: "Seguimiento",
+                icon: "A",
               },
             ].map((item, i) => (
               <div
@@ -268,26 +238,26 @@ export default function NosotrosPageClient() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[linear-gradient(180deg,#f2fcff_0%,#9ef4fb_100%)] py-28 text-slate-950">
+      <section className="relative overflow-hidden bg-[linear-gradient(180deg,#f2fcff_0%,#9ef4fb_100%)] py-16 text-slate-950 sm:py-20 lg:py-24">
         <div className="absolute -top-20 -left-20 w-[400px] h-[400px] bg-white/10 blur-3xl rounded-full animate-pulse" />
         <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-white/10 blur-3xl rounded-full animate-pulse delay-1000" />
 
         <div className="container relative z-10 mx-auto max-w-3xl px-6 text-center">
           <span className="mb-4 inline-block rounded-full bg-white/60 px-5 py-2 text-sm font-semibold text-slate-950 backdrop-blur">
-            🚀 Empieza hoy mismo
+            Siguiente paso
           </span>
 
           <h2 className="text-3xl md:text-5xl font-extrabold mb-6 leading-tight">
             Tu ingreso empieza aquí
           </h2>
 
-          <p className="mb-10 text-lg text-slate-700">
+          <p className="mb-10 text-base text-slate-700 sm:text-lg">
             Da el primer paso hacia tu futuro universitario con nosotros.
           </p>
 
           <Link
             href="/ciclos"
-            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-2xl bg-white px-10 py-5 font-bold text-primary shadow-2xl transition-all hover:scale-105"
+            className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-2xl bg-white px-8 py-4 text-center font-bold text-primary shadow-2xl transition-all hover:scale-105 sm:w-auto sm:px-10 sm:py-5"
           >
             <span className="absolute inset-0 translate-y-full bg-gradient-to-r from-[#ccfbff] to-[#7ff6f1] transition-transform duration-500 group-hover:translate-y-0" />
             <span className="relative z-10 group-hover:text-slate-950">
@@ -323,6 +293,6 @@ export default function NosotrosPageClient() {
           }
         }
       `}</style>
-    </main>
+    </div>
   );
 }

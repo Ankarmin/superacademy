@@ -12,36 +12,35 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <main className="bg-white">
-      <section className="container mx-auto max-w-4xl px-6 py-20">
-        <h1 className="text-4xl font-extrabold text-slate-950">
-          Terminos y condiciones
-        </h1>
-        <div className="mt-10 space-y-8 text-slate-600">
-          <section>
-            <h2 className="text-xl font-bold text-slate-950">Uso del sitio</h2>
-            <p className="mt-3 leading-relaxed">
-              Este sitio presenta informacion general sobre programas,
-              orientacion academica y canales de contacto de SuperAcademy. El
-              uso del contenido implica aceptacion de estas condiciones.
-            </p>
-          </section>
-          <section>
-            <h2 className="text-xl font-bold text-slate-950">
-              Informacion comercial
-            </h2>
-            <p className="mt-3 leading-relaxed">
-              Horarios, vacantes, precios, promociones y modalidad pueden variar
-              segun campana o disponibilidad. La confirmacion final se realiza a
-              traves del equipo de atencion.
-            </p>
-          </section>
-          <section>
-            <h2 className="text-xl font-bold text-slate-950">Propiedad intelectual</h2>
-            <p className="mt-3 leading-relaxed">
-              Textos, imagenes, recursos y materiales mostrados en este sitio no
-              deben ser reproducidos ni distribuidos sin autorizacion expresa.
-            </p>
-          </section>
+      <section className="bg-white py-16 sm:py-20">
+        <div className="container mx-auto max-w-4xl px-6">
+          <div className="space-y-6">
+            <section className="rounded-3xl border border-[#d8eef3] bg-white p-8 shadow-sm">
+              <h2 className="text-xl font-bold text-slate-950">Uso del sitio</h2>
+              <p className="mt-3 leading-8 text-slate-600">
+                Este sitio presenta información general sobre programas,
+                orientación académica y canales de contacto de SuperAcademy. El
+                uso del contenido implica aceptación de estas condiciones.
+              </p>
+            </section>
+
+            <section className="rounded-3xl border border-[#d8eef3] bg-white p-8 shadow-sm">
+              <h2 className="text-xl font-bold text-slate-950">Información comercial</h2>
+              <p className="mt-3 leading-8 text-slate-600">
+                Horarios, vacantes, precios, promociones y modalidad pueden variar
+                según campaña o disponibilidad. La confirmación final se realiza a
+                través del equipo de atención.
+              </p>
+            </section>
+
+            <section className="rounded-3xl border border-[#d8eef3] bg-white p-8 shadow-sm">
+              <h2 className="text-xl font-bold text-slate-950">Propiedad intelectual</h2>
+              <p className="mt-3 leading-8 text-slate-600">
+                Textos, imágenes, recursos y materiales mostrados en este sitio no
+                deben ser reproducidos ni distribuidos sin autorización expresa.
+              </p>
+            </section>
+          </div>
         </div>
       </section>
     </main>

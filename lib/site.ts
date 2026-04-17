@@ -4,14 +4,14 @@ export const siteConfig = {
   name: "SuperAcademy",
   defaultTitle: "Academia Preuniversitaria en Lima | SuperAcademy",
   description:
-    "Academia preuniversitaria en Lima con ciclos para San Marcos, UNI y Villarreal, simulacros, videoteca y recursos para acelerar tu ingreso.",
+    "Academia preuniversitaria en Lima con ciclos por areas en ciencias, matematicas y letras, simulacros, videoteca y recursos para acelerar tu ingreso.",
   ogImage: "/images/hero-1.jpg",
   keywords: [
     "academia preuniversitaria en Lima",
     "academia preuniversitaria",
-    "preuniversitario San Marcos",
-    "preuniversitario UNI",
-    "preuniversitario Villarreal",
+    "ciclo ciencias",
+    "ciclo matematicas",
+    "ciclo letras",
     "ciclos preuniversitarios",
     "simulacros de admision",
     "videoteca preuniversitaria",

@@ -18,7 +18,10 @@ const legalLinks = [
 const contactLinks = [
   {
     label: "Ubica nuestras sedes",
-    href: "/contacto",
+    href: buildWhatsAppUrl(
+      "Hola, quiero informacion sobre las sedes y ubicaciones de SuperAcademy.",
+    ),
+    external: true,
   },
   {
     label: "Escríbenos por WhatsApp",
@@ -29,6 +32,14 @@ const contactLinks = [
   },
 ];
 
+function toTitleCase(label: string) {
+  return label
+    .toLowerCase()
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-[#d8edf3] bg-white text-slate-700">
@@ -36,9 +47,9 @@ export default function Footer() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(1,184,219,0.08),transparent_26%),radial-gradient(circle_at_bottom_right,rgba(1,184,219,0.05),transparent_28%)]" />
 
       <div className="container relative z-10 mx-auto px-6 py-16 md:py-20">
-        <div className="grid gap-12 border-b border-slate-200/80 pb-12 md:grid-cols-[1.2fr_0.8fr_0.8fr_0.9fr]">
+        <div className="grid gap-10 border-b border-slate-200/80 pb-12 sm:grid-cols-2 xl:grid-cols-[1.2fr_0.8fr_0.8fr_0.9fr] xl:gap-12">
           <div className="max-w-md space-y-5">
-            <Link href="/" className="inline-flex items-center gap-4">
+            <Link href="/" className="inline-flex max-w-full items-center gap-4">
               <Image
                 src="/logo.png"
                 alt="SuperAcademy"
@@ -62,11 +73,7 @@ export default function Footer() {
             </p>
 
             <div className="flex flex-wrap gap-2">
-              {[
-                "San Marcos",
-                "UNI",
-                "Villarreal",
-              ].map((label) => (
+              {["Ciencias", "Matematicas", "Letras"].map((label) => (
                 <span
                   key={label}
                   className="rounded-full border border-[#d7eef4] bg-[#f3fbfe] px-3 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-primary"
@@ -84,9 +91,9 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-base text-slate-600 transition hover:text-primary"
+                    className="break-words text-base text-slate-600 transition hover:text-primary"
                   >
-                    {link.label}
+                    {toTitleCase(link.label)}
                   </Link>
                 </li>
               ))}
@@ -100,7 +107,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-base text-slate-600 transition hover:text-primary"
+                    className="break-words text-base text-slate-600 transition hover:text-primary"
                   >
                     {link.label}
                   </Link>
@@ -118,7 +125,7 @@ export default function Footer() {
                     href={link.href}
                     target={link.external ? "_blank" : undefined}
                     rel={link.external ? "noreferrer" : undefined}
-                    className="text-base text-slate-600 transition hover:text-primary"
+                    className="break-words text-base text-slate-600 transition hover:text-primary"
                   >
                     {link.label}
                   </Link>
@@ -128,12 +135,14 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-3 pt-6 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
-          <p>
+        <div className="flex flex-col gap-3 pt-6 text-center text-sm text-slate-500 md:flex-row md:items-center md:justify-between md:text-left">
+          <p className="break-words">
             © {new Date().getFullYear()} {siteConfig.name}. Todos los derechos
             reservados.
           </p>
-          <p>Formacion enfocada en ingreso, disciplina y acompanamiento real.</p>
+          <p className="break-words">
+            Formacion enfocada en ingreso, disciplina y acompanamiento real.
+          </p>
         </div>
       </div>
     </footer>

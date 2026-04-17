@@ -69,6 +69,12 @@ export default function RootLayout({
   return (
     <html lang="es" data-scroll-behavior="smooth">
       <body className={`${geistSans.variable} antialiased`}>
+        <a
+          href="#main-content"
+          className="skip-link"
+        >
+          Saltar al contenido principal
+        </a>
         {children}
       </body>
     </html>

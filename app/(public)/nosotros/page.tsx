@@ -4,7 +4,7 @@ import NosotrosPageClient from "./NosotrosPageClient";
 export const metadata: Metadata = {
   title: "Nosotros",
   description:
-    "Conoce SuperAcademy, academia preuniversitaria en Lima con metodologia moderna, docentes expertos y resultados de ingreso a San Marcos, UNI y Villarreal.",
+    "Conoce SuperAcademy, academia preuniversitaria en Lima con metodologia moderna, docentes expertos y acompanamiento por areas en ciencias, matematicas y letras.",
   alternates: {
     canonical: "/nosotros",
   },

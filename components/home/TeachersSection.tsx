@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import SuperSectionHero from "@/components/ui/SuperSectionHero";
 
 type TeacherAreaId = "matematicas" | "ciencias" | "letras";
 
@@ -111,6 +112,10 @@ export default function TeachersSection() {
   const tabsContentRef = useRef<HTMLDivElement | null>(null);
   const currentArea =
     teacherAreas.find((area) => area.id === activeArea) ?? defaultArea;
+  const currentTeacherCount = currentArea.courses.reduce(
+    (total, course) => total + course.teachers.length,
+    0,
+  );
 
   useEffect(() => {
     const updateTabsPosition = () => {
@@ -154,24 +159,24 @@ export default function TeachersSection() {
     <section
       id="docentes"
       ref={sectionRef}
-      className="relative overflow-x-hidden bg-[linear-gradient(180deg,#f8fdff_0%,#ffffff_42%,#f7fbff_100%)] py-24"
+      className="relative overflow-x-hidden bg-white py-16 sm:py-20"
     >
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_12%_18%,rgba(1,184,219,0.18),transparent_26%),radial-gradient(circle_at_88%_10%,rgba(14,165,233,0.12),transparent_24%)]" />
 
       <div className="container relative z-10 mx-auto px-6">
-        <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-4xl font-extrabold tracking-tight text-slate-950 md:text-6xl">
-            Nuestro <span className="text-primary">SuperDocentes</span>
-          </h2>
+        <SuperSectionHero
+          badge="Docentes organizados por área"
+          titleStart="Nuestro"
+          titleAccent="SuperDocentes"
+          description="Explora nuestra plana docente con una navegacion clara por areas y cursos. Cada profesor aparece en tarjetas cuadradas para una lectura mas ordenada y directa."
+          stats={[
+            `${teacherAreas.length} áreas disponibles`,
+            `${currentArea.courses.length} cursos en ${currentArea.label}`,
+            `${currentTeacherCount} docentes visibles ahora`,
+          ]}
+        />
 
-          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-600">
-            Explora nuestra plana docente con una navegacion clara por areas y
-            cursos. Cada profesor aparece en tarjetas cuadradas para una lectura
-            mas ordenada y directa.
-          </p>
-        </div>
-
-        <div className="mx-auto mt-14 max-w-6xl">
+        <div className="mx-auto mt-12 max-w-6xl sm:mt-14">
           <div
             ref={tabsAnchorRef}
             style={isTabsFixed ? { height: tabsHeight } : undefined}
@@ -180,7 +185,7 @@ export default function TeachersSection() {
               ref={tabsContentRef}
               className={`rounded-[28px] border border-white/80 bg-white/92 p-3 shadow-[0_24px_80px_rgba(15,23,42,0.08)] backdrop-blur-xl transition-[width,transform,box-shadow] duration-300 md:p-4 ${
                 isTabsFixed
-                  ? "fixed left-1/2 top-[92px] z-40 w-[calc(100vw-2rem)] md:w-fit md:max-w-[780px] -translate-x-1/2 lg:top-[96px]"
+                  ? "fixed left-1/2 top-[92px] z-40 w-[calc(100vw-1.5rem)] max-w-[780px] -translate-x-1/2 lg:top-[96px]"
                   : "relative"
               }`}
             >
@@ -201,7 +206,7 @@ export default function TeachersSection() {
                       aria-controls={`panel-${area.id}`}
                       aria-selected={isActive}
                       onClick={() => setActiveArea(area.id)}
-                      className={`rounded-[20px] px-5 py-2.5 text-sm font-bold transition-all duration-300 md:min-w-[154px] md:text-base ${
+                      className={`min-h-11 min-w-[calc(50%-0.25rem)] flex-1 rounded-[20px] px-4 py-2.5 text-sm font-bold transition-all duration-300 sm:min-w-[154px] sm:flex-none md:text-base ${
                         isActive
                           ? "bg-primary text-slate-950 shadow-[0_16px_40px_rgba(1,184,219,0.22)]"
                           : "bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-950"
@@ -219,7 +224,7 @@ export default function TeachersSection() {
             role="tabpanel"
             id={`panel-${currentArea.id}`}
             aria-labelledby={`tab-${currentArea.id}`}
-            className="mt-8 space-y-8"
+            className="mt-8 space-y-6 sm:space-y-8"
           >
             {currentArea.courses.map((course, index) => (
               <section
@@ -230,10 +235,10 @@ export default function TeachersSection() {
                     : "bg-[linear-gradient(180deg,rgba(242,252,255,0.98),rgba(233,252,255,0.94))]"
                 }`}
               >
-                <div className="mb-6 flex items-center gap-4">
-                  <span className="inline-flex items-center gap-3 rounded-2xl border border-[#bde9f4] bg-[#eefbff] px-5 py-3 text-sm font-extrabold uppercase tracking-[0.2em] text-primary">
+                <div className="mb-6 flex flex-wrap items-center gap-4">
+                  <span className="inline-flex max-w-full items-center gap-3 rounded-2xl border border-[#bde9f4] bg-[#eefbff] px-5 py-3 text-sm font-extrabold uppercase tracking-[0.2em] text-primary">
                     <span className="h-3 w-3 rounded-full bg-primary" />
-                    {course.name}
+                    <span className="break-words">{course.name}</span>
                   </span>
                   <div className="hidden h-px flex-1 bg-slate-200 sm:block" />
                 </div>

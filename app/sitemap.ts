@@ -5,12 +5,10 @@ import { getSiteUrl } from "@/lib/site";
 const staticRoutes = [
   "",
   "/nosotros",
-  "/institucional",
   "/ciclos",
   "/docentes",
   "/videoteca",
   "/recursos",
-  "/contacto",
   "/politica-de-privacidad",
   "/terminos-y-condiciones",
 ] as const;

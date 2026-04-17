@@ -10,7 +10,7 @@ export default function FeaturedCards() {
       badge: "Más popular",
       title: "Nuestros Ciclos",
       description:
-        "Programas intensivos para San Marcos, UNI y Villarreal con docentes expertos, simulacros reales y acompañamiento constante.",
+        "Programas por areas en ciencias, matematicas y letras con docentes expertos, simulacros reales y acompanamiento constante.",
       image: "/images/hero-1.jpg",
       icon: <GraduationCap className="w-5 h-5" />,
       href: "/ciclos",
@@ -39,38 +39,39 @@ export default function FeaturedCards() {
   ];
 
   return (
-    <section className="relative overflow-hidden bg-[linear-gradient(180deg,#ffffff_0%,#f2fcff_100%)] py-28">
+    <section className="relative overflow-hidden bg-[linear-gradient(180deg,#ffffff_0%,#f2fcff_100%)] py-20 sm:py-24 lg:py-28">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(46,244,237,0.18),transparent_60%)] pointer-events-none" />
 
       <div className="absolute top-20 left-10 w-2 h-2 rounded-full bg-cyan-400/50 blur-sm animate-floatSlow" />
       <div className="absolute bottom-20 right-16 h-3 w-3 rounded-full bg-[#7ff6f1]/40 blur-sm animate-floatMedium" />
       <div className="absolute top-1/2 right-1/3 h-2 w-2 rounded-full bg-primary/35 blur-sm animate-floatFast" />
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <div className="container relative z-10 mx-auto px-4 sm:px-6">
+          <div className="mx-auto mb-12 max-w-2xl text-center sm:mb-16">
             <span className="mb-4 inline-block rounded-full bg-primary/14 px-4 py-1 text-sm font-semibold text-slate-950">
-              🚀 Aprende más rápido
+              Accesos rápidos
             </span>
-          <h2 className="text-gray-900 text-3xl md:text-4xl font-extrabold mb-4">
+          <h2 className="mb-4 text-3xl font-extrabold text-gray-900 md:text-4xl">
             Todo lo que necesitas para ingresar
           </h2>
-          <p className="text-gray-600 text-lg">
+          <p className="text-base text-gray-600 sm:text-lg">
             Programas diseñados para maximizar tu rendimiento académico con
-            tecnología, estrategia y acompañamiento real.
+            tecnología, estrategia y acompañamiento real. Empieza por la sección
+            que resuelve tu duda de hoy.
           </p>
         </div>
 
-        <div className="grid gap-10 md:grid-cols-3 perspective-[1200px]">
+        <div className="grid gap-6 perspective-[1200px] sm:grid-cols-2 lg:gap-8 xl:grid-cols-3 xl:gap-10">
           {items.map((item) => (
             <Link
               key={item.title}
               href={item.href}
-              className="group relative block"
+              className="group relative block h-full"
             >
-              <div className="relative h-full rounded-[28px] bg-white shadow-[0_20px_60px_rgba(0,0,0,0.08)] transition-all duration-700 will-change-transform transform-gpu group-hover:-translate-y-4 group-hover:rotateX-[4deg] group-hover:rotateY-[-3deg] hover:shadow-[0_35px_90px_rgba(0,0,0,0.15)] overflow-hidden">
+              <div className="relative flex h-full flex-col overflow-hidden rounded-[28px] bg-white shadow-[0_20px_60px_rgba(0,0,0,0.08)] transition-all duration-700 will-change-transform transform-gpu group-hover:-translate-y-4 group-hover:rotateX-[4deg] group-hover:rotateY-[-3deg] hover:shadow-[0_35px_90px_rgba(0,0,0,0.15)]">
                 <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-[1400ms] bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none" />
 
-                <div className="relative h-56 overflow-hidden">
+                <div className="relative h-52 overflow-hidden sm:h-56">
                   <Image
                     src={item.image}
                     alt={item.title}
@@ -94,12 +95,12 @@ export default function FeaturedCards() {
                   </div>
                 </div>
 
-                <div className="relative p-8 space-y-4">
+                <div className="relative flex flex-1 flex-col space-y-4 p-6 sm:p-8">
                   <h3 className="text-xl font-extrabold tracking-tight group-hover:text-primary transition">
                     {item.title}
                   </h3>
 
-                  <p className="text-gray-600 leading-relaxed line-clamp-3">
+                  <p className="line-clamp-4 break-words text-gray-600 leading-relaxed">
                     {item.description}
                   </p>
 
@@ -109,8 +110,8 @@ export default function FeaturedCards() {
                     />
                   </div>
 
-                  <div className="flex items-center gap-2 text-primary font-bold mt-3 group-hover:gap-3 transition-all">
-                    Explorar
+                  <div className="mt-auto flex items-center gap-2 pt-2 font-bold text-primary transition-all group-hover:gap-3">
+                    Abrir sección
                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </div>
                 </div>
