@@ -40,8 +40,6 @@ pnpm-debug.log*
 # local deployment and tooling
 .vercel/
 .turbo/
-.agents/
-skills-lock.json
 
 # editors and OS files
 .DS_Store
