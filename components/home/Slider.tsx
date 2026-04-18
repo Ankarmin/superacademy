@@ -16,7 +16,7 @@ const slides = [
     title: "Prepárate para ingresar a la universidad que sueñas",
     description:
       "Programas intensivos, docentes expertos y resultados comprobados.",
-    image: "/images/hero-1.jpg",
+    image: "/images/ciclo-mates.jpg",
     cta: "/ciclos",
     ctaLabel: "Ver ciclos",
   },
@@ -30,7 +30,7 @@ const slides = [
   {
     title: "Clases grabadas, material gratuito y acompañamiento",
     description: "Accede a nuestra videoteca y recursos exclusivos.",
-    image: "/images/hero-3.jpg",
+    image: "/images/ciclo-mates.jpg",
     cta: "/videoteca",
     ctaLabel: "Entrar a videoteca",
   },
@@ -73,7 +73,6 @@ export default function Slider() {
           <SwiperSlide key={index}>
             {({ isActive }) => (
               <div className="relative h-full w-full overflow-hidden">
-                {/* Imagen optimizada + zoom GPU-safe */}
                 <div
                   className={`absolute inset-0 transition-transform duration-[6000ms] ease-out will-change-transform ${
                     isActive ? "scale-[1.06]" : "scale-100"
@@ -83,7 +82,8 @@ export default function Slider() {
                     src={slide.image}
                     alt={slide.title}
                     fill
-                    priority={index === 0}
+                    loading={index === 0 ? "eager" : "lazy"}
+                    fetchPriority={index === 0 ? "high" : "auto"}
                     sizes="100vw"
                     className="object-cover"
                   />
@@ -94,14 +94,6 @@ export default function Slider() {
 
                 <div className="relative z-10 container mx-auto flex h-full items-center px-4 sm:px-6">
                   <div className="w-full max-w-xl space-y-5 rounded-[28px] border border-white/60 bg-white/72 p-5 shadow-[0_0_35px_rgba(1,184,219,.18)] backdrop-blur-md transition-all duration-700 dark:border-cyan-300/10 dark:bg-[#081624]/72 dark:shadow-[0_0_40px_rgba(1,184,219,.14)] sm:p-7 md:p-10">
-                    <span className="inline-block rounded-full bg-primary/14 px-4 py-1 text-xs font-bold uppercase tracking-wide text-slate-950 dark:text-slate-100">
-                      Inicio y matrícula
-                    </span>
-
-                    <p className="text-sm font-medium text-slate-600 dark:text-slate-300">
-                      {`Slide ${index + 1} de ${slides.length}. ${prefersReducedMotion ? "Autoplay desactivado por tu preferencia de movimiento reducido." : "Puedes deslizar o usar la paginación para avanzar."}`}
-                    </p>
-
                     <h2
                         className={`text-[2rem] font-extrabold leading-[1.05] text-slate-950 transition-all duration-700 delay-200 dark:text-white sm:text-5xl md:text-6xl ${
                           isActive
@@ -140,23 +132,18 @@ export default function Slider() {
                     >
                       <Link
                         href={slide.cta}
-                          className="group relative inline-flex w-full items-center justify-center overflow-hidden rounded-xl bg-gradient-to-r from-[#7ff6f1] to-[#01b8db] px-6 py-3 font-bold text-slate-950 shadow-[0_0_24px_rgba(46,244,237,.32)] transition-transform duration-300 hover:scale-105 sm:w-auto sm:px-8"
-                        >
-                          <span className="absolute inset-0 origin-bottom scale-y-0 bg-gradient-to-r from-[#01b8db] to-[#7ff6f1] transition-transform duration-500 ease-out group-hover:scale-y-100" />
-                          <span className="absolute inset-0 rounded-xl bg-[#7ff6f1] opacity-20 blur-lg transition-opacity duration-500 group-hover:opacity-35" />
-                          <span className="relative z-10">{slide.ctaLabel}</span>
-                        </Link>
+                        className="btn-primary w-full px-6 py-3 font-bold sm:w-auto sm:px-8"
+                      >
+                        {slide.ctaLabel}
+                      </Link>
 
                       <button
                         type="button"
                         onClick={handleSlideWhatsapp}
-                          className="group relative inline-flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl border border-primary/35 bg-white/58 px-6 py-3 font-semibold text-slate-950 transition-all duration-300 hover:scale-105 dark:border-cyan-300/16 dark:bg-white/5 dark:text-slate-100 sm:w-auto sm:px-8"
-                        >
-                          <span className="absolute inset-0 origin-bottom scale-y-0 bg-primary/14 transition-transform duration-500 ease-out group-hover:scale-y-100" />
-                          <span className="relative z-10 transition-colors duration-300 group-hover:text-primary">
-                            Resolver dudas por WhatsApp
-                          </span>
-                        </button>
+                        className="btn-secondary w-full cursor-pointer px-6 py-3 font-semibold sm:w-auto sm:px-8"
+                      >
+                        Resolver dudas por WhatsApp
+                      </button>
                     </div>
                   </div>
                 </div>

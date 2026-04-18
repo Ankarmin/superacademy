@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { BookOpen, Clock3, MonitorPlay, Users } from "lucide-react";
+import { BookOpen, Clock3, Users } from "lucide-react";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { cyclePrograms, getCycleProgramBySlug } from "../cycles";
 
@@ -77,15 +77,11 @@ export default async function CicloPage({ params }: CicloPageProps) {
             <div className="space-y-5 text-sm text-slate-700 dark:text-slate-200">
               <div className="flex items-center gap-3">
                 <Clock3 className="h-4 w-4 text-primary" />
-                <span>{program.schedule}</span>
+                <span>{program.duration}</span>
               </div>
               <div className="flex items-center gap-3">
                 <BookOpen className="h-4 w-4 text-primary" />
                 <span>{program.audience}</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <MonitorPlay className="h-4 w-4 text-primary" />
-                <span>{program.highlights[1]}</span>
               </div>
               <div className="flex items-center gap-3">
                 <Users className="h-4 w-4 text-primary" />
@@ -97,7 +93,7 @@ export default async function CicloPage({ params }: CicloPageProps) {
               href={buildWhatsAppUrl(`Hola, quiero informacion sobre ${program.title} y el proceso de matricula.`)}
               target="_blank"
               rel="noreferrer"
-              className="mt-8 inline-flex min-h-11 items-center justify-center rounded-2xl bg-primary px-6 py-3 font-semibold text-white transition hover:-translate-y-0.5"
+              className="btn-primary mt-8 px-6 py-3 font-semibold"
             >
               Solicitar informacion
             </Link>
@@ -106,7 +102,7 @@ export default async function CicloPage({ params }: CicloPageProps) {
       </section>
 
       <section className="bg-[linear-gradient(180deg,#ffffff_0%,#f2fcff_100%)] py-16 transition-colors dark:bg-[linear-gradient(180deg,#04111d_0%,#071b2b_100%)] sm:py-20">
-        <div className="container mx-auto grid gap-8 px-6 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="container mx-auto px-6">
           <article className="rounded-3xl border border-[#d8eef3] bg-white p-8 shadow-sm dark:border-white/10 dark:bg-[#081624] dark:shadow-[0_18px_56px_rgba(0,0,0,0.22)]">
             <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white">
               Lo que incluye este ciclo
@@ -131,36 +127,6 @@ export default async function CicloPage({ params }: CicloPageProps) {
                 >
                   {subject}
                 </span>
-              ))}
-            </div>
-          </article>
-
-          <article className="rounded-3xl border border-[#d8eef3] bg-[#f4fdff] p-8 shadow-sm dark:border-white/10 dark:bg-[#0b1f31] dark:shadow-[0_18px_56px_rgba(0,0,0,0.22)]">
-            <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white">
-              Horario del ciclo
-            </h2>
-
-            <div className="mt-6 overflow-hidden rounded-[24px] border border-slate-200/80 bg-white dark:border-white/10 dark:bg-white/5">
-              <Image
-                src={program.scheduleImage}
-                alt={`Horario de ${program.title}`}
-                width={1600}
-                height={900}
-                className="h-auto w-full object-cover"
-              />
-            </div>
-
-            <div className="mt-6 space-y-3 text-sm text-slate-600 dark:text-slate-300">
-              {program.scheduleItems.map((item) => (
-                <div
-                  key={`${item.day}-${item.subject}-${item.time}`}
-                  className="rounded-2xl border border-slate-200/80 bg-white px-4 py-3 dark:border-white/10 dark:bg-white/5"
-                >
-                  <p className="font-semibold text-slate-950 dark:text-white">
-                    {item.day}: {item.subject}
-                  </p>
-                  <p className="mt-1">{item.time}</p>
-                </div>
               ))}
             </div>
           </article>
@@ -202,7 +168,7 @@ export default async function CicloPage({ params }: CicloPageProps) {
               </div>
               <div className="rounded-2xl bg-[#f8fafc] px-4 py-4 dark:bg-white/5">
                 <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
-                  Modalidad de horario
+                  Modalidad
                 </p>
                 <p className="mt-2 text-lg font-bold text-slate-950 dark:text-white">{program.mode}</p>
               </div>

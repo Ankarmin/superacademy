@@ -14,11 +14,6 @@ const validCourses = videotecaCursos
   }))
   .filter((curso) => curso.videos.length > 0);
 
-const totalVideos = validCourses.reduce(
-  (total, curso) => total + curso.videos.length,
-  0,
-);
-
 export default function VideotecaPageClient() {
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
   const [activeCourseId, setActiveCourseId] = useState<number | null>(
@@ -39,15 +34,10 @@ export default function VideotecaPageClient() {
       <section id="videos" className="relative bg-white py-16 transition-colors dark:bg-[#04111d] sm:py-20">
         <div className="container mx-auto px-6">
           <SuperSectionHero
-            badge="Videos organizados por curso"
             titleStart="Nuestra"
             titleAccent="SuperVideoteca"
             description="Explora nuestra videoteca con una navegacion clara por cursos. Cada video aparece en tarjetas ordenadas para que encuentres rapido lo que quieres repasar."
-            stats={[
-              `${validCourses.length} cursos disponibles`,
-              `${totalVideos} clases visibles ahora`,
-              "Acceso ilimitado a la videoteca",
-            ]}
+            stats={[]}
           />
 
           <div className="mt-12 flex flex-col gap-8 sm:mt-14 lg:flex-row lg:gap-10">

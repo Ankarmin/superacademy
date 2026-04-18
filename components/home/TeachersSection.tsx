@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import SuperSectionHero from "@/components/ui/SuperSectionHero";
 
 type TeacherAreaId = "matematicas" | "ciencias" | "letras";
@@ -105,35 +105,142 @@ const teacherAreas: TeacherArea[] = [
 export default function TeachersSection() {
   const defaultArea = teacherAreas[0];
   const [activeArea, setActiveArea] = useState<TeacherAreaId>(defaultArea.id);
+  const stickyShellRef = useRef<HTMLDivElement | null>(null);
+  const stickyCardRef = useRef<HTMLDivElement | null>(null);
+  const [stickyState, setStickyState] = useState({
+    mode: "static" as "static" | "fixed" | "bottom",
+    height: 0,
+    width: 0,
+    left: 0,
+    top: 0,
+  });
   const currentArea =
     teacherAreas.find((area) => area.id === activeArea) ?? defaultArea;
-  const currentTeacherCount = currentArea.courses.reduce(
-    (total, course) => total + course.teachers.length,
-    0,
-  );
+
+  useEffect(() => {
+    const updateStickyState = () => {
+      const stickyShell = stickyShellRef.current;
+      const stickyCard = stickyCardRef.current;
+
+      if (!stickyShell || !stickyCard) {
+        return;
+      }
+
+      const viewportWidth = window.innerWidth;
+      const topOffset = viewportWidth >= 1024
+        ? 104
+        : viewportWidth >= 768
+          ? 96
+          : 92;
+      const shellRect = stickyShell.getBoundingClientRect();
+      const cardHeight = stickyCard.offsetHeight;
+      const cardWidth = stickyShell.clientWidth;
+
+      if (shellRect.top > topOffset) {
+        setStickyState((current) =>
+          current.mode === "static" && current.height === cardHeight
+            ? current
+            : {
+                mode: "static",
+                height: cardHeight,
+                width: cardWidth,
+                left: 0,
+                top: topOffset,
+              }
+        );
+        return;
+      }
+
+      if (shellRect.bottom <= topOffset + cardHeight) {
+        setStickyState((current) => {
+          const nextTop = Math.max(stickyShell.offsetHeight - cardHeight, 0);
+
+          return current.mode === "bottom" && current.height === cardHeight
+            ? current
+            : {
+                mode: "bottom",
+                height: cardHeight,
+                width: cardWidth,
+                left: 0,
+                top: nextTop,
+              };
+        });
+        return;
+      }
+
+      setStickyState((current) =>
+        current.mode === "fixed" &&
+          current.height === cardHeight &&
+          current.width === cardWidth &&
+          current.left === shellRect.left &&
+          current.top === topOffset
+          ? current
+          : {
+              mode: "fixed",
+              height: cardHeight,
+              width: cardWidth,
+              left: shellRect.left,
+              top: topOffset,
+            }
+      );
+    };
+
+    updateStickyState();
+    window.addEventListener("scroll", updateStickyState, { passive: true });
+    window.addEventListener("resize", updateStickyState);
+
+    return () => {
+      window.removeEventListener("scroll", updateStickyState);
+      window.removeEventListener("resize", updateStickyState);
+    };
+  }, []);
 
   return (
     <section
       id="docentes"
-      className="relative overflow-x-hidden bg-white py-16 transition-colors dark:bg-[#04111d] sm:py-20"
+      className="relative bg-white py-16 transition-colors dark:bg-[#04111d] sm:py-20"
     >
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_12%_18%,rgba(1,184,219,0.18),transparent_26%),radial-gradient(circle_at_88%_10%,rgba(14,165,233,0.12),transparent_24%)] dark:bg-[radial-gradient(circle_at_12%_18%,rgba(1,184,219,0.14),transparent_24%),radial-gradient(circle_at_88%_10%,rgba(14,165,233,0.08),transparent_22%)]" />
 
       <div className="container relative z-10 mx-auto px-6">
         <SuperSectionHero
-          badge="Docentes organizados por área"
           titleStart="Nuestro"
           titleAccent="SuperDocentes"
           description="Explora nuestra plana docente con una navegacion clara por areas y cursos. Cada profesor aparece en tarjetas cuadradas para una lectura mas ordenada y directa."
-          stats={[
-            `${teacherAreas.length} áreas disponibles`,
-            `${currentArea.courses.length} cursos en ${currentArea.label}`,
-            `${currentTeacherCount} docentes visibles ahora`,
-          ]}
+          stats={[]}
         />
 
-        <div className="mx-auto mt-12 max-w-6xl sm:mt-14">
-          <div className="sticky top-[92px] z-40 lg:top-[96px]">
+        <div ref={stickyShellRef} className="relative mx-auto mt-12 max-w-7xl sm:mt-14">
+          <div
+            aria-hidden="true"
+            className={stickyState.mode === "static" ? "hidden" : "block pb-6"}
+            style={stickyState.mode === "static" ? undefined : { height: stickyState.height }}
+          />
+
+          <div
+            ref={stickyCardRef}
+            className={`z-20 pb-6 ${
+              stickyState.mode === "fixed"
+                ? "fixed"
+                : stickyState.mode === "bottom"
+                  ? "absolute left-0"
+                  : "relative"
+            }`}
+            style={
+              stickyState.mode === "fixed"
+                ? {
+                    top: stickyState.top,
+                    left: stickyState.left,
+                    width: stickyState.width,
+                  }
+                : stickyState.mode === "bottom"
+                  ? {
+                      top: stickyState.top,
+                      width: "100%",
+                    }
+                  : undefined
+            }
+          >
             <div className="rounded-[28px] border border-white/80 bg-white/88 p-3 shadow-[0_24px_80px_rgba(15,23,42,0.08)] backdrop-blur-xl transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] dark:border-white/10 dark:bg-[#081624]/88 dark:shadow-[0_24px_80px_rgba(0,0,0,0.28)] md:p-4">
               <div
                 aria-label="Seleccionar área docente"
@@ -189,26 +296,26 @@ export default function TeachersSection() {
                   <div className="hidden h-px flex-1 bg-slate-200 dark:bg-white/10 sm:block" />
                 </div>
 
-                <div className="grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-x-4 gap-y-7 sm:grid-cols-[repeat(auto-fit,minmax(180px,1fr))] lg:grid-cols-[repeat(auto-fit,minmax(190px,1fr))]">
+                <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-6">
                   {course.teachers.map((teacher) => (
-                    <article key={`${course.name}-${teacher.name}`} className="group min-w-0">
-                      <div className="relative aspect-square overflow-hidden rounded-[24px] border border-[#d6ebf0] bg-[linear-gradient(180deg,#01b8db_0%,#0c9fb8_100%)] shadow-[0_18px_40px_rgba(15,23,42,0.08)] transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_24px_52px_rgba(15,23,42,0.14)]">
+                    <article
+                      key={`${course.name}-${teacher.name}`}
+                      className="group min-w-0 overflow-hidden rounded-[28px] border border-[#d6ebf0] bg-white shadow-[0_18px_40px_rgba(15,23,42,0.08)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_24px_52px_rgba(15,23,42,0.14)] dark:border-white/10 dark:bg-[#0b1f31]"
+                    >
+                      <div className="relative aspect-[9/10] overflow-hidden bg-[linear-gradient(180deg,#01b8db_0%,#0c9fb8_100%)]">
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.14),transparent_36%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.08),transparent_28%)]" />
-                        <div className="absolute right-3 top-3 z-10 rounded-full bg-white/16 px-3 py-1 text-[0.6rem] font-black uppercase tracking-[0.22em] text-white backdrop-blur-sm">
-                          {currentArea.label}
-                        </div>
                         <Image
                           src={teacher.image}
                           alt={teacher.name}
                           fill
-                          sizes="(min-width: 1280px) 16vw, (min-width: 768px) 25vw, (min-width: 640px) 33vw, 50vw"
+                          sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                           className="object-cover transition-transform duration-500 group-hover:scale-105"
                         />
                         <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#045a69]/80 to-transparent" />
                       </div>
 
-                      <div className="px-2 pt-4 text-center">
-                        <h5 className="text-base font-semibold leading-tight text-slate-950 dark:text-white md:text-[1.02rem]">
+                      <div className="px-4 py-5 text-center sm:px-5">
+                        <h5 className="text-lg font-semibold leading-tight text-slate-950 dark:text-white">
                           {teacher.name}
                         </h5>
                       </div>

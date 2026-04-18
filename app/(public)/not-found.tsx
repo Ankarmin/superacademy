@@ -17,13 +17,13 @@ export default function NotFound() {
         <div className="mt-10 flex flex-wrap justify-center gap-4">
           <Link
             href="/"
-            className="rounded-2xl bg-primary px-6 py-3 font-semibold text-white"
+            className="btn-primary px-6 py-3 font-semibold"
           >
             Ir al inicio
           </Link>
           <Link
             href="/ciclos"
-            className="rounded-2xl border border-slate-200 px-6 py-3 font-semibold text-slate-950 dark:border-white/15 dark:text-white"
+            className="btn-secondary px-6 py-3 font-semibold"
           >
             Ver ciclos
           </Link>

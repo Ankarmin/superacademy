@@ -4,8 +4,12 @@ node_modules/
 .pnpm-store/
 .pnp
 .pnp.*
+package-lock.json
+yarn.lock
+bun.lock
+bun.lockb
 
-# package managers
+# legacy package manager caches
 .yarn/*
 !.yarn/patches
 !.yarn/plugins

@@ -13,7 +13,7 @@ Base web de SuperAcademy construida con Next.js 16, React 19, TypeScript y Tailw
 ## Requisitos
 
 - Node.js 20 o superior
-- pnpm 9 o superior
+- pnpm 10 o superior
 
 ## Inicio rapido
 
@@ -23,6 +23,12 @@ pnpm dev
 ```
 
 Abre `http://localhost:3000`.
+
+## Gestor de paquetes
+
+- Este proyecto está estandarizado para `pnpm`.
+- Usa `pnpm-lock.yaml` como lockfile fuente.
+- No se mantienen archivos ni flujos de `npm`, `yarn` o `bun`.
 
 ## Variables de entorno
 
@@ -47,6 +53,7 @@ Abre `http://localhost:3000`.
 ## Estado base del repositorio
 
 - Solo TypeScript/TSX en codigo de la app
-- Rutas principales listas: inicio, nosotros, ciclos, videoteca, recursos y contacto
+- Rutas principales listas: inicio, nosotros, ciclos, docentes, videoteca y recursos
+- `institucional` redirige permanentemente a `nosotros`
 - Paginas legales base incluidas
-- Configuracion lista para iniciar repositorio y hacer primer commit
+- Configuracion lista para trabajar con `pnpm`, ESLint, TypeScript y build de Next.js

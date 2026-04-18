@@ -78,14 +78,14 @@ export default function WelcomeModal() {
                 target="_blank"
                 rel="noreferrer"
                 onClick={() => setOpen(false)}
-                className="inline-flex min-h-11 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#0f38da_0%,#01b8db_55%,#7ff6f1_100%)] px-5 py-3 text-center text-sm font-black text-white shadow-[0_18px_36px_rgba(1,184,219,0.24)] transition hover:-translate-y-0.5 hover:shadow-[0_22px_44px_rgba(1,184,219,0.3)]"
+                className="btn-primary px-5 py-3 text-center text-sm font-black"
               >
                 Hablar con un asesor
               </a>
 
               <Link
                 href="/ciclos/matematicas"
-                className="inline-flex min-h-11 items-center justify-center rounded-2xl border border-slate-200 bg-white px-5 py-3 text-center text-sm font-bold text-slate-950 transition hover:border-primary hover:text-primary dark:border-white/12 dark:bg-white/5 dark:text-slate-100 dark:hover:border-cyan-300/28 dark:hover:text-cyan-200"
+                className="btn-secondary px-5 py-3 text-center text-sm font-bold"
                 onClick={() => setOpen(false)}
               >
                 Ver ciclo

@@ -1,16 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import type { ReactNode } from "react";
-import {
-  Download,
-  PlayCircle,
-  FileText,
-  Sparkles,
-  BookOpen,
-  GraduationCap,
-  Clock,
-  AlertCircle,
-} from "lucide-react";
+import { Download } from "lucide-react";
 import SuperSectionHero from "@/components/ui/SuperSectionHero";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
@@ -30,9 +20,7 @@ type ResourceItem = {
   tipo: string;
   badge: string;
   disponibilidad: string;
-  ayuda: string;
   cta: string;
-  icon: ReactNode;
   color: string;
   image: string;
   whatsappMessage: string;
@@ -46,11 +34,9 @@ const recursos: ResourceItem[] = [
     tipo: "PDF",
     badge: "Más solicitado",
     disponibilidad: "Disponible por solicitud",
-    ayuda: "Te lo compartimos por WhatsApp para enviarte la guía correcta según tu nivel.",
     cta: "Solicitar guía",
-    icon: <FileText className="h-5 w-5" />,
     color: "from-[#7ff6f1] to-[#01b8db]",
-    image: "/images/hero-1.jpg",
+    image: "/images/ciclo-mates.jpg",
     whatsappMessage: "Hola, quiero solicitar las guias de Matematica de SuperAcademy.",
   },
   {
@@ -60,11 +46,9 @@ const recursos: ResourceItem[] = [
     tipo: "Online",
     badge: "Uso frecuente",
     disponibilidad: "Disponible ahora",
-    ayuda: "Te lo compartimos por WhatsApp para enviarte el banco de ejercicios que mejor encaje con tu nivel.",
     cta: "Solicitar banco",
-    icon: <BookOpen className="h-5 w-5" />,
     color: "from-[#d7fbff] to-[#58ddea]",
-    image: "/images/hero-1.jpg",
+    image: "/images/ciclo-mates.jpg",
     whatsappMessage: "Hola, quiero solicitar el banco de ejercicios de SuperAcademy.",
   },
   {
@@ -74,11 +58,9 @@ const recursos: ResourceItem[] = [
     tipo: "PDF",
     badge: "Preparación clave",
     disponibilidad: "Disponible con orientación",
-    ayuda: "Te guiamos por WhatsApp para recomendarte el simulacro correcto y evitar enviarte uno que no te sirva.",
     cta: "Pedir simulacro",
-    icon: <GraduationCap className="h-5 w-5" />,
     color: "from-[#9ef4fb] to-[#0eaec8]",
-    image: "/images/hero-1.jpg",
+    image: "/images/ciclo-mates.jpg",
     whatsappMessage: "Hola, quiero solicitar los simulacros de admision de SuperAcademy.",
   },
   {
@@ -88,11 +70,9 @@ const recursos: ResourceItem[] = [
     tipo: "PDF",
     badge: "Organiza tu avance",
     disponibilidad: "Disponible por solicitud",
-    ayuda: "Puedes pedir uno base y luego adaptarlo con un asesor según tu horario disponible.",
     cta: "Solicitar planificador",
-    icon: <Clock className="h-5 w-5" />,
     color: "from-[#e8fdff] to-[#7eeff4]",
-    image: "/images/hero-1.jpg",
+    image: "/images/ciclo-mates.jpg",
     whatsappMessage: "Hola, quiero solicitar un planificador de estudio de SuperAcademy.",
   },
   {
@@ -102,11 +82,9 @@ const recursos: ResourceItem[] = [
     tipo: "Video",
     badge: "Listo para ver",
     disponibilidad: "Disponible ahora",
-    ayuda: "Te enviamos por WhatsApp el acceso a las clases gratuitas para que empieces sin perder tiempo buscando el enlace correcto.",
     cta: "Solicitar clases",
-    icon: <PlayCircle className="h-5 w-5" />,
     color: "from-[#d2fbff] to-[#3cd3e5]",
-    image: "/images/hero-1.jpg",
+    image: "/images/ciclo-mates.jpg",
     whatsappMessage: "Hola, quiero solicitar acceso a las clases gratuitas de SuperAcademy.",
   },
   {
@@ -116,18 +94,15 @@ const recursos: ResourceItem[] = [
     tipo: "Ayuda",
     badge: "Contexto útil",
     disponibilidad: "Disponible con acompañamiento",
-    ayuda: "Si no sabes por dónde empezar, WhatsApp es el mejor punto de entrada para recibir una recomendación útil.",
     cta: "Pedir recomendación",
-    icon: <Sparkles className="h-5 w-5" />,
     color: "from-[#cffff8] to-[#01b8db]",
-    image: "/images/hero-1.jpg",
+    image: "/images/ciclo-mates.jpg",
     whatsappMessage: "Hola, quiero recibir consejos y una recomendacion de estudio de SuperAcademy.",
   },
 ];
 
 function ResourceAction({ recurso }: { recurso: ResourceItem }) {
-  const className =
-    "inline-flex min-h-11 items-center justify-center gap-2 rounded-2xl bg-primary px-5 py-3 text-center font-semibold text-white transition hover:-translate-y-0.5";
+  const className = "btn-primary px-5 py-3 text-center font-semibold";
 
   return (
     <a
@@ -143,22 +118,15 @@ function ResourceAction({ recurso }: { recurso: ResourceItem }) {
 }
 
 export default function RecursosPage() {
-  const resourceTypes = new Set(recursos.map((recurso) => recurso.tipo)).size;
-
   return (
     <main className="overflow-hidden bg-white transition-colors dark:bg-[#04111d]">
       <section id="recursos" className="relative z-10 bg-white py-16 transition-colors dark:bg-[#04111d] sm:py-20">
         <div className="container mx-auto px-6">
           <SuperSectionHero
-            badge="Recursos organizados por utilidad"
             titleStart="Nuestros"
             titleAccent="SuperRecursos"
             description="Explora nuestros recursos con una navegacion clara por tipo de material y acceso. Cada recurso aparece en tarjetas ordenadas para una lectura mas rapida y directa."
-            stats={[
-              `${recursos.length} recursos disponibles`,
-              `${resourceTypes} formatos de apoyo`,
-              "Guias, videos y material de refuerzo",
-            ]}
+            stats={[]}
           />
 
           <div className="mt-12 grid gap-6 sm:mt-14 sm:grid-cols-2 lg:gap-8 xl:grid-cols-3 xl:gap-10">
@@ -172,7 +140,7 @@ export default function RecursosPage() {
                     src={recurso.image}
                     alt={recurso.titulo}
                     fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                    sizes="(min-width: 1280px) 33vw, (min-width: 640px) 50vw, 100vw"
                     className="object-cover"
                   />
                   <div className={`absolute inset-0 bg-gradient-to-br ${recurso.color} opacity-30`} />
@@ -182,10 +150,6 @@ export default function RecursosPage() {
                 </div>
 
                 <div className="flex flex-1 flex-col space-y-4 p-6 sm:p-7">
-                  <div className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${recurso.color} text-black shadow`}>
-                    {recurso.icon}
-                  </div>
-
                   <div>
                     <h3 className="break-words text-xl font-bold text-slate-950 dark:text-white">{recurso.titulo}</h3>
                     <p className="mt-1 break-words text-sm leading-6 text-gray-600 dark:text-slate-300">
@@ -202,17 +166,8 @@ export default function RecursosPage() {
                     </span>
                   </div>
 
-                  <div className="rounded-2xl border border-[#d8eef3] bg-[#f8fcff] px-4 py-3 text-sm leading-6 text-slate-600 dark:border-white/10 dark:bg-white/5 dark:text-slate-300">
-                    <p className="font-semibold text-slate-950 dark:text-white">Qué esperar</p>
-                    <p>{recurso.ayuda}</p>
-                  </div>
-
                   <div className="mt-auto flex flex-col gap-3">
                     <ResourceAction recurso={recurso} />
-                    <p className="flex items-start gap-2 text-xs leading-5 text-slate-500 dark:text-slate-400">
-                      <AlertCircle className="mt-0.5 h-3.5 w-3.5 shrink-0" />
-                      Elegimos una acción distinta según la disponibilidad real del recurso para evitar pasos fallidos.
-                    </p>
                   </div>
                 </div>
               </article>

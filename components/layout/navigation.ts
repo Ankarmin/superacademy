@@ -4,9 +4,9 @@ export type PublicNavigationLink = {
 };
 
 export const publicNavigationLinks: ReadonlyArray<PublicNavigationLink> = [
-  { label: "NOSOTROS", href: "/nosotros" },
-  { label: "CICLOS", href: "/ciclos" },
-  { label: "DOCENTES", href: "/docentes" },
-  { label: "VIDEOTECA", href: "/videoteca" },
-  { label: "RECURSOS", href: "/recursos" },
+  { label: "Nosotros", href: "/nosotros" },
+  { label: "Ciclos", href: "/ciclos" },
+  { label: "Docentes", href: "/docentes" },
+  { label: "Videoteca", href: "/videoteca" },
+  { label: "Recursos", href: "/recursos" },
 ];

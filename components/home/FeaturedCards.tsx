@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import { BookOpen, Video, GraduationCap, ArrowRight } from "lucide-react";
 
 const items = [
   {
@@ -9,7 +8,6 @@ const items = [
     description:
       "Ruta enfocada en razonamiento matematico, algebra, aritmetica, geometria y trigonometria con seguimiento constante.",
     image: "/images/ciclo-mates.jpg",
-    icon: <GraduationCap className="w-5 h-5" />,
     href: "/ciclos",
     accent: "from-[#7ff6f1] to-[#01b8db]",
   },
@@ -18,8 +16,7 @@ const items = [
     title: "Videoteca",
     description:
       "Accede a cientos de clases grabadas, repasos estratégicos y seminarios gratuitos disponibles 24/7.",
-    image: "/images/hero-1.jpg",
-    icon: <Video className="w-5 h-5" />,
+    image: "/images/ciclo-mates.jpg",
     href: "/videoteca",
     accent: "from-[#d9fbff] to-[#48d8ea]",
   },
@@ -28,8 +25,7 @@ const items = [
     title: "Recursos",
     description:
       "Material académico descargable, guías premium, exámenes resueltos y bancos de preguntas.",
-    image: "/images/hero-1.jpg",
-    icon: <BookOpen className="w-5 h-5" />,
+    image: "/images/ciclo-mates.jpg",
     href: "/recursos",
     accent: "from-[#8ef8f2] to-[#0eb5cf]",
   },
@@ -46,9 +42,6 @@ export default function FeaturedCards() {
 
         <div className="container relative z-10 mx-auto px-4 sm:px-6">
           <div className="mx-auto mb-12 max-w-2xl text-center sm:mb-16">
-            <span className="mb-4 inline-block rounded-full bg-primary/14 px-4 py-1 text-sm font-semibold text-slate-950 dark:text-slate-100">
-              Accesos rápidos
-            </span>
           <h2 className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-4xl">
             Todo lo que necesitas para ingresar
           </h2>
@@ -74,7 +67,7 @@ export default function FeaturedCards() {
                     src={item.image}
                     alt={item.title}
                     fill
-                    sizes="(min-width: 768px) 33vw, 100vw"
+                    sizes="(min-width: 1280px) 33vw, (min-width: 640px) 50vw, 100vw"
                     className="object-cover transition-transform duration-[6000ms] ease-out group-hover:scale-110"
                   />
 
@@ -85,12 +78,6 @@ export default function FeaturedCards() {
                   >
                     {item.badge}
                   </span>
-
-                  <div
-                    className={`absolute bottom-4 right-4 w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br ${item.accent} text-black shadow-[0_0_30px_rgba(0,0,0,.35)] group-hover:scale-110 transition-transform`}
-                  >
-                    {item.icon}
-                  </div>
                 </div>
 
                 <div className="relative flex flex-1 flex-col space-y-4 p-6 sm:p-8">
@@ -108,9 +95,8 @@ export default function FeaturedCards() {
                     />
                   </div>
 
-                  <div className="mt-auto flex items-center gap-2 pt-2 font-bold text-primary transition-all group-hover:gap-3">
+                  <div className="mt-auto pt-2 font-bold text-primary">
                     Abrir sección
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </div>
                 </div>
 

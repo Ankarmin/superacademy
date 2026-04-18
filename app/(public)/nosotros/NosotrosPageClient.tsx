@@ -61,11 +61,7 @@ export default function NosotrosPageClient() {
 
         <div className="container relative z-10 mx-auto grid items-center gap-10 px-6 md:grid-cols-2 md:gap-14">
           <div>
-            <span className="mb-4 inline-block rounded-full bg-primary/14 px-4 py-1 text-sm font-semibold text-slate-950 dark:text-slate-100">
-              Nuestra historia
-            </span>
-
-            <h2 className="mb-6 text-3xl font-extrabold leading-tight text-slate-950 dark:text-white md:text-4xl">
+            <h2 className="mb-6 text-4xl font-extrabold leading-tight tracking-tight text-slate-950 dark:text-white sm:text-5xl md:text-6xl xl:text-7xl">
               Educación moderna,
               <span className="block text-primary">resultados reales</span>
             </h2>
@@ -101,11 +97,13 @@ export default function NosotrosPageClient() {
             <div className="absolute -inset-3 bg-gradient-to-r from-[#c8fbff] to-primary blur-2xl opacity-30 transition group-hover:opacity-50" />
             <div className="relative rounded-3xl overflow-hidden shadow-2xl">
               <Image
-                src="/images/hero-1.jpg"
+                src="/images/ciclo-mates.jpg"
                 alt="Estudiantes en clase"
                 className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
                 width={1000}
                 height={1000}
+                loading="eager"
+                fetchPriority="high"
               />
             </div>
           </div>
@@ -115,9 +113,6 @@ export default function NosotrosPageClient() {
       <section className="relative bg-[linear-gradient(180deg,#f2fcff_0%,#ffffff_100%)] py-16 transition-colors dark:bg-[linear-gradient(180deg,#071b2b_0%,#04111d_100%)] sm:py-20">
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-14">
-            <span className="mb-3 inline-block rounded-full bg-primary/14 px-4 py-1 text-sm font-semibold text-slate-950 dark:text-slate-100">
-              Nuestra esencia
-            </span>
             <h2 className="text-3xl font-extrabold text-slate-950 dark:text-white md:text-4xl">
               Lo que nos mueve cada día
             </h2>
@@ -149,9 +144,6 @@ export default function NosotrosPageClient() {
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-14">
-            <span className="mb-3 inline-block rounded-full bg-primary/14 px-4 py-1 text-sm font-semibold text-slate-950 dark:text-slate-100">
-              Nuestra ventaja
-            </span>
             <h2 className="text-3xl font-extrabold text-slate-950 dark:text-white md:text-4xl">
               ¿Por qué elegir SuperAcademy?
             </h2>
@@ -190,10 +182,6 @@ export default function NosotrosPageClient() {
         <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-white/10 blur-3xl rounded-full animate-pulse delay-1000" />
 
         <div className="container relative z-10 mx-auto max-w-3xl px-6 text-center">
-          <span className="mb-4 inline-block rounded-full bg-white/60 px-5 py-2 text-sm font-semibold text-slate-950 backdrop-blur dark:bg-white/10 dark:text-cyan-100">
-            Siguiente paso
-          </span>
-
           <h2 className="text-3xl md:text-5xl font-extrabold mb-6 leading-tight">
             Tu ingreso empieza aquí
           </h2>
@@ -204,12 +192,9 @@ export default function NosotrosPageClient() {
 
           <Link
             href="/ciclos"
-            className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-2xl bg-white px-8 py-4 text-center font-bold text-primary shadow-2xl transition-all hover:scale-105 sm:w-auto sm:px-10 sm:py-5"
+            className="btn-primary w-full px-8 py-4 text-center font-bold sm:w-auto sm:px-10 sm:py-5"
           >
-            <span className="absolute inset-0 translate-y-full bg-gradient-to-r from-[#ccfbff] to-[#7ff6f1] transition-transform duration-500 group-hover:translate-y-0" />
-            <span className="relative z-10 group-hover:text-slate-950">
-              Ver ciclos disponibles
-            </span>
+            Ver ciclos disponibles
           </Link>
         </div>
       </section>

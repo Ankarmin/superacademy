@@ -5,8 +5,9 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { FiMoon, FiSun } from "react-icons/fi";
 import { FaFacebook, FaInstagram, FaTiktok, FaYoutube } from "react-icons/fa";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { socialLinks } from "@/lib/site";
 import { publicNavigationLinks } from "./navigation";
 
 type ThemeMode = "light" | "dark";
@@ -24,43 +25,32 @@ function setDocumentTheme(theme: ThemeMode) {
   } catch {}
 }
 
-const socialLinks = [
-  {
-    label: "Facebook",
-    href: "https://www.facebook.com/SuperAcademyPro",
-    icon: <FaFacebook className="h-5 w-5" />,
+const socialLinkPresentation = {
+  facebook: {
+    icon: <FaFacebook className="h-5 w-5 shrink-0" />,
     color: "from-blue-400 to-blue-600",
   },
-  {
-    label: "Instagram",
-    href: "https://www.instagram.com/superacademypro/",
-    icon: <FaInstagram className="h-5 w-5" />,
+  instagram: {
+    icon: <FaInstagram className="h-5 w-5 shrink-0" />,
     color: "from-pink-400 to-purple-500",
   },
-  {
-    label: "TikTok",
-    href: "https://www.tiktok.com/@superacademy_oficial?_r=1&_t=ZS-93WPwdbxtNE",
-    icon: <FaTiktok className="h-5 w-5" />,
-    color: "from-black to-black",
-  },
-  {
-    label: "YouTube",
-    href: "https://www.youtube.com/@SuperAcademyOficial",
-    icon: <FaYoutube className="h-5 w-5" />,
+  youtube: {
+    icon: <FaYoutube className="h-5 w-5 shrink-0" />,
     color: "from-red-400 to-red-600",
   },
-];
+  tiktok: {
+    icon: <FaTiktok className="h-5 w-5 shrink-0" />,
+    color: "from-black to-black",
+  },
+} as const;
+
+const enrollmentWhatsappUrl = buildWhatsAppUrl(
+  "Hola, estoy interesado/a en matricularme. Podria proporcionarme mas informacion por favor.",
+);
 
 export default function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const whatsappUrl = useMemo(
-    () =>
-      buildWhatsAppUrl(
-        "Hola, estoy interesado/a en matricularme. Podria proporcionarme mas informacion por favor.",
-      ),
-    [],
-  );
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;
@@ -85,7 +75,7 @@ export default function Header() {
   }, [open]);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 1280px)");
+    const mediaQuery = window.matchMedia("(min-width: 1024px)");
     const syncDesktopViewport = () => {
       if (mediaQuery.matches) {
         setOpen(false);
@@ -123,10 +113,6 @@ export default function Header() {
     );
   };
 
-  const handleSendMessage = () => {
-    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
-  };
-
   const handleToggleTheme = () => {
     const currentTheme = document.documentElement.dataset.theme === "dark"
       ? "dark"
@@ -144,13 +130,13 @@ export default function Header() {
       <header className="fixed top-0 left-0 right-0 z-50 border-b border-slate-200/70 bg-white/85 shadow-[0_4px_30px_rgba(0,0,0,0.06)] backdrop-blur-xl transition-colors dark:border-white/10 dark:bg-[#051321]/78 dark:shadow-[0_8px_36px_rgba(0,0,0,0.32)]">
         <nav
           aria-label="Principal"
-          className="relative z-20 container mx-auto grid h-[80px] grid-cols-[1fr_auto] items-center gap-3 px-4 sm:px-6 md:px-6 lg:h-[88px] lg:px-8 xl:grid-cols-[auto_1fr_auto] xl:gap-6"
+          className="relative z-20 container mx-auto grid h-[80px] grid-cols-[1fr_auto] items-center gap-3 px-4 sm:px-6 md:px-6 lg:h-[88px] lg:grid-cols-[auto_1fr_auto] lg:gap-6 lg:px-8"
         >
           <Link
             href="/"
             onClick={() => setOpen(false)}
             aria-label="Ir al inicio"
-            className="group flex items-center gap-3 justify-self-start"
+            className="group inline-flex items-center justify-self-start leading-none"
           >
             <Image
               src="/logo.png"
@@ -161,16 +147,16 @@ export default function Header() {
             />
           </Link>
 
-          <ul className="hidden items-center justify-center gap-5 text-sm xl:flex xl:gap-7 xl:text-[0.95rem] 2xl:gap-9">
+          <ul className="hidden items-center justify-center gap-5 text-sm lg:flex lg:gap-7 lg:text-[0.95rem] 2xl:gap-9">
             {publicNavigationLinks.map((link) => {
               const active = isLinkActive(link.href);
               return (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    aria-current={active ? "page" : undefined}
-                    className="group relative font-bold"
-                  >
+                    <Link
+                      href={link.href}
+                      aria-current={active ? "page" : undefined}
+                      className="group relative font-bold uppercase tracking-[0.08em]"
+                    >
                     <span
                       className={`relative z-10 transition-colors duration-300 ${
                         active
@@ -207,22 +193,23 @@ export default function Header() {
               type="button"
               onClick={handleToggleTheme}
               aria-label="Cambiar entre modo claro y modo oscuro"
-              className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-2xl border border-slate-200 bg-white/90 text-xl text-slate-700 shadow-sm transition hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 dark:border-white/10 dark:bg-white/5 dark:text-slate-100 dark:hover:border-cyan-300/30 dark:hover:text-cyan-200 dark:focus-visible:ring-offset-[#051321]"
+              className="btn-icon inline-flex items-center justify-center leading-none text-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 dark:focus-visible:ring-offset-[#051321]"
             >
-              <FiMoon className="dark:hidden" />
-              <FiSun className="hidden dark:block" />
+              <FiMoon className="h-5 w-5 shrink-0 dark:hidden" />
+              <FiSun className="hidden h-5 w-5 shrink-0 dark:block" />
             </button>
 
-            <button
-              type="button"
-              onClick={handleSendMessage}
+            <Link
+              href={enrollmentWhatsappUrl}
+              target="_blank"
+              rel="noreferrer"
               aria-label="Abrir WhatsApp para matricularme"
-              className={`${enrollmentButtonBaseClassName} hidden xl:inline-flex px-4 py-3 xl:px-6 xl:py-3 xl:text-sm xl:tracking-[0.14em] 2xl:px-7 2xl:text-base`}
+              className={`${enrollmentButtonBaseClassName} hidden lg:inline-flex px-4 py-3 lg:px-6 lg:py-3 lg:text-sm lg:tracking-[0.14em] 2xl:px-7 2xl:text-base`}
             >
               <span className="absolute inset-[3px] rounded-[14px] border border-white/75" />
               <span className="absolute inset-0 -translate-x-full bg-[linear-gradient(115deg,transparent_20%,rgba(255,255,255,0.5)_45%,transparent_70%)] transition-transform duration-700 group-hover:translate-x-full" />
               <span className="relative z-10">MATRICULATE AHORA</span>
-            </button>
+            </Link>
 
             <button
               type="button"
@@ -230,7 +217,7 @@ export default function Header() {
               aria-expanded={open}
               aria-controls="mobile-navigation"
               aria-label={open ? "Cerrar menú" : "Abrir menú"}
-              className={`relative inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl border border-slate-200/80 bg-white/92 text-slate-700 shadow-[0_10px_30px_rgba(15,23,42,0.08)] transition-[border-color,background-color,color,box-shadow] duration-300 hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 dark:border-white/10 dark:bg-white/5 dark:text-slate-100 dark:hover:border-cyan-300/30 dark:hover:text-cyan-200 dark:focus-visible:ring-offset-[#051321] xl:hidden ${
+              className={`btn-icon relative inline-flex h-12 w-12 items-center justify-center leading-none transition-[border-color,background-color,color,box-shadow] duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 dark:focus-visible:ring-offset-[#051321] lg:hidden ${
                 open
                   ? "border-primary text-primary shadow-[0_14px_32px_rgba(1,184,219,0.18)] dark:border-cyan-300/40 dark:text-cyan-200"
                   : ""
@@ -262,7 +249,7 @@ export default function Header() {
       <div
         id="mobile-navigation"
         aria-hidden={!open}
-        className={`fixed inset-0 z-40 xl:hidden ${
+        className={`fixed inset-0 z-40 lg:hidden ${
           open ? "pointer-events-auto" : "pointer-events-none"
         }`}
       >
@@ -308,33 +295,36 @@ export default function Header() {
               </ul>
 
               <div className="mt-auto flex w-full max-w-[20rem] flex-col items-center gap-4 pb-4 pt-8">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setOpen(false);
-                    handleSendMessage();
-                  }}
+                <Link
+                  href={enrollmentWhatsappUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => setOpen(false)}
                   className={`${enrollmentButtonBaseClassName} inline-flex w-full px-6 py-3.5 text-sm tracking-[0.14em]`}
                 >
                   <span className="absolute inset-[3px] rounded-[14px] border border-white/75" />
                   <span className="absolute inset-0 -translate-x-full bg-[linear-gradient(115deg,transparent_20%,rgba(255,255,255,0.5)_45%,transparent_70%)] transition-transform duration-700 group-hover:translate-x-full" />
                   <span className="relative z-10">MATRICULATE AHORA</span>
-                </button>
+                </Link>
 
                 <div className="flex items-center justify-center gap-3 pt-2 text-[1.45rem]">
-                  {socialLinks.map((socialLink) => (
+                  {socialLinks.map((socialLink) => {
+                    const presentation = socialLinkPresentation[socialLink.key];
+
+                    return (
                     <a
                       key={socialLink.label}
                       href={socialLink.href}
                       target="_blank"
                       rel="noreferrer"
                       aria-label={`Abrir ${socialLink.label} de SuperAcademy`}
-                      className={`group relative flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br ${socialLink.color} text-white shadow-xl transition-transform hover:scale-110 hover:rotate-3`}
+                      className={`group relative inline-flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br ${presentation.color} leading-none text-white shadow-xl transition-transform hover:scale-110 hover:rotate-3`}
                     >
-                      {socialLink.icon}
+                      {presentation.icon}
                       <span className="absolute inset-0 rounded-full bg-white/20 opacity-0 transition group-hover:opacity-100" />
                     </a>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             </div>

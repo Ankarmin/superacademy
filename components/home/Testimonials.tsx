@@ -45,7 +45,7 @@ export default function Testimonials() {
   const prefersReducedMotion = usePrefersReducedMotion();
 
   return (
-    <section className="relative overflow-hidden bg-[linear-gradient(180deg,#f2fcff_0%,#ffffff_100%)] py-20 transition-colors dark:bg-[linear-gradient(180deg,#071b2b_0%,#04111d_100%)] sm:py-24">
+    <section id="testimonials" className="relative overflow-hidden bg-[linear-gradient(180deg,#f2fcff_0%,#ffffff_100%)] py-20 transition-colors dark:bg-[linear-gradient(180deg,#071b2b_0%,#04111d_100%)] sm:py-24">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_25%_30%,rgba(46,244,237,0.18),transparent_60%)] dark:bg-[radial-gradient(circle_at_25%_30%,rgba(1,184,219,0.16),transparent_56%)]" />
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6">
@@ -80,7 +80,7 @@ export default function Testimonials() {
             768: { slidesPerView: 2 },
             1024: { slidesPerView: 3 },
           }}
-          className="testimonials-swiper px-1"
+          className="testimonials-swiper px-1 pt-4"
         >
           {testimonials.map((t) => (
             <SwiperSlide key={`${t.name}-${t.badge}`} className="h-auto">
@@ -122,7 +122,14 @@ export default function Testimonials() {
 
         <style jsx global>{`
           .testimonials-swiper {
+            overflow: visible;
+            padding-top: 0.5rem;
             padding-bottom: 0.25rem;
+          }
+
+          .testimonials-swiper .swiper-wrapper,
+          .testimonials-swiper .swiper-slide {
+            overflow: visible;
           }
 
           .testimonials-swiper .swiper-pagination {

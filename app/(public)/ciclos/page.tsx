@@ -7,9 +7,9 @@ import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { cyclePrograms } from "./cycles";
 
 export const metadata: Metadata = {
-  title: "Ciclo Matematicas",
+  title: "Ciclos",
   description:
-    "Consulta el ciclo de Matematicas de SuperAcademy con horario, precio, inicio e informacion de matricula.",
+    "Consulta los ciclos disponibles de SuperAcademy con informacion de matricula, modalidad y detalle por programa.",
   alternates: {
     canonical: "/ciclos",
   },
@@ -21,7 +21,6 @@ export default function CyclesPage() {
       <section className="bg-white py-16 transition-colors dark:bg-[#04111d] sm:py-20">
         <div className="container mx-auto px-6">
           <SuperSectionHero
-            badge="Ciclos organizados por objetivo"
             titleStart="Nuestros"
             titleAccent="SuperCiclos"
             description="Explora nuestros ciclos en un formato compacto y claro, pensado para crecer sin perder orden cuando agreguemos nuevas opciones."
@@ -62,28 +61,10 @@ export default function CyclesPage() {
                     </p>
                   </div>
 
-                  <div className="space-y-3 text-sm text-slate-600 dark:text-slate-300">
-                    <div className="rounded-2xl border border-slate-200/80 bg-[#f8fbff] px-4 py-3 dark:border-white/10 dark:bg-white/5">
-                      <p className="text-[0.7rem] font-black uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
-                        Horario
-                      </p>
-                      <p className="mt-1 font-medium text-slate-950 dark:text-white">{program.schedule}</p>
-                    </div>
-
-                    {program.highlights.slice(0, 2).map((highlight) => (
-                      <div
-                        key={highlight}
-                        className="rounded-2xl border border-slate-200/80 bg-white px-4 py-3 dark:border-white/10 dark:bg-white/5"
-                      >
-                        {highlight}
-                      </div>
-                    ))}
-                  </div>
-
                   <div className="mt-auto flex flex-col gap-3">
                     <Link
                       href={`/ciclos/${program.slug}`}
-                      className="inline-flex min-h-11 items-center justify-center gap-2 rounded-2xl bg-primary px-5 py-3 font-semibold text-white transition hover:-translate-y-0.5"
+                      className="btn-primary px-5 py-3 font-semibold"
                     >
                       Ver detalle completo
                       <ArrowRight className="h-4 w-4" />
@@ -93,7 +74,7 @@ export default function CyclesPage() {
                       href={buildWhatsAppUrl(`Hola, quiero informacion sobre ${program.title} y su matricula.`)}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex min-h-11 items-center justify-center rounded-2xl border border-slate-200 px-5 py-3 font-semibold text-slate-900 transition hover:border-primary hover:text-primary dark:border-white/10 dark:text-slate-100 dark:hover:border-cyan-300/28 dark:hover:text-cyan-200"
+                      className="btn-secondary px-5 py-3 font-semibold"
                     >
                       Consultar este ciclo
                     </Link>
