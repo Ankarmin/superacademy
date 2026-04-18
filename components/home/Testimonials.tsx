@@ -39,6 +39,38 @@ const testimonials = [
     badge: "Top ingreso",
     accent: "from-[#7ff6f1] to-[#01b8db]",
   },
+  {
+    name: "Andrea T.",
+    university: "Ingresó a Católica",
+    message:
+      "Lo que más me ayudó fue el orden del plan de estudio. Cada semana sabía qué reforzar y llegué al examen con mucha más seguridad.",
+    badge: "Católica",
+    accent: "from-[#d9fbff] to-[#48d8ea]",
+  },
+  {
+    name: "Luis F.",
+    university: "Ingresó a UNI",
+    message:
+      "Los repasos finales y las clases grabadas me ayudaron a corregir errores rápido. Sentí un avance real en matemática y razonamiento.",
+    badge: "Alto puntaje",
+    accent: "from-[#8ef8f2] to-[#0eb5cf]",
+  },
+  {
+    name: "Camila S.",
+    university: "Ingresó a San Marcos",
+    message:
+      "La atención y el seguimiento marcaron la diferencia. No solo estudias, también sientes que hay un equipo pendiente de tu progreso.",
+    badge: "San Marcos",
+    accent: "from-[#7ff6f1] to-[#01b8db]",
+  },
+  {
+    name: "Diego A.",
+    university: "Ingresó a Villarreal",
+    message:
+      "Entré mejor preparado gracias a la constancia que te exige la academia. Los simulacros y las correcciones fueron clave para mi ingreso.",
+    badge: "Villarreal",
+    accent: "from-[#d9fbff] to-[#48d8ea]",
+  },
 ] as const;
 
 export default function Testimonials() {
@@ -59,77 +91,80 @@ export default function Testimonials() {
           </p>
         </div>
 
-        <Swiper
-          modules={[Autoplay, Pagination]}
-          spaceBetween={24}
-          slidesPerView={1}
-          loop
-          grabCursor
-          autoplay={
-            prefersReducedMotion
-              ? false
-              : {
-                  delay: 5500,
-                  disableOnInteraction: false,
-                  pauseOnMouseEnter: true,
-                }
-          }
-          pagination={{ clickable: true }}
-          breakpoints={{
-            640: { slidesPerView: 1.05 },
-            768: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
-          }}
-          className="testimonials-swiper px-1 pt-4"
-        >
-          {testimonials.map((t) => (
-            <SwiperSlide key={`${t.name}-${t.badge}`} className="h-auto">
-              <div
-                  className="group relative flex h-full flex-col rounded-3xl bg-white/82 p-6 shadow-[0_15px_50px_rgba(0,0,0,0.08)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_25px_70px_rgba(0,0,0,0.12)] dark:bg-[#081624]/86 dark:shadow-[0_18px_56px_rgba(0,0,0,0.22)] sm:p-7"
-                >
+        <div className="overflow-hidden px-1">
+          <Swiper
+            modules={[Autoplay, Pagination]}
+            spaceBetween={24}
+            slidesPerView={1}
+            loop
+            grabCursor
+            autoplay={
+              prefersReducedMotion
+                ? false
+                : {
+                    delay: 5500,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true,
+                  }
+            }
+            pagination={{ clickable: true }}
+            breakpoints={{
+              640: { slidesPerView: 1.05 },
+              768: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
+            }}
+            className="testimonials-swiper"
+          >
+            {testimonials.map((t) => (
+              <SwiperSlide key={`${t.name}-${t.badge}`} className="h-auto">
+                <div className="group relative flex h-full flex-col rounded-3xl bg-white/82 p-6 shadow-[0_15px_50px_rgba(0,0,0,0.08)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_25px_70px_rgba(0,0,0,0.12)] dark:bg-[#081624]/86 dark:shadow-[0_18px_56px_rgba(0,0,0,0.22)] sm:p-7">
                   <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-transparent transition duration-500 group-hover:ring-primary/30" />
 
                   <div className="absolute -top-5 -left-4 select-none font-serif text-7xl text-primary/18 dark:text-primary/22">
                     “
                   </div>
 
-                <span
-                  className={`inline-block mb-4 px-3 py-1 rounded-full text-xs font-semibold text-black bg-gradient-to-r ${t.accent} shadow`}
-                >
-                  {t.badge}
-                </span>
-
-                <p className="mb-6 line-clamp-4 flex-1 break-words italic leading-relaxed text-gray-700 dark:text-slate-300">
-                  “{t.message}”
-                </p>
-                <div className="mb-4 h-[2px] w-16 rounded-full bg-gradient-to-r from-[#7ff6f1] to-[#01b8db]" />
-                <div className="flex items-center gap-4 min-w-0">
-                  <div
-                    className={`w-11 h-11 rounded-full flex items-center justify-center font-bold text-black bg-gradient-to-br ${t.accent} shadow`}
+                  <span
+                    className={`mb-4 inline-block rounded-full bg-gradient-to-r px-3 py-1 text-xs font-semibold text-black shadow ${t.accent}`}
                   >
-                    {t.name.charAt(0)}
-                  </div>
+                    {t.badge}
+                  </span>
 
-                  <div className="min-w-0">
-                    <div className="font-semibold text-slate-950 dark:text-white">{t.name}</div>
-                    <div className="break-words text-sm text-primary">{t.university}</div>
+                  <p className="mb-6 line-clamp-4 flex-1 break-words italic leading-relaxed text-gray-700 dark:text-slate-300">
+                    “{t.message}”
+                  </p>
+                  <div className="mb-4 h-[2px] w-16 rounded-full bg-gradient-to-r from-[#7ff6f1] to-[#01b8db]" />
+                  <div className="flex min-w-0 items-center gap-4">
+                    <div
+                      className={`flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br font-bold text-black shadow ${t.accent}`}
+                    >
+                      {t.name.charAt(0)}
+                    </div>
+
+                    <div className="min-w-0">
+                      <div className="font-semibold text-slate-950 dark:text-white">{t.name}</div>
+                      <div className="break-words text-sm text-primary">{t.university}</div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
 
         <style jsx global>{`
           .testimonials-swiper {
-            overflow: visible;
-            padding-top: 0.5rem;
+            overflow: hidden;
+            padding-top: 1.5rem;
             padding-bottom: 0.25rem;
           }
 
-          .testimonials-swiper .swiper-wrapper,
           .testimonials-swiper .swiper-slide {
-            overflow: visible;
+            height: auto;
+          }
+
+          .testimonials-swiper .swiper-wrapper {
+            align-items: stretch;
           }
 
           .testimonials-swiper .swiper-pagination {

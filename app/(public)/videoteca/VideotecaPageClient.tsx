@@ -16,18 +16,58 @@ const validCourses = videotecaCursos
 
 export default function VideotecaPageClient() {
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
-  const [activeCourseId, setActiveCourseId] = useState<number | null>(
-    validCourses[0]?.id ?? null,
-  );
+  const courseSummaryRef = useRef<HTMLDivElement | null>(null);
+  const [activeCourseId, setActiveCourseId] = useState<number | null>(null);
   const [videoActivo, setVideoActivo] = useState<Video | null>(null);
   const [isVideoLoading, setIsVideoLoading] = useState(false);
 
   const cursoActivo =
     validCourses.find((course) => course.id === activeCourseId) ??
-    validCourses[0] ??
     null;
 
   const visibleVideos = cursoActivo?.videos ?? [];
+  const courseHeading = cursoActivo?.nombre ?? "Selecciona un curso";
+  const courseAvailabilityText = cursoActivo
+    ? `${visibleVideos.length} clase${visibleVideos.length === 1 ? "" : "s"} disponible${visibleVideos.length === 1 ? "" : "s"}`
+    : "Elige un curso para ver los videos disponibles en esta sección.";
+
+  const closeVideoPlayer = () => {
+    setVideoActivo(null);
+    setIsVideoLoading(false);
+  };
+
+  const scrollToCourseContent = () => {
+    if (!window.matchMedia("(max-width: 1023px)").matches) {
+      return;
+    }
+
+    requestAnimationFrame(() => {
+      const target = courseSummaryRef.current;
+
+      if (!target) {
+        return;
+      }
+
+      const headerHeight = document.querySelector("header")?.clientHeight ?? 0;
+      const targetTop = target.getBoundingClientRect().top + window.scrollY;
+
+      window.scrollTo({
+        top: Math.max(0, targetTop - headerHeight - 12),
+        behavior: "smooth",
+      });
+    });
+  };
+
+  const handleCourseSelect = (courseId: number) => {
+    setActiveCourseId(courseId);
+    closeVideoPlayer();
+    scrollToCourseContent();
+  };
+
+  const handleVideoOpen = (video: Video) => {
+    setVideoActivo(video);
+    setIsVideoLoading(true);
+  };
 
   return (
     <main className="overflow-hidden bg-white transition-colors dark:bg-[#04111d]">
@@ -50,10 +90,7 @@ export default function VideotecaPageClient() {
                     <button
                       type="button"
                       key={curso.id}
-                      onClick={() => {
-                        setActiveCourseId(curso.id);
-                        setVideoActivo(null);
-                      }}
+                      onClick={() => handleCourseSelect(curso.id)}
                       className={`group flex min-h-11 w-full items-center justify-between gap-3 rounded-2xl px-4 py-3 text-left font-semibold transition-all duration-300 ${
                         isActive
                           ? "bg-gradient-to-r from-primary to-[#7ff6f1] text-slate-950 shadow-lg"
@@ -72,15 +109,11 @@ export default function VideotecaPageClient() {
 
             <section className="relative flex-1">
               <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                <div className="min-w-0">
+                <div ref={courseSummaryRef} className="min-w-0">
                   <h2 className="break-words text-2xl font-extrabold text-slate-950 dark:text-white sm:text-3xl">
-                    {cursoActivo ? cursoActivo.nombre : "Videoteca"}
+                    {courseHeading}
                   </h2>
-                  <p className="mt-1 text-sm text-gray-500 dark:text-slate-400">
-                    {cursoActivo
-                      ? `${visibleVideos.length} clase${visibleVideos.length === 1 ? "" : "s"} disponible${visibleVideos.length === 1 ? "" : "s"}`
-                      : "Pronto agregaremos nuevos contenidos a esta sección."}
-                  </p>
+                  <p className="mt-1 text-sm text-gray-500 dark:text-slate-400">{courseAvailabilityText}</p>
                 </div>
 
                 <span className="rounded-full bg-primary/14 px-4 py-1.5 text-sm font-bold text-slate-950 dark:text-slate-100">
@@ -91,10 +124,7 @@ export default function VideotecaPageClient() {
               <div className={`relative ${videoActivo ? "overflow-hidden" : ""}`}>
                 <ModalShell
                   open={Boolean(videoActivo)}
-                  onClose={() => {
-                    setVideoActivo(null);
-                    setIsVideoLoading(false);
-                  }}
+                  onClose={closeVideoPlayer}
                   titleId="videoteca-player-title"
                   initialFocusRef={closeButtonRef}
                   panelClassName="relative w-full max-w-6xl overflow-hidden rounded-[28px] bg-black shadow-2xl"
@@ -102,10 +132,7 @@ export default function VideotecaPageClient() {
                   <button
                     ref={closeButtonRef}
                     type="button"
-                    onClick={() => {
-                      setVideoActivo(null);
-                      setIsVideoLoading(false);
-                    }}
+                    onClick={closeVideoPlayer}
                     aria-label="Cerrar reproductor"
                     className="absolute right-4 top-4 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-black/60 text-white transition hover:bg-black/80"
                   >
@@ -144,18 +171,15 @@ export default function VideotecaPageClient() {
                 {cursoActivo ? (
                   visibleVideos.length ? (
                     <div
-                      className={`grid gap-5 transition-all duration-500 sm:grid-cols-2 sm:gap-6 xl:grid-cols-3 xl:gap-8 ${
+                      className={`grid gap-5 sm:grid-cols-2 sm:gap-6 xl:grid-cols-3 xl:gap-8 ${
                         videoActivo ? "blur-md brightness-50" : ""
                       }`}
                     >
-                      {visibleVideos.map((video, index) => (
+                      {visibleVideos.map((video) => (
                         <button
                           type="button"
-                          key={`${video.id}-${index}`}
-                          onClick={() => {
-                            setVideoActivo(video);
-                            setIsVideoLoading(true);
-                          }}
+                          key={video.id}
+                          onClick={() => handleVideoOpen(video)}
                           className="group relative overflow-hidden rounded-2xl border border-[#d8eef3] bg-white text-left shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:border-white/10 dark:bg-[#081624] dark:shadow-[0_18px_56px_rgba(0,0,0,0.22)]"
                         >
                           <div className="relative h-44 overflow-hidden">
@@ -194,9 +218,9 @@ export default function VideotecaPageClient() {
                 ) : (
                   <div className="rounded-[2rem] border border-dashed border-[#bfdfe8] bg-[#f8fcff] px-6 py-10 text-center dark:border-white/10 dark:bg-white/5">
                     <Film className="mx-auto h-10 w-10 text-primary" />
-                    <p className="mt-4 text-lg font-bold text-slate-950 dark:text-white">Pronto publicaremos nuevos videos</p>
+                    <p className="mt-4 text-lg font-bold text-slate-950 dark:text-white">Selecciona un curso para empezar</p>
                     <p className="mx-auto mt-3 max-w-xl text-sm leading-7 text-slate-600 dark:text-slate-300">
-                      La videoteca seguirá creciendo con más clases y repasos organizados por curso.
+                      Toca uno de los cursos del listado para ver sus videos disponibles en esta videoteca.
                     </p>
                   </div>
                 )}
