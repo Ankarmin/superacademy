@@ -8,73 +8,94 @@ export type CycleProgram = {
   schedule: string;
   mode: string;
   image: string;
+  scheduleImage: string;
+  startDate: string;
+  monthlyPrice: string;
+  contactPhone: string;
   highlights: readonly string[];
   subjects: readonly string[];
+  scheduleItems: readonly {
+    day: string;
+    subject: string;
+    time: string;
+  }[];
 };
 
 export const cyclePrograms: readonly CycleProgram[] = [
   {
-    slug: "san-marcos",
-    title: "Ciclo Ciencias",
-    badge: "Base cientifica",
-    description:
-      "Programa enfocado en fortalecer biologia, quimica y fisica con practica guiada y seguimiento constante.",
-    audience: "Estudiantes que buscan reforzar el area de ciencias",
-    duration: "16 semanas",
-    schedule: "Lunes a sabado",
-    mode: "Presencial y virtual",
-    image: "/images/hero-1.jpg",
-    highlights: [
-      "Practicas semanales por bloques tematicos.",
-      "Acompanamiento academico con reportes de avance.",
-      "Material de teoria y ejercicios aplicados por curso.",
-    ],
-    subjects: [
-      "Biologia",
-      "Quimica",
-      "Fisica",
-      "Razonamiento cientifico",
-    ],
-  },
-  {
-    slug: "uni",
+    slug: "matematicas",
     title: "Ciclo Matematicas",
-    badge: "Razonamiento logico",
+    badge: "Matricula abierta",
     description:
-      "Ruta especializada para desarrollar resolucion de problemas, agilidad numerica y dominio de fundamentos matematicos.",
-    audience: "Estudiantes enfocados en el area de matematicas",
-    duration: "20 semanas",
-    schedule: "Lunes a viernes",
-    mode: "Presencial y virtual",
-    image: "/images/hero-2.jpg",
+      "Programa orientado a reforzar el area matematica con una ruta clara por cursos, horario nocturno y seguimiento semanal para sostener tu avance.",
+    audience: "Estudiantes que desean reforzar razonamiento y base matematica",
+    duration: "5 dias de clase por semana",
+    schedule:
+      "Lunes a viernes entre 7:00 p. m. y 10:00 p. m.; los sabados se destinan a simulacros.",
+    mode: "Turno noche",
+    image: "/images/ciclo-mates.jpg",
+    scheduleImage: "/images/horario-ciclo-mates.jpg",
+    startDate: "6 de abril",
+    monthlyPrice: "S/60",
+    contactPhone: "923 806 156",
     highlights: [
-      "Entrenamiento intensivo en calculo y razonamiento matematico.",
-      "Resolucion guiada de problemas de dificultad progresiva.",
-      "Bloques de practica cronometrada.",
-    ],
-    subjects: ["Aritmetica", "Algebra", "Geometria", "Razonamiento matematico"],
-  },
-  {
-    slug: "repaso-intensivo",
-    title: "Ciclo Letras",
-    badge: "Comunicacion y analisis",
-    description:
-      "Plan orientado a desarrollar comprension lectora, analisis verbal y dominio de contenidos humanisticos.",
-    audience: "Estudiantes que buscan fortalecer el area de letras",
-    duration: "8 semanas",
-    schedule: "Turnos manana y noche",
-    mode: "Virtual en vivo",
-    image: "/images/hero-3.jpg",
-    highlights: [
-      "Lecturas guiadas y analisis de textos.",
-      "Refuerzo de redaccion, lenguaje y cultura general.",
-      "Practicas de comprension y argumentacion con retroalimentacion.",
+      "Simulacros semanales para medir avance real.",
+      "Grabaciones de clase para repasar sin perder continuidad.",
+      "Examenes de control para reforzar seguimiento y disciplina.",
     ],
     subjects: [
-      "Lenguaje",
-      "Literatura",
-      "Historia",
-      "Comprension lectora",
+      "Razonamiento matematico",
+      "Algebra",
+      "Aritmetica",
+      "Geometria",
+      "Trigonometria",
+    ],
+    scheduleItems: [
+      {
+        day: "Lunes",
+        subject: "Geometria",
+        time: "8:00 p. m. a 10:00 p. m.",
+      },
+      {
+        day: "Martes",
+        subject: "Razonamiento matematico",
+        time: "7:00 p. m. a 9:00 p. m.",
+      },
+      {
+        day: "Martes",
+        subject: "Algebra",
+        time: "9:00 p. m. a 10:00 p. m.",
+      },
+      {
+        day: "Miercoles",
+        subject: "Trigonometria",
+        time: "8:00 p. m. a 10:00 p. m.",
+      },
+      {
+        day: "Jueves",
+        subject: "Razonamiento matematico",
+        time: "7:00 p. m. a 9:00 p. m.",
+      },
+      {
+        day: "Jueves",
+        subject: "Algebra",
+        time: "9:00 p. m. a 10:00 p. m.",
+      },
+      {
+        day: "Viernes",
+        subject: "Aritmetica",
+        time: "7:00 p. m. a 9:00 p. m.",
+      },
+      {
+        day: "Viernes",
+        subject: "Examen",
+        time: "9:00 p. m. a 10:00 p. m.",
+      },
+      {
+        day: "Sabado",
+        subject: "Simulacro semanal",
+        time: "Segun programacion",
+      },
     ],
   },
 ];

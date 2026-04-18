@@ -42,12 +42,12 @@ function toTitleCase(label: string) {
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-[#d8edf3] bg-white text-slate-700">
+    <footer className="relative overflow-hidden border-t border-[#d8edf3] bg-white text-slate-700 transition-colors dark:border-white/10 dark:bg-[#071523] dark:text-slate-300">
       <div className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,#78fff0_0%,#01b8db_45%,#7ceff7_100%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(1,184,219,0.08),transparent_26%),radial-gradient(circle_at_bottom_right,rgba(1,184,219,0.05),transparent_28%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(1,184,219,0.08),transparent_26%),radial-gradient(circle_at_bottom_right,rgba(1,184,219,0.05),transparent_28%)] dark:bg-[radial-gradient(circle_at_top_left,rgba(1,184,219,0.14),transparent_24%),radial-gradient(circle_at_bottom_right,rgba(127,246,241,0.08),transparent_26%)]" />
 
       <div className="container relative z-10 mx-auto px-6 py-16 md:py-20">
-        <div className="grid gap-10 border-b border-slate-200/80 pb-12 sm:grid-cols-2 xl:grid-cols-[1.2fr_0.8fr_0.8fr_0.9fr] xl:gap-12">
+        <div className="grid gap-10 border-b border-slate-200/80 pb-12 dark:border-white/10 sm:grid-cols-2 xl:grid-cols-[1.2fr_0.8fr_0.8fr_0.9fr] xl:gap-12">
           <div className="max-w-md space-y-5">
             <Link href="/" className="inline-flex max-w-full items-center gap-4">
               <Image
@@ -61,13 +61,13 @@ export default function Footer() {
                 <p className="text-2xl font-black tracking-tight text-primary">
                   {siteConfig.name}
                 </p>
-                <p className="text-xs font-bold uppercase tracking-[0.28em] text-slate-500">
+                <p className="text-xs font-bold uppercase tracking-[0.28em] text-slate-500 dark:text-slate-400">
                   Academia preuniversitaria
                 </p>
               </div>
             </Link>
 
-            <p className="text-base leading-8 text-slate-600">
+            <p className="text-base leading-8 text-slate-600 dark:text-slate-300">
               Preparacion clara, exigente y bien guiada para estudiantes que
               buscan ingresar con mejor estrategia y mejores resultados.
             </p>
@@ -76,7 +76,7 @@ export default function Footer() {
               {["Ciencias", "Matematicas", "Letras"].map((label) => (
                 <span
                   key={label}
-                  className="rounded-full border border-[#d7eef4] bg-[#f3fbfe] px-3 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-primary"
+                  className="rounded-full border border-[#d7eef4] bg-[#f3fbfe] px-3 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-primary dark:border-cyan-300/20 dark:bg-cyan-400/10 dark:text-cyan-100"
                 >
                   {label}
                 </span>
@@ -85,13 +85,13 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-lg font-black text-slate-950">Explorar</h3>
+            <h3 className="text-lg font-black text-slate-950 dark:text-white">Explorar</h3>
             <ul className="mt-5 space-y-3">
               {publicNavigationLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="break-words text-base text-slate-600 transition hover:text-primary"
+                    className="break-words text-base text-slate-600 transition hover:text-primary dark:text-slate-300 dark:hover:text-cyan-200"
                   >
                     {toTitleCase(link.label)}
                   </Link>
@@ -101,13 +101,13 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-lg font-black text-slate-950">Legales</h3>
+            <h3 className="text-lg font-black text-slate-950 dark:text-white">Legales</h3>
             <ul className="mt-5 space-y-3">
               {legalLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="break-words text-base text-slate-600 transition hover:text-primary"
+                    className="break-words text-base text-slate-600 transition hover:text-primary dark:text-slate-300 dark:hover:text-cyan-200"
                   >
                     {link.label}
                   </Link>
@@ -117,7 +117,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-lg font-black text-slate-950">Contáctanos</h3>
+            <h3 className="text-lg font-black text-slate-950 dark:text-white">Contáctanos</h3>
             <ul className="mt-5 space-y-3">
               {contactLinks.map((link) => (
                 <li key={link.label}>
@@ -125,7 +125,7 @@ export default function Footer() {
                     href={link.href}
                     target={link.external ? "_blank" : undefined}
                     rel={link.external ? "noreferrer" : undefined}
-                    className="break-words text-base text-slate-600 transition hover:text-primary"
+                    className="break-words text-base text-slate-600 transition hover:text-primary dark:text-slate-300 dark:hover:text-cyan-200"
                   >
                     {link.label}
                   </Link>
@@ -135,7 +135,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-3 pt-6 text-center text-sm text-slate-500 md:flex-row md:items-center md:justify-between md:text-left">
+        <div className="flex flex-col gap-3 pt-6 text-center text-sm text-slate-500 dark:text-slate-400 md:flex-row md:items-center md:justify-between md:text-left">
           <p className="break-words">
             © {new Date().getFullYear()} {siteConfig.name}. Todos los derechos
             reservados.

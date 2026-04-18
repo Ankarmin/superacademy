@@ -6,53 +6,54 @@ import usePrefersReducedMotion from "@/components/ui/usePrefersReducedMotion";
 import "swiper/css";
 import "swiper/css/pagination";
 
+const testimonials = [
+  {
+    name: "María G.",
+    university: "Ingresó a San Marcos",
+    message:
+      "Gracias a la academia logré mi ingreso. Los profesores explican claro, los simulacros son reales y el acompañamiento fue constante.",
+    badge: "San Marcos",
+    accent: "from-[#7ff6f1] to-[#01b8db]",
+  },
+  {
+    name: "Carlos R.",
+    university: "Ingresó a UNI",
+    message:
+      "La plataforma y los materiales fueron clave para mi preparación. Los docentes son top y el sistema es muy práctico.",
+    badge: "UNI",
+    accent: "from-[#d9fbff] to-[#48d8ea]",
+  },
+  {
+    name: "Lucía P.",
+    university: "Ingresó a Villarreal",
+    message:
+      "Me encantó el acompañamiento y los simulacros. Realmente te preparan para el examen real.",
+    badge: "Villarreal",
+    accent: "from-[#8ef8f2] to-[#0eb5cf]",
+  },
+  {
+    name: "Jorge M.",
+    university: "Ingresó a San Marcos",
+    message:
+      "La metodología es clara, ordenada y efectiva. Subí muchísimo mi nivel en pocas semanas.",
+    badge: "Top ingreso",
+    accent: "from-[#7ff6f1] to-[#01b8db]",
+  },
+] as const;
+
 export default function Testimonials() {
   const prefersReducedMotion = usePrefersReducedMotion();
-  const testimonials = [
-    {
-      name: "María G.",
-      university: "Ingresó a San Marcos",
-      message:
-        "Gracias a la academia logré mi ingreso. Los profesores explican claro, los simulacros son reales y el acompañamiento fue constante.",
-      badge: "San Marcos",
-      accent: "from-[#7ff6f1] to-[#01b8db]",
-    },
-    {
-      name: "Carlos R.",
-      university: "Ingresó a UNI",
-      message:
-        "La plataforma y los materiales fueron clave para mi preparación. Los docentes son top y el sistema es muy práctico.",
-      badge: "UNI",
-      accent: "from-[#d9fbff] to-[#48d8ea]",
-    },
-    {
-      name: "Lucía P.",
-      university: "Ingresó a Villarreal",
-      message:
-        "Me encantó el acompañamiento y los simulacros. Realmente te preparan para el examen real.",
-      badge: "Villarreal",
-      accent: "from-[#8ef8f2] to-[#0eb5cf]",
-    },
-    {
-      name: "Jorge M.",
-      university: "Ingresó a San Marcos",
-      message:
-        "La metodología es clara, ordenada y efectiva. Subí muchísimo mi nivel en pocas semanas.",
-      badge: "Top ingreso",
-      accent: "from-[#7ff6f1] to-[#01b8db]",
-    },
-  ];
 
   return (
-    <section className="relative overflow-hidden bg-[linear-gradient(180deg,#f2fcff_0%,#ffffff_100%)] py-20 sm:py-24">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_30%,rgba(46,244,237,0.18),transparent_60%)] pointer-events-none" />
+    <section className="relative overflow-hidden bg-[linear-gradient(180deg,#f2fcff_0%,#ffffff_100%)] py-20 transition-colors dark:bg-[linear-gradient(180deg,#071b2b_0%,#04111d_100%)] sm:py-24">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_25%_30%,rgba(46,244,237,0.18),transparent_60%)] dark:bg-[radial-gradient(circle_at_25%_30%,rgba(1,184,219,0.16),transparent_56%)]" />
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6">
         <div className="mx-auto mb-12 max-w-2xl text-center sm:mb-14">
-          <h2 className="mb-4 text-3xl font-extrabold md:text-4xl">
+          <h2 className="mb-4 text-3xl font-extrabold text-slate-950 dark:text-white md:text-4xl">
             Nuestros resultados hablan por nosotros
           </h2>
-          <p className="text-base text-gray-600 sm:text-lg">
+          <p className="text-base text-gray-600 dark:text-slate-300 sm:text-lg">
             Miles de estudiantes lograron su ingreso gracias a nuestra
             metodología comprobada.
           </p>
@@ -81,14 +82,14 @@ export default function Testimonials() {
           }}
           className="testimonials-swiper px-1"
         >
-          {testimonials.map((t, index) => (
-            <SwiperSlide key={index} className="h-auto">
+          {testimonials.map((t) => (
+            <SwiperSlide key={`${t.name}-${t.badge}`} className="h-auto">
               <div
-                  className="group relative flex h-full flex-col rounded-3xl bg-white/82 p-6 shadow-[0_15px_50px_rgba(0,0,0,0.08)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_25px_70px_rgba(0,0,0,0.12)] sm:p-7"
+                  className="group relative flex h-full flex-col rounded-3xl bg-white/82 p-6 shadow-[0_15px_50px_rgba(0,0,0,0.08)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_25px_70px_rgba(0,0,0,0.12)] dark:bg-[#081624]/86 dark:shadow-[0_18px_56px_rgba(0,0,0,0.22)] sm:p-7"
                 >
                   <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-transparent transition duration-500 group-hover:ring-primary/30" />
 
-                  <div className="absolute -top-5 -left-4 select-none font-serif text-7xl text-primary/18">
+                  <div className="absolute -top-5 -left-4 select-none font-serif text-7xl text-primary/18 dark:text-primary/22">
                     “
                   </div>
 
@@ -98,7 +99,7 @@ export default function Testimonials() {
                   {t.badge}
                 </span>
 
-                <p className="mb-6 flex-1 break-words text-gray-700 italic leading-relaxed line-clamp-4">
+                <p className="mb-6 line-clamp-4 flex-1 break-words italic leading-relaxed text-gray-700 dark:text-slate-300">
                   “{t.message}”
                 </p>
                 <div className="mb-4 h-[2px] w-16 rounded-full bg-gradient-to-r from-[#7ff6f1] to-[#01b8db]" />
@@ -110,7 +111,7 @@ export default function Testimonials() {
                   </div>
 
                   <div className="min-w-0">
-                    <div className="font-semibold">{t.name}</div>
+                    <div className="font-semibold text-slate-950 dark:text-white">{t.name}</div>
                     <div className="break-words text-sm text-primary">{t.university}</div>
                   </div>
                 </div>

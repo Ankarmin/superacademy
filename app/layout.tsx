@@ -3,6 +3,27 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { getSiteUrl, siteConfig } from "@/lib/site";
 
+const themeScript = `(() => {
+  const storageKey = "superacademy-theme";
+  const root = document.documentElement;
+
+  try {
+    const storedTheme = window.localStorage.getItem(storageKey);
+    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+    const theme = storedTheme === "dark" || storedTheme === "light"
+      ? storedTheme
+      : systemTheme;
+
+    root.dataset.theme = theme;
+    root.style.colorScheme = theme;
+  } catch {
+    root.dataset.theme = "light";
+    root.style.colorScheme = "light";
+  }
+})();`;
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -67,8 +88,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" data-scroll-behavior="smooth">
-      <body className={`${geistSans.variable} antialiased`}>
+    <html lang="es" data-scroll-behavior="smooth" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body
+        className={`${geistSans.variable} bg-[var(--page-bg)] text-[var(--page-fg)] antialiased transition-colors duration-300`}
+      >
         <a
           href="#main-content"
           className="skip-link"

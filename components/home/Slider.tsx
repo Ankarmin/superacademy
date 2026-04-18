@@ -21,11 +21,11 @@ const slides = [
     ctaLabel: "Ver ciclos",
   },
   {
-    title: "Ciclos de Ciencias, Matematicas y Letras",
-    description: "Entrena por areas con simulacros reales y docentes especializados.",
-    image: "/images/hero-2.jpg",
+    title: "Ciclo de Matematicas con horario nocturno",
+    description: "Refuerza razonamiento matematico, algebra, aritmetica, geometria y trigonometria con simulacros semanales.",
+    image: "/images/ciclo-mates.jpg",
     cta: "/ciclos",
-    ctaLabel: "Comparar ciclos",
+    ctaLabel: "Ver ciclo disponible",
   },
   {
     title: "Clases grabadas, material gratuito y acompañamiento",
@@ -50,7 +50,7 @@ export default function Slider() {
   };
 
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative overflow-hidden transition-colors">
       <Swiper
         modules={[Autoplay, Pagination, EffectFade]}
         effect="fade"
@@ -89,21 +89,21 @@ export default function Slider() {
                   />
                 </div>
 
-                <div className="absolute inset-0 bg-gradient-to-br from-[#effdff]/90 via-[#bff7ff]/72 to-[#01b8db]/78" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(255,255,255,0.26),transparent_60%)]" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#effdff]/90 via-[#bff7ff]/72 to-[#01b8db]/78 dark:from-[#04111d]/92 dark:via-[#071a2a]/78 dark:to-[#0a5d7d]/84" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(255,255,255,0.26),transparent_60%)] dark:bg-[radial-gradient(circle_at_30%_40%,rgba(127,246,241,0.12),transparent_60%)]" />
 
                 <div className="relative z-10 container mx-auto flex h-full items-center px-4 sm:px-6">
-                  <div className="w-full max-w-xl space-y-5 rounded-[28px] border border-white/60 bg-white/72 p-5 shadow-[0_0_35px_rgba(1,184,219,.18)] backdrop-blur-md transition-all duration-700 sm:p-7 md:p-10">
-                    <span className="inline-block rounded-full bg-primary/14 px-4 py-1 text-xs font-bold tracking-wide text-slate-950 uppercase">
+                  <div className="w-full max-w-xl space-y-5 rounded-[28px] border border-white/60 bg-white/72 p-5 shadow-[0_0_35px_rgba(1,184,219,.18)] backdrop-blur-md transition-all duration-700 dark:border-cyan-300/10 dark:bg-[#081624]/72 dark:shadow-[0_0_40px_rgba(1,184,219,.14)] sm:p-7 md:p-10">
+                    <span className="inline-block rounded-full bg-primary/14 px-4 py-1 text-xs font-bold uppercase tracking-wide text-slate-950 dark:text-slate-100">
                       Inicio y matrícula
                     </span>
 
-                    <p className="text-sm font-medium text-slate-600">
+                    <p className="text-sm font-medium text-slate-600 dark:text-slate-300">
                       {`Slide ${index + 1} de ${slides.length}. ${prefersReducedMotion ? "Autoplay desactivado por tu preferencia de movimiento reducido." : "Puedes deslizar o usar la paginación para avanzar."}`}
                     </p>
 
                     <h2
-                        className={`text-[2rem] font-extrabold leading-[1.05] text-slate-950 transition-all duration-700 delay-200 sm:text-5xl md:text-6xl ${
+                        className={`text-[2rem] font-extrabold leading-[1.05] text-slate-950 transition-all duration-700 delay-200 dark:text-white sm:text-5xl md:text-6xl ${
                           isActive
                             ? "opacity-100 translate-y-0"
                             : "opacity-0 translate-y-6"
@@ -122,7 +122,7 @@ export default function Slider() {
                     </h2>
 
                     <p
-                        className={`text-base text-slate-700 transition-all duration-700 delay-500 sm:text-lg md:text-xl ${
+                        className={`text-base text-slate-700 transition-all duration-700 delay-500 dark:text-slate-200 sm:text-lg md:text-xl ${
                           isActive
                             ? "opacity-100 translate-y-0"
                             : "opacity-0 translate-y-6"
@@ -150,7 +150,7 @@ export default function Slider() {
                       <button
                         type="button"
                         onClick={handleSlideWhatsapp}
-                          className="group relative inline-flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl border border-primary/35 bg-white/58 px-6 py-3 font-semibold text-slate-950 transition-all duration-300 hover:scale-105 sm:w-auto sm:px-8"
+                          className="group relative inline-flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl border border-primary/35 bg-white/58 px-6 py-3 font-semibold text-slate-950 transition-all duration-300 hover:scale-105 dark:border-cyan-300/16 dark:bg-white/5 dark:text-slate-100 sm:w-auto sm:px-8"
                         >
                           <span className="absolute inset-0 origin-bottom scale-y-0 bg-primary/14 transition-transform duration-500 ease-out group-hover:scale-y-100" />
                           <span className="relative z-10 transition-colors duration-300 group-hover:text-primary">

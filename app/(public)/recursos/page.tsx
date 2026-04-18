@@ -127,7 +127,7 @@ const recursos: ResourceItem[] = [
 
 function ResourceAction({ recurso }: { recurso: ResourceItem }) {
   const className =
-    "inline-flex min-h-11 items-center justify-center gap-2 rounded-2xl bg-primary px-5 py-3 text-center font-semibold text-slate-950 transition hover:-translate-y-0.5";
+    "inline-flex min-h-11 items-center justify-center gap-2 rounded-2xl bg-primary px-5 py-3 text-center font-semibold text-white transition hover:-translate-y-0.5";
 
   return (
     <a
@@ -146,8 +146,8 @@ export default function RecursosPage() {
   const resourceTypes = new Set(recursos.map((recurso) => recurso.tipo)).size;
 
   return (
-    <main className="overflow-hidden bg-white">
-      <section id="recursos" className="relative z-10 bg-white py-16 sm:py-20">
+    <main className="overflow-hidden bg-white transition-colors dark:bg-[#04111d]">
+      <section id="recursos" className="relative z-10 bg-white py-16 transition-colors dark:bg-[#04111d] sm:py-20">
         <div className="container mx-auto px-6">
           <SuperSectionHero
             badge="Recursos organizados por utilidad"
@@ -165,7 +165,7 @@ export default function RecursosPage() {
             {recursos.map((recurso) => (
               <article
                 key={recurso.id}
-                className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-[#d8eef3] bg-white/85 shadow-xl"
+                className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-[#d8eef3] bg-white/85 shadow-xl dark:border-white/10 dark:bg-[#081624]/86 dark:shadow-[0_18px_56px_rgba(0,0,0,0.22)]"
               >
                 <div className="relative h-44 overflow-hidden">
                   <Image
@@ -187,29 +187,29 @@ export default function RecursosPage() {
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-bold break-words text-slate-950">{recurso.titulo}</h3>
-                    <p className="mt-1 break-words text-sm leading-6 text-gray-600">
+                    <h3 className="break-words text-xl font-bold text-slate-950 dark:text-white">{recurso.titulo}</h3>
+                    <p className="mt-1 break-words text-sm leading-6 text-gray-600 dark:text-slate-300">
                       {recurso.descripcion}
                     </p>
                   </div>
 
                   <div className="flex flex-wrap gap-2 text-xs font-semibold">
-                    <span className="rounded-full bg-primary/10 px-3 py-1 text-slate-900">
+                    <span className="rounded-full bg-primary/10 px-3 py-1 text-slate-900 dark:text-slate-100">
                       {recurso.tipo}
                     </span>
-                    <span className="rounded-full bg-[#d9fbff] px-3 py-1 text-[#0e7f93]">
+                    <span className="rounded-full bg-[#d9fbff] px-3 py-1 text-[#0e7f93] dark:bg-cyan-400/10 dark:text-cyan-100">
                       {recurso.disponibilidad}
                     </span>
                   </div>
 
-                  <div className="rounded-2xl border border-[#d8eef3] bg-[#f8fcff] px-4 py-3 text-sm leading-6 text-slate-600">
-                    <p className="font-semibold text-slate-950">Qué esperar</p>
+                  <div className="rounded-2xl border border-[#d8eef3] bg-[#f8fcff] px-4 py-3 text-sm leading-6 text-slate-600 dark:border-white/10 dark:bg-white/5 dark:text-slate-300">
+                    <p className="font-semibold text-slate-950 dark:text-white">Qué esperar</p>
                     <p>{recurso.ayuda}</p>
                   </div>
 
                   <div className="mt-auto flex flex-col gap-3">
                     <ResourceAction recurso={recurso} />
-                    <p className="flex items-start gap-2 text-xs leading-5 text-slate-500">
+                    <p className="flex items-start gap-2 text-xs leading-5 text-slate-500 dark:text-slate-400">
                       <AlertCircle className="mt-0.5 h-3.5 w-3.5 shrink-0" />
                       Elegimos una acción distinta según la disponibilidad real del recurso para evitar pasos fallidos.
                     </p>

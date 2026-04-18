@@ -108,7 +108,7 @@ export default function ModalShell({
 
   return (
     <div
-      className="fixed inset-0 z-[90] flex items-center justify-center bg-slate-950/72 px-3 py-4 backdrop-blur-sm sm:px-4 sm:py-8"
+      className="fixed inset-0 z-[90] flex items-center justify-center bg-slate-950/72 px-3 py-4 backdrop-blur-sm transition-colors dark:bg-[#01060d]/84 sm:px-4 sm:py-8"
       onClick={onClose}
       onKeyDown={handleOverlayKeyDown}
     >
@@ -117,7 +117,7 @@ export default function ModalShell({
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className={panelClassName ?? "w-full max-w-3xl rounded-[28px] bg-white"}
+        className={panelClassName ?? "w-full max-w-3xl rounded-[28px] bg-white transition-colors dark:bg-[#081523]"}
         onClick={(event) => event.stopPropagation()}
       >
         {children}

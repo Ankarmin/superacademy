@@ -2,7 +2,7 @@ import { FaFacebook, FaInstagram, FaTiktok, FaYoutube } from "react-icons/fa";
 
 export default function SocialWidget() {
   return (
-    <div className="fixed right-4 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-3 backdrop-blur-xl shadow-xl lg:flex xl:right-6 xl:gap-4 xl:p-4">
+    <div className="fixed right-4 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-center gap-3 rounded-xl border border-slate-200/60 bg-white/72 p-3 backdrop-blur-xl shadow-xl transition-colors dark:border-white/10 dark:bg-slate-950/28 lg:flex xl:right-6 xl:gap-4 xl:p-4">
       {[
         {
           label: "Facebook",

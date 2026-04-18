@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import SuperSectionHero from "@/components/ui/SuperSectionHero";
 
 type TeacherAreaId = "matematicas" | "ciencias" | "letras";
@@ -105,11 +105,6 @@ const teacherAreas: TeacherArea[] = [
 export default function TeachersSection() {
   const defaultArea = teacherAreas[0];
   const [activeArea, setActiveArea] = useState<TeacherAreaId>(defaultArea.id);
-  const [isTabsFixed, setIsTabsFixed] = useState(false);
-  const [tabsHeight, setTabsHeight] = useState(0);
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const tabsAnchorRef = useRef<HTMLDivElement | null>(null);
-  const tabsContentRef = useRef<HTMLDivElement | null>(null);
   const currentArea =
     teacherAreas.find((area) => area.id === activeArea) ?? defaultArea;
   const currentTeacherCount = currentArea.courses.reduce(
@@ -117,51 +112,12 @@ export default function TeachersSection() {
     0,
   );
 
-  useEffect(() => {
-    const updateTabsPosition = () => {
-      const section = sectionRef.current;
-      const tabsAnchor = tabsAnchorRef.current;
-      const tabsContent = tabsContentRef.current;
-
-      if (!section || !tabsAnchor || !tabsContent) {
-        return;
-      }
-
-      const nextTabsHeight = tabsContent.offsetHeight;
-      const topOffset = window.innerWidth >= 1024 ? 96 : 92;
-      const scrollPosition = window.scrollY + topOffset;
-      const anchorTop = tabsAnchor.getBoundingClientRect().top + window.scrollY;
-      const sectionBottom =
-        section.getBoundingClientRect().top + window.scrollY + section.offsetHeight;
-      const shouldFix =
-        scrollPosition >= anchorTop &&
-        scrollPosition + nextTabsHeight <= sectionBottom - 24;
-
-      setTabsHeight((currentHeight) =>
-        currentHeight === nextTabsHeight ? currentHeight : nextTabsHeight,
-      );
-      setIsTabsFixed((currentValue) =>
-        currentValue === shouldFix ? currentValue : shouldFix,
-      );
-    };
-
-    updateTabsPosition();
-    window.addEventListener("scroll", updateTabsPosition, { passive: true });
-    window.addEventListener("resize", updateTabsPosition);
-
-    return () => {
-      window.removeEventListener("scroll", updateTabsPosition);
-      window.removeEventListener("resize", updateTabsPosition);
-    };
-  }, []);
-
   return (
     <section
       id="docentes"
-      ref={sectionRef}
-      className="relative overflow-x-hidden bg-white py-16 sm:py-20"
+      className="relative overflow-x-hidden bg-white py-16 transition-colors dark:bg-[#04111d] sm:py-20"
     >
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_12%_18%,rgba(1,184,219,0.18),transparent_26%),radial-gradient(circle_at_88%_10%,rgba(14,165,233,0.12),transparent_24%)]" />
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_12%_18%,rgba(1,184,219,0.18),transparent_26%),radial-gradient(circle_at_88%_10%,rgba(14,165,233,0.12),transparent_24%)] dark:bg-[radial-gradient(circle_at_12%_18%,rgba(1,184,219,0.14),transparent_24%),radial-gradient(circle_at_88%_10%,rgba(14,165,233,0.08),transparent_22%)]" />
 
       <div className="container relative z-10 mx-auto px-6">
         <SuperSectionHero
@@ -177,21 +133,11 @@ export default function TeachersSection() {
         />
 
         <div className="mx-auto mt-12 max-w-6xl sm:mt-14">
-          <div
-            ref={tabsAnchorRef}
-            style={isTabsFixed ? { height: tabsHeight } : undefined}
-          >
-            <div
-              ref={tabsContentRef}
-              className={`rounded-[28px] border border-white/80 bg-white/92 p-3 shadow-[0_24px_80px_rgba(15,23,42,0.08)] backdrop-blur-xl transition-[width,transform,box-shadow] duration-300 md:p-4 ${
-                isTabsFixed
-                  ? "fixed left-1/2 top-[92px] z-40 w-[calc(100vw-1.5rem)] max-w-[780px] -translate-x-1/2 lg:top-[96px]"
-                  : "relative"
-              }`}
-            >
+          <div className="sticky top-[92px] z-40 lg:top-[96px]">
+            <div className="rounded-[28px] border border-white/80 bg-white/88 p-3 shadow-[0_24px_80px_rgba(15,23,42,0.08)] backdrop-blur-xl transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] dark:border-white/10 dark:bg-[#081624]/88 dark:shadow-[0_24px_80px_rgba(0,0,0,0.28)] md:p-4">
               <div
                 aria-label="Seleccionar área docente"
-                className="mx-auto flex flex-wrap justify-center gap-2 rounded-[24px] bg-[#eefbff] p-1.5"
+                className="mx-auto flex flex-wrap justify-center gap-2 rounded-[24px] bg-[#eefbff] p-1.5 dark:bg-white/5"
                 role="tablist"
               >
                 {teacherAreas.map((area) => {
@@ -206,10 +152,10 @@ export default function TeachersSection() {
                       aria-controls={`panel-${area.id}`}
                       aria-selected={isActive}
                       onClick={() => setActiveArea(area.id)}
-                      className={`min-h-11 min-w-[calc(50%-0.25rem)] flex-1 rounded-[20px] px-4 py-2.5 text-sm font-bold transition-all duration-300 sm:min-w-[154px] sm:flex-none md:text-base ${
+                      className={`min-h-11 min-w-[calc(50%-0.25rem)] flex-1 rounded-[20px] px-4 py-2.5 text-sm font-bold transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:min-w-[154px] sm:flex-none md:text-base ${
                         isActive
-                          ? "bg-primary text-slate-950 shadow-[0_16px_40px_rgba(1,184,219,0.22)]"
-                          : "bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-950"
+                          ? "bg-primary text-white shadow-[0_16px_40px_rgba(1,184,219,0.22)] scale-[1.01]"
+                          : "bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-950 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-white/10 dark:hover:text-white"
                       }`}
                     >
                       {area.label}
@@ -231,38 +177,38 @@ export default function TeachersSection() {
                 key={`${currentArea.id}-${course.name}`}
                 className={`rounded-[30px] border border-slate-200/80 p-5 shadow-[0_18px_50px_rgba(15,23,42,0.06)] md:p-8 ${
                   index % 2 === 0
-                    ? "bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(248,250,252,0.92))]"
-                    : "bg-[linear-gradient(180deg,rgba(242,252,255,0.98),rgba(233,252,255,0.94))]"
+                    ? "bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(248,250,252,0.92))] dark:bg-[linear-gradient(180deg,rgba(8,22,36,0.98),rgba(8,22,36,0.92))]"
+                    : "bg-[linear-gradient(180deg,rgba(242,252,255,0.98),rgba(233,252,255,0.94))] dark:bg-[linear-gradient(180deg,rgba(11,30,46,0.98),rgba(8,22,36,0.94))]"
                 }`}
               >
                 <div className="mb-6 flex flex-wrap items-center gap-4">
-                  <span className="inline-flex max-w-full items-center gap-3 rounded-2xl border border-[#bde9f4] bg-[#eefbff] px-5 py-3 text-sm font-extrabold uppercase tracking-[0.2em] text-primary">
+                  <span className="inline-flex max-w-full items-center gap-3 rounded-2xl border border-[#bde9f4] bg-[#eefbff] px-5 py-3 text-sm font-extrabold uppercase tracking-[0.2em] text-primary dark:border-cyan-300/16 dark:bg-cyan-400/10 dark:text-cyan-100">
                     <span className="h-3 w-3 rounded-full bg-primary" />
                     <span className="break-words">{course.name}</span>
                   </span>
-                  <div className="hidden h-px flex-1 bg-slate-200 sm:block" />
+                  <div className="hidden h-px flex-1 bg-slate-200 dark:bg-white/10 sm:block" />
                 </div>
 
-                <div className="grid gap-x-5 gap-y-7 sm:grid-cols-2 lg:grid-cols-4">
+                <div className="grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-x-4 gap-y-7 sm:grid-cols-[repeat(auto-fit,minmax(180px,1fr))] lg:grid-cols-[repeat(auto-fit,minmax(190px,1fr))]">
                   {course.teachers.map((teacher) => (
-                    <article key={`${course.name}-${teacher.name}`} className="group">
-                      <div className="relative aspect-square overflow-hidden rounded-[28px] border border-[#d6ebf0] bg-[linear-gradient(180deg,#01b8db_0%,#0c9fb8_100%)] shadow-[0_18px_40px_rgba(15,23,42,0.08)] transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-[0_26px_56px_rgba(15,23,42,0.14)]">
+                    <article key={`${course.name}-${teacher.name}`} className="group min-w-0">
+                      <div className="relative aspect-square overflow-hidden rounded-[24px] border border-[#d6ebf0] bg-[linear-gradient(180deg,#01b8db_0%,#0c9fb8_100%)] shadow-[0_18px_40px_rgba(15,23,42,0.08)] transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_24px_52px_rgba(15,23,42,0.14)]">
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.14),transparent_36%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.08),transparent_28%)]" />
-                        <div className="absolute right-4 top-4 z-10 rounded-full bg-white/16 px-3 py-1 text-[0.65rem] font-black uppercase tracking-[0.22em] text-white backdrop-blur-sm">
+                        <div className="absolute right-3 top-3 z-10 rounded-full bg-white/16 px-3 py-1 text-[0.6rem] font-black uppercase tracking-[0.22em] text-white backdrop-blur-sm">
                           {currentArea.label}
                         </div>
                         <Image
                           src={teacher.image}
                           alt={teacher.name}
                           fill
-                          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                          sizes="(min-width: 1280px) 16vw, (min-width: 768px) 25vw, (min-width: 640px) 33vw, 50vw"
                           className="object-cover transition-transform duration-500 group-hover:scale-105"
                         />
                         <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#045a69]/80 to-transparent" />
                       </div>
 
                       <div className="px-2 pt-4 text-center">
-                        <h5 className="text-lg font-semibold leading-tight text-slate-950 md:text-[1.05rem]">
+                        <h5 className="text-base font-semibold leading-tight text-slate-950 dark:text-white md:text-[1.02rem]">
                           {teacher.name}
                         </h5>
                       </div>
