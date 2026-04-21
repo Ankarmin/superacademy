@@ -91,7 +91,7 @@ export default function Testimonials() {
           </p>
         </div>
 
-        <div className="overflow-hidden px-1">
+        <div className="px-2 sm:px-3 lg:px-4">
           <Swiper
             modules={[Autoplay, Pagination]}
             spaceBetween={24}
@@ -120,10 +120,6 @@ export default function Testimonials() {
                 <div className="group relative flex h-full flex-col rounded-3xl bg-white/82 p-6 shadow-[0_15px_50px_rgba(0,0,0,0.08)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_25px_70px_rgba(0,0,0,0.12)] dark:bg-[#081624]/86 dark:shadow-[0_18px_56px_rgba(0,0,0,0.22)] sm:p-7">
                   <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-transparent transition duration-500 group-hover:ring-primary/30" />
 
-                  <div className="absolute -top-5 -left-4 select-none font-serif text-7xl text-primary/18 dark:text-primary/22">
-                    “
-                  </div>
-
                   <span
                     className={`mb-4 inline-block rounded-full bg-gradient-to-r px-3 py-1 text-xs font-semibold text-black shadow ${t.accent}`}
                   >
@@ -131,7 +127,7 @@ export default function Testimonials() {
                   </span>
 
                   <p className="mb-6 line-clamp-4 flex-1 break-words italic leading-relaxed text-gray-700 dark:text-slate-300">
-                    “{t.message}”
+                    {t.message}
                   </p>
                   <div className="mb-4 h-[2px] w-16 rounded-full bg-gradient-to-r from-[#7ff6f1] to-[#01b8db]" />
                   <div className="flex min-w-0 items-center gap-4">
@@ -155,7 +151,9 @@ export default function Testimonials() {
         <style jsx global>{`
           .testimonials-swiper {
             overflow: hidden;
-            padding-top: 1.5rem;
+            padding-top: 0.75rem;
+            padding-left: 0.125rem;
+            padding-right: 0.125rem;
             padding-bottom: 0.25rem;
           }
 

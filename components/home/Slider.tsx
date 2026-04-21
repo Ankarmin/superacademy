@@ -82,6 +82,7 @@ export default function Slider() {
                     src={slide.image}
                     alt={slide.title}
                     fill
+                    priority={index === 0}
                     loading={index === 0 ? "eager" : "lazy"}
                     fetchPriority={index === 0 ? "high" : "auto"}
                     sizes="100vw"
