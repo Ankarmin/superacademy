@@ -7,7 +7,7 @@ const items = [
     title: "Ciclo Matemáticas",
     description:
       "Ruta enfocada en razonamiento matematico, algebra, aritmetica, geometria y trigonometria con seguimiento constante.",
-    image: "/images/ciclo-mates.jpg",
+    image: "/images/ciclo-mates.webp",
     href: "/ciclos",
     accent: "from-[#7ff6f1] to-[#01b8db]",
   },
@@ -16,7 +16,7 @@ const items = [
     title: "Videoteca",
     description:
       "Accede a cientos de clases grabadas, repasos estratégicos y seminarios gratuitos disponibles 24/7.",
-    image: "/images/ciclo-mates.jpg",
+    image: "/images/ciclo-mates.webp",
     href: "/videoteca",
     accent: "from-[#d9fbff] to-[#48d8ea]",
   },
@@ -25,7 +25,7 @@ const items = [
     title: "Recursos",
     description:
       "Material académico descargable, guías premium, exámenes resueltos y bancos de preguntas.",
-    image: "/images/ciclo-mates.jpg",
+    image: "/images/ciclo-mates.webp",
     href: "/recursos",
     accent: "from-[#8ef8f2] to-[#0eb5cf]",
   },
@@ -53,7 +53,7 @@ export default function FeaturedCards() {
         </div>
 
         <div className="grid gap-6 perspective-[1200px] sm:grid-cols-2 lg:gap-8 xl:grid-cols-3 xl:gap-10">
-          {items.map((item) => (
+          {items.map((item, index) => (
             <Link
               key={item.title}
               href={item.href}
@@ -67,6 +67,9 @@ export default function FeaturedCards() {
                     src={item.image}
                     alt={item.title}
                     fill
+                    priority={index === 0}
+                    loading={index < 3 ? "eager" : "lazy"}
+                    fetchPriority={index === 0 ? "high" : "auto"}
                     sizes="(min-width: 1280px) 33vw, (min-width: 640px) 50vw, 100vw"
                     className="object-cover transition-transform duration-[6000ms] ease-out group-hover:scale-110"
                   />

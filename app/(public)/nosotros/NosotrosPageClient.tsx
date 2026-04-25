@@ -61,10 +61,10 @@ export default function NosotrosPageClient() {
 
         <div className="container relative z-10 mx-auto grid items-center gap-10 px-6 lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)] lg:gap-14 xl:gap-20">
           <div className="mx-auto w-full max-w-xl lg:mx-0 lg:max-w-none">
-            <h2 className="mb-6 text-4xl font-extrabold leading-tight tracking-tight text-slate-950 dark:text-white sm:text-5xl lg:text-6xl xl:text-7xl">
+            <h1 className="mb-6 text-4xl font-extrabold leading-tight tracking-tight text-slate-950 dark:text-white sm:text-5xl lg:text-6xl xl:text-7xl">
               Educación moderna,
               <span className="block text-primary">resultados reales</span>
-            </h2>
+            </h1>
 
             <p className="mb-5 leading-relaxed text-gray-600 dark:text-slate-300">
               Somos una academia preuniversitaria enfocada en brindar educación
@@ -97,7 +97,7 @@ export default function NosotrosPageClient() {
             <div className="absolute -inset-3 bg-gradient-to-r from-[#c8fbff] to-primary blur-2xl opacity-30 transition group-hover:opacity-50" />
             <div className="relative rounded-3xl overflow-hidden shadow-2xl">
               <Image
-                src="/images/ciclo-mates.jpg"
+                src="/images/ciclo-mates.webp"
                 alt="Estudiantes en clase"
                 className="h-auto w-full object-cover transition duration-700 group-hover:scale-105"
                 width={1000}

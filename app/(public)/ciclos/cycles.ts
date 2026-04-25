@@ -24,7 +24,7 @@ export const cyclePrograms: readonly CycleProgram[] = [
     audience: "Estudiantes que desean reforzar razonamiento y base matematica",
     duration: "5 dias de clase por semana",
     mode: "Turno noche",
-    image: "/images/ciclo-mates.jpg",
+    image: "/images/ciclo-mates.webp",
     startDate: "6 de abril",
     monthlyPrice: "S/60",
     contactPhone: "923 806 156",

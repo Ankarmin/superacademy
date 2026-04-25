@@ -2,11 +2,10 @@ import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import Slider from "../../components/home/Slider";
 import FeaturedCards from "../../components/home/FeaturedCards";
+import WelcomeModal from "../../components/home/WelcomeModal";
 import { getSiteUrl, siteConfig } from "@/lib/site";
 
 const Testimonials = dynamic(() => import("../../components/home/Testimonials"));
-
-const WelcomeModal = dynamic(() => import("../../components/home/WelcomeModal"));
 
 const siteUrl = getSiteUrl();
 

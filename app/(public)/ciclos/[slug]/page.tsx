@@ -6,6 +6,8 @@ import { BookOpen, Clock3, Users } from "lucide-react";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { cyclePrograms, getCycleProgramBySlug } from "../cycles";
 
+export const dynamicParams = false;
+
 type CicloPageProps = {
   params: Promise<{
     slug: string;
@@ -46,7 +48,7 @@ export default async function CicloPage({ params }: CicloPageProps) {
   }
 
   return (
-    <main className="bg-white transition-colors dark:bg-[#04111d]">
+    <div className="bg-white transition-colors dark:bg-[#04111d]">
       <section className="bg-[linear-gradient(180deg,#e9fcff_0%,#9ef4fb_100%)] py-16 text-slate-950 dark:bg-[linear-gradient(180deg,#082137_0%,#0a3f59_100%)] dark:text-white sm:py-20">
         <div className="container mx-auto grid gap-10 px-6 lg:grid-cols-[1.4fr_0.9fr] lg:items-center">
           <div>
@@ -139,6 +141,9 @@ export default async function CicloPage({ params }: CicloPageProps) {
               alt={`Afiche de ${program.title}`}
               width={1600}
               height={1600}
+              priority
+              loading="eager"
+              fetchPriority="high"
               className="h-auto w-full object-cover"
             />
           </article>
@@ -176,6 +181,6 @@ export default async function CicloPage({ params }: CicloPageProps) {
           </article>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

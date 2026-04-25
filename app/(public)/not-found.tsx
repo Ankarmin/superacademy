@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <main className="bg-[var(--page-bg)] px-6 py-24 text-[var(--page-fg)] transition-colors">
+    <div className="bg-[var(--page-bg)] px-6 py-24 text-[var(--page-fg)] transition-colors">
       <div className="mx-auto max-w-3xl rounded-[2rem] border border-slate-200/80 bg-white p-10 text-center shadow-[0_24px_80px_rgba(15,23,42,0.08)] backdrop-blur dark:border-white/10 dark:bg-white/5 dark:shadow-[0_24px_80px_rgba(0,0,0,0.32)] md:p-14">
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
           Error 404
@@ -29,6 +29,6 @@ export default function NotFound() {
           </Link>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

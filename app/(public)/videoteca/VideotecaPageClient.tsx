@@ -70,7 +70,7 @@ export default function VideotecaPageClient() {
   };
 
   return (
-    <main className="overflow-hidden bg-white transition-colors dark:bg-[#04111d]">
+    <div className="overflow-hidden bg-white transition-colors dark:bg-[#04111d]">
       <section id="videos" className="relative bg-white py-16 transition-colors dark:bg-[#04111d] sm:py-20">
         <div className="container mx-auto px-6">
           <SuperSectionHero
@@ -156,11 +156,13 @@ export default function VideotecaPageClient() {
                         ) : null}
 
                         <iframe
-                          src={`https://www.youtube.com/embed/${videoActivo.videoId}?autoplay=1`}
+                          src={`https://www.youtube-nocookie.com/embed/${videoActivo.videoId}?autoplay=1`}
                           title={videoActivo.titulo}
                           className="h-full w-full"
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                           allowFullScreen
+                          loading="lazy"
+                          referrerPolicy="strict-origin-when-cross-origin"
                           onLoad={() => setIsVideoLoading(false)}
                         />
                       </>
@@ -229,6 +231,6 @@ export default function VideotecaPageClient() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

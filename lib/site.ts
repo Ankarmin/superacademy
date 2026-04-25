@@ -34,7 +34,7 @@ export const siteConfig = {
   defaultTitle: "Academia Preuniversitaria en Lima | SuperAcademy",
   description:
     "Academia preuniversitaria en Lima con ciclos por areas en ciencias, matematicas y letras, simulacros, videoteca y recursos para acelerar tu ingreso.",
-  ogImage: "/images/ciclo-mates.jpg",
+  ogImage: "/images/ciclo-mates.webp",
   keywords: [
     "academia preuniversitaria en Lima",
     "academia preuniversitaria",
@@ -58,5 +58,9 @@ export function getSiteUrl() {
     return DEFAULT_SITE_URL;
   }
 
-  return siteUrl.startsWith("http") ? siteUrl : `https://${siteUrl}`;
+  const normalizedSiteUrl = siteUrl.startsWith("http")
+    ? siteUrl
+    : `https://${siteUrl}`;
+
+  return normalizedSiteUrl.replace(/\/$/, "");
 }

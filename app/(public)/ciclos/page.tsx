@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function CyclesPage() {
   return (
-    <main className="bg-white transition-colors dark:bg-[#04111d]">
+    <div className="bg-white transition-colors dark:bg-[#04111d]">
       <section className="bg-white py-16 transition-colors dark:bg-[#04111d] sm:py-20">
         <div className="container mx-auto px-6">
           <SuperSectionHero
@@ -28,7 +28,7 @@ export default function CyclesPage() {
           />
 
           <div className="mx-auto mt-14 grid max-w-6xl gap-6 sm:grid-cols-2 xl:grid-cols-3">
-            {cyclePrograms.map((program) => (
+            {cyclePrograms.map((program, index) => (
               <article
                 key={program.slug}
                 className="group overflow-hidden rounded-[1.75rem] border border-[#d8eef3] bg-white shadow-[0_18px_48px_rgba(15,23,42,0.08)] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_24px_56px_rgba(15,23,42,0.12)] dark:border-white/10 dark:bg-[#081624] dark:shadow-[0_24px_70px_rgba(0,0,0,0.24)]"
@@ -40,6 +40,9 @@ export default function CyclesPage() {
                       src={program.image}
                       alt={program.title}
                       fill
+                      priority={index === 0}
+                      loading={index < 3 ? "eager" : "lazy"}
+                      fetchPriority={index === 0 ? "high" : "auto"}
                       sizes="(min-width: 1280px) 28vw, (min-width: 640px) 50vw, 100vw"
                       className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                     />
@@ -85,6 +88,6 @@ export default function CyclesPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

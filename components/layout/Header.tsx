@@ -12,17 +12,11 @@ import { publicNavigationLinks } from "./navigation";
 
 type ThemeMode = "light" | "dark";
 
-const THEME_STORAGE_KEY = "superacademy-theme";
-
 function setDocumentTheme(theme: ThemeMode) {
   const root = document.documentElement;
 
   root.dataset.theme = theme;
   root.style.colorScheme = theme;
-
-  try {
-    window.localStorage.setItem(THEME_STORAGE_KEY, theme);
-  } catch {}
 }
 
 const socialLinkPresentation = {
@@ -139,7 +133,7 @@ export default function Header() {
             className="group inline-flex items-center justify-self-start leading-none"
           >
             <Image
-              src="/logo.png"
+              src="/images/logo.webp"
               alt="SuperAcademy"
               width={62}
               height={60}

@@ -36,7 +36,7 @@ export default function Footer() {
           <div className="max-w-md space-y-5 lg:max-w-lg lg:pr-6">
             <Link href="/" className="inline-flex max-w-full items-center gap-4">
               <Image
-                src="/logo.png"
+                src="/images/logo.webp"
                 alt="SuperAcademy"
                 width={64}
                 height={64}

@@ -11,9 +11,13 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <main className="bg-white transition-colors dark:bg-[#04111d]">
+    <div className="bg-white transition-colors dark:bg-[#04111d]">
       <section className="bg-white py-16 transition-colors dark:bg-[#04111d] sm:py-20">
         <div className="container mx-auto max-w-4xl px-6">
+          <h1 className="mb-8 text-4xl font-extrabold tracking-tight text-slate-950 dark:text-white sm:text-5xl">
+            Terminos y Condiciones
+          </h1>
+
           <div className="space-y-6">
             <section className="rounded-3xl border border-[#d8eef3] bg-white p-8 shadow-sm dark:border-white/10 dark:bg-[#081624] dark:shadow-[0_18px_56px_rgba(0,0,0,0.22)]">
               <h2 className="text-xl font-bold text-slate-950 dark:text-white">Uso del sitio</h2>
@@ -43,6 +47,6 @@ export default function TermsPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

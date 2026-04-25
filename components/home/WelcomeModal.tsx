@@ -7,6 +7,8 @@ import { useEffect, useRef, useState } from "react";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import ModalShell from "@/components/ui/ModalShell";
 
+const MODAL_IMAGE_SRC = "/images/ciclo-mates.webp";
+
 const whatsappUrl = buildWhatsAppUrl(
   "Hola, quiero informacion sobre el ciclo de Matematicas y su proceso de matricula.",
 );
@@ -16,6 +18,9 @@ export default function WelcomeModal() {
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
+    const image = new window.Image();
+    image.src = MODAL_IMAGE_SRC;
+
     const timer = window.setTimeout(() => {
       setOpen(true);
     }, 500);
@@ -51,11 +56,13 @@ export default function WelcomeModal() {
         <div className="relative p-4 sm:p-5">
           <div className="overflow-hidden rounded-[24px] border border-white/80 bg-white/60 p-2 shadow-[0_20px_50px_rgba(15,23,42,0.08)] dark:border-cyan-300/10 dark:bg-white/5 dark:shadow-none">
             <Image
-              src="/images/ciclo-mates.jpg"
+              src={MODAL_IMAGE_SRC}
               alt="Afiche del ciclo de Matematicas"
               width={1600}
               height={1600}
-              priority
+              preload
+              loading="eager"
+              fetchPriority="high"
               className="h-auto max-h-[58dvh] w-full rounded-[18px] object-contain sm:max-h-[64dvh]"
             />
           </div>

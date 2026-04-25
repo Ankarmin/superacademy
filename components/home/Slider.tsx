@@ -16,21 +16,21 @@ const slides = [
     title: "Prepárate para ingresar a la universidad que sueñas",
     description:
       "Programas intensivos, docentes expertos y resultados comprobados.",
-    image: "/images/ciclo-mates.jpg",
+    image: "/images/ciclo-mates.webp",
     cta: "/ciclos",
     ctaLabel: "Ver ciclos",
   },
   {
     title: "Ciclo de Matematicas con horario nocturno",
     description: "Refuerza razonamiento matematico, algebra, aritmetica, geometria y trigonometria con simulacros semanales.",
-    image: "/images/ciclo-mates.jpg",
+    image: "/images/ciclo-mates.webp",
     cta: "/ciclos",
     ctaLabel: "Ver ciclo disponible",
   },
   {
     title: "Clases grabadas, material gratuito y acompañamiento",
     description: "Accede a nuestra videoteca y recursos exclusivos.",
-    image: "/images/ciclo-mates.jpg",
+    image: "/images/ciclo-mates.webp",
     cta: "/videoteca",
     ctaLabel: "Entrar a videoteca",
   },
@@ -83,7 +83,7 @@ export default function Slider() {
                     alt={slide.title}
                     fill
                     priority={index === 0}
-                    loading={index === 0 ? "eager" : "lazy"}
+                    loading="eager"
                     fetchPriority={index === 0 ? "high" : "auto"}
                     sizes="100vw"
                     className="object-cover"
@@ -95,7 +95,7 @@ export default function Slider() {
 
                 <div className="relative z-10 container mx-auto flex h-full items-center px-4 sm:px-6">
                   <div className="w-full max-w-xl space-y-5 rounded-[28px] border border-white/60 bg-white/72 p-5 shadow-[0_0_35px_rgba(1,184,219,.18)] backdrop-blur-md transition-all duration-700 dark:border-cyan-300/10 dark:bg-[#081624]/72 dark:shadow-[0_0_40px_rgba(1,184,219,.14)] sm:p-7 md:p-10">
-                    <h2
+                    <h1
                         className={`text-[2rem] font-extrabold leading-[1.05] text-slate-950 transition-all duration-700 delay-200 dark:text-white sm:text-5xl md:text-6xl ${
                           isActive
                             ? "opacity-100 translate-y-0"
@@ -112,7 +112,7 @@ export default function Slider() {
                           delaySpeed={800}
                         />
                       ) : slide.title}
-                    </h2>
+                    </h1>
 
                     <p
                         className={`text-base text-slate-700 transition-all duration-700 delay-500 dark:text-slate-200 sm:text-lg md:text-xl ${

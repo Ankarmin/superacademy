@@ -1,23 +1,33 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import Script from "next/script";
 import "./globals.css";
 import { getSiteUrl, siteConfig } from "@/lib/site";
 
 const themeScript = `(() => {
-  const storageKey = "superacademy-theme";
   const root = document.documentElement;
 
   try {
-    const storedTheme = window.localStorage.getItem(storageKey);
-    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
-    const theme = storedTheme === "dark" || storedTheme === "light"
-      ? storedTheme
-      : systemTheme;
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
-    root.dataset.theme = theme;
-    root.style.colorScheme = theme;
+    const applyTheme = (isDark) => {
+      const theme = isDark ? "dark" : "light";
+
+      root.dataset.theme = theme;
+      root.style.colorScheme = theme;
+    };
+
+    applyTheme(mediaQuery.matches);
+
+    const handleThemeChange = (event) => {
+      applyTheme(event.matches);
+    };
+
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", handleThemeChange);
+    } else {
+      mediaQuery.addListener(handleThemeChange);
+    }
   } catch {
     root.dataset.theme = "light";
     root.style.colorScheme = "light";
@@ -76,9 +86,8 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/logo.png",
-    shortcut: "/logo.png",
-    apple: "/logo.png",
+    icon: "/logo.ico",
+    shortcut: "/logo.ico",
   },
 };
 
@@ -90,7 +99,12 @@ export default function RootLayout({
   return (
     <html lang="es" data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <meta name="color-scheme" content="light dark" />
+        <Script
+          id="theme-init"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: themeScript }}
+        />
       </head>
       <body
         className={`${geistSans.variable} bg-[var(--page-bg)] text-[var(--page-fg)] antialiased transition-colors duration-300`}
