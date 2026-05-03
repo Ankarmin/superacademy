@@ -24,7 +24,6 @@ export default function CyclesPage() {
             titleStart="Nuestros"
             titleAccent="SuperCiclos"
             description="Explora nuestros ciclos en un formato compacto y claro, pensado para crecer sin perder orden cuando agreguemos nuevas opciones."
-            stats={[]}
           />
 
           <div className="mx-auto mt-14 grid max-w-6xl gap-6 sm:grid-cols-2 xl:grid-cols-3">

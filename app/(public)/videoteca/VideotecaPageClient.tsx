@@ -77,7 +77,6 @@ export default function VideotecaPageClient() {
             titleStart="Nuestra"
             titleAccent="SuperVideoteca"
             description="Explora nuestra videoteca con una navegacion clara por cursos. Cada video aparece en tarjetas ordenadas para que encuentres rapido lo que quieres repasar."
-            stats={[]}
           />
 
           <div className="mt-12 flex flex-col gap-8 sm:mt-14 lg:flex-row lg:gap-10">

@@ -1,20 +1,36 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import Script from "next/script";
 import "./globals.css";
+import { THEME_COLORS } from "@/lib/theme";
 import { getSiteUrl, siteConfig } from "@/lib/site";
 
 const themeScript = `(() => {
   const root = document.documentElement;
+  const themeColors = ${JSON.stringify(THEME_COLORS)};
+  const getThemeColorMeta = () => {
+    let meta = document.querySelector("meta[name='theme-color'][data-runtime-theme-color]");
+
+    if (!meta) {
+      meta = document.createElement("meta");
+      meta.name = "theme-color";
+      meta.setAttribute("data-runtime-theme-color", "true");
+      document.head.appendChild(meta);
+    }
+
+    return meta;
+  };
 
   try {
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const themeColorMeta = getThemeColorMeta();
 
     const applyTheme = (isDark) => {
       const theme = isDark ? "dark" : "light";
 
       root.dataset.theme = theme;
       root.style.colorScheme = theme;
+      themeColorMeta.content = themeColors[theme];
     };
 
     applyTheme(mediaQuery.matches);
@@ -31,6 +47,7 @@ const themeScript = `(() => {
   } catch {
     root.dataset.theme = "light";
     root.style.colorScheme = "light";
+    getThemeColorMeta().content = themeColors.light;
   }
 })();`;
 
@@ -91,6 +108,20 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  colorScheme: "light dark",
+  themeColor: [
+    {
+      media: "(prefers-color-scheme: light)",
+      color: THEME_COLORS.light,
+    },
+    {
+      media: "(prefers-color-scheme: dark)",
+      color: THEME_COLORS.dark,
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -99,7 +130,11 @@ export default function RootLayout({
   return (
     <html lang="es" data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
-        <meta name="color-scheme" content="light dark" />
+        <meta
+          name="theme-color"
+          content={THEME_COLORS.light}
+          data-runtime-theme-color="true"
+        />
         <Script
           id="theme-init"
           strategy="beforeInteractive"

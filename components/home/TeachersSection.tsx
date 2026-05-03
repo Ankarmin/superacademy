@@ -207,7 +207,6 @@ export default function TeachersSection() {
           titleStart="Nuestro"
           titleAccent="SuperDocentes"
           description="Explora nuestra plana docente con una navegacion clara por areas y cursos. Cada profesor aparece en tarjetas cuadradas para una lectura mas ordenada y directa."
-          stats={[]}
         />
 
         <div ref={stickyShellRef} className="relative mx-auto mt-12 max-w-7xl sm:mt-14">

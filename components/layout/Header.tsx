@@ -4,39 +4,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { FiMoon, FiSun } from "react-icons/fi";
-import { FaFacebook, FaInstagram, FaTiktok, FaYoutube } from "react-icons/fa";
 import { useEffect, useState } from "react";
+import { socialLinkPresentation } from "@/lib/social-presentation";
+import { setDocumentTheme } from "@/lib/theme";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { socialLinks } from "@/lib/site";
 import { publicNavigationLinks } from "./navigation";
-
-type ThemeMode = "light" | "dark";
-
-function setDocumentTheme(theme: ThemeMode) {
-  const root = document.documentElement;
-
-  root.dataset.theme = theme;
-  root.style.colorScheme = theme;
-}
-
-const socialLinkPresentation = {
-  facebook: {
-    icon: <FaFacebook className="h-5 w-5 shrink-0" />,
-    color: "from-blue-400 to-blue-600",
-  },
-  instagram: {
-    icon: <FaInstagram className="h-5 w-5 shrink-0" />,
-    color: "from-pink-400 to-purple-500",
-  },
-  youtube: {
-    icon: <FaYoutube className="h-5 w-5 shrink-0" />,
-    color: "from-red-400 to-red-600",
-  },
-  tiktok: {
-    icon: <FaTiktok className="h-5 w-5 shrink-0" />,
-    color: "from-black to-black",
-  },
-} as const;
 
 const enrollmentWhatsappUrl = buildWhatsAppUrl(
   "Hola, estoy interesado/a en matricularme. Podria proporcionarme mas informacion por favor.",
@@ -111,7 +84,7 @@ export default function Header() {
     const currentTheme = document.documentElement.dataset.theme === "dark"
       ? "dark"
       : "light";
-    const nextTheme: ThemeMode = currentTheme === "dark" ? "light" : "dark";
+    const nextTheme = currentTheme === "dark" ? "light" : "dark";
 
     setDocumentTheme(nextTheme);
   };
@@ -189,8 +162,14 @@ export default function Header() {
               aria-label="Cambiar entre modo claro y modo oscuro"
               className="btn-icon inline-flex items-center justify-center leading-none text-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 dark:focus-visible:ring-offset-[#051321]"
             >
-              <FiMoon className="h-5 w-5 shrink-0 dark:hidden" />
-              <FiSun className="hidden h-5 w-5 shrink-0 dark:block" />
+              <span aria-hidden="true" className="theme-toggle-glyph">
+                <span className="theme-toggle-layer theme-toggle-layer--moon">
+                  <FiMoon className="h-5 w-5 shrink-0" />
+                </span>
+                <span className="theme-toggle-layer theme-toggle-layer--sun">
+                  <FiSun className="h-5 w-5 shrink-0" />
+                </span>
+              </span>
             </button>
 
             <Link
@@ -304,6 +283,7 @@ export default function Header() {
                 <div className="flex items-center justify-center gap-3 pt-2 text-[1.45rem]">
                   {socialLinks.map((socialLink) => {
                     const presentation = socialLinkPresentation[socialLink.key];
+                    const Icon = presentation.icon;
 
                     return (
                     <a
@@ -314,7 +294,7 @@ export default function Header() {
                       aria-label={`Abrir ${socialLink.label} de SuperAcademy`}
                       className={`group relative inline-flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br ${presentation.color} leading-none text-white shadow-xl transition-transform hover:scale-110 hover:rotate-3`}
                     >
-                      {presentation.icon}
+                      <Icon className="h-5 w-5 shrink-0" />
                       <span className="absolute inset-0 rounded-full bg-white/20 opacity-0 transition group-hover:opacity-100" />
                     </a>
                     );

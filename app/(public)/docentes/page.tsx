@@ -11,9 +11,5 @@ export const metadata: Metadata = {
 };
 
 export default function DocentesPage() {
-  return (
-    <div>
-      <TeachersSection />
-    </div>
-  );
+  return <TeachersSection />;
 }

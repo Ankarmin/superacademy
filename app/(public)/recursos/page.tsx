@@ -126,7 +126,6 @@ export default function RecursosPage() {
             titleStart="Nuestros"
             titleAccent="SuperRecursos"
             description="Explora nuestros recursos con una navegacion clara por tipo de material y acceso. Cada recurso aparece en tarjetas ordenadas para una lectura mas rapida y directa."
-            stats={[]}
           />
 
           <div className="mt-12 grid gap-6 sm:mt-14 sm:grid-cols-2 lg:gap-8 xl:grid-cols-3 xl:gap-10">
