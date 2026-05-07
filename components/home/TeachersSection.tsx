@@ -204,7 +204,7 @@ export default function TeachersSection() {
 
       <div className="container relative z-10 mx-auto px-6">
         <SuperSectionHero
-          titleStart="Nuestro"
+          titleStart="Nuestros"
           titleAccent="SuperDocentes"
           description="Explora nuestra plana docente con una navegacion clara por areas y cursos. Cada profesor aparece en tarjetas cuadradas para una lectura mas ordenada y directa."
         />
