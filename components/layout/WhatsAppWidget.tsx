@@ -34,13 +34,20 @@ export default function WhatsAppWidget() {
         aria-expanded={isOpen}
         aria-controls="whatsapp-widget-panel"
         aria-label={isOpen ? "Cerrar ayuda por WhatsApp" : "Abrir ayuda por WhatsApp"}
-        className="cursor-pointer rounded-full bg-gradient-to-r from-[#2ef4ed] to-[#01b8db] p-3 text-white shadow-[0_0_22px_rgba(46,244,237,.55)] shadow-lg transition-transform hover:scale-110 active:scale-95 sm:p-4"
+        className="relative cursor-pointer rounded-full bg-gradient-to-r from-[#2ef4ed] to-[#01b8db] p-3 text-white shadow-[0_0_22px_rgba(46,244,237,.55)] shadow-lg transition-transform hover:scale-110 active:scale-95 sm:p-4"
         onClick={handleWhatsAppClick}
       >
+        {!isOpen && (
+          <span
+            aria-hidden="true"
+            className="absolute inset-0 rounded-full bg-[#2ef4ed]/35 motion-safe:animate-ping"
+          />
+        )}
+
         {isOpen ? (
-          <FaTimes size={24} className="sm:w-8 sm:h-8" />
+          <FaTimes size={24} className="relative sm:h-8 sm:w-8" />
         ) : (
-          <FaWhatsapp size={24} className="sm:w-8 sm:h-8" />
+          <FaWhatsapp size={24} className="relative sm:h-8 sm:w-8" />
         )}
       </button>
 
