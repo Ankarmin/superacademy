@@ -41,6 +41,26 @@ export const cyclePrograms: readonly CycleProgram[] = [
       "Trigonometria",
     ],
   },
+  {
+    slug: "ciencias",
+    title: "Ciclo Ciencias",
+    badge: "Matricula abierta",
+    description:
+      "Programa enfocado en ciencias con una ruta compacta por cursos clave, acompanamiento cercano y evaluaciones de control para sostener tu avance.",
+    audience: "Estudiantes que buscan fortalecer base cientifica para el examen de admision",
+    duration: "5 dias de clase por semana",
+    mode: "Turno noche",
+    image: "/images/ciclo-ciencias.svg",
+    startDate: "8 de abril",
+    monthlyPrice: "S/60",
+    contactPhone: "923 806 156",
+    highlights: [
+      "Clases por bloques para integrar teoria, practica y resolucion guiada.",
+      "Simulacros y evaluaciones de control para medir avance por semana.",
+      "Material de repaso para reforzar conceptos y mantener continuidad.",
+    ],
+    subjects: ["Biologia", "Fisica", "Quimica"],
+  },
 ];
 
 export const getCycleProgramBySlug = (slug: string) =>
