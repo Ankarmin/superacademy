@@ -7,10 +7,10 @@ import { useEffect, useRef, useState } from "react";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import ModalShell from "@/components/ui/ModalShell";
 
-const MODAL_IMAGE_SRC = "/images/ciclo-mates.webp";
+const MODAL_IMAGE_SRC = "/images/home-2.webp";
 
 const whatsappUrl = buildWhatsAppUrl(
-  "Hola, quiero informacion sobre el ciclo de Matematicas y su proceso de matricula.",
+  "Hola, quiero informacion sobre el ciclo de Ciencias y su proceso de matricula.",
 );
 
 export default function WelcomeModal() {
@@ -37,7 +37,7 @@ export default function WelcomeModal() {
       panelClassName="relative w-full max-w-[680px] overflow-hidden rounded-[28px] border border-slate-200/80 bg-white shadow-[0_30px_120px_rgba(15,23,42,0.28)] transition-colors dark:border-cyan-300/12 dark:bg-[#071523] dark:shadow-[0_30px_120px_rgba(1,8,18,0.68)] sm:rounded-[32px]"
     >
       <h2 id="welcome-modal-title" className="sr-only">
-        Modal de bienvenida del ciclo de Matematicas
+        Modal de bienvenida del ciclo de Ciencias
       </h2>
 
       <button
@@ -57,7 +57,7 @@ export default function WelcomeModal() {
           <div className="overflow-hidden rounded-[24px] border border-white/80 bg-white/60 p-2 shadow-[0_20px_50px_rgba(15,23,42,0.08)] dark:border-cyan-300/10 dark:bg-white/5 dark:shadow-none">
             <Image
               src={MODAL_IMAGE_SRC}
-              alt="Afiche del ciclo de Matematicas"
+              alt="Estudiantes de SuperAcademy"
               width={1600}
               height={1600}
               preload
@@ -91,7 +91,7 @@ export default function WelcomeModal() {
               </a>
 
               <Link
-                href="/ciclos/matematicas"
+                href="/ciclos/ciencias"
                 className="btn-secondary px-5 py-3 text-center text-sm font-bold"
                 onClick={() => setOpen(false)}
               >

@@ -4,11 +4,11 @@ import Image from "next/image";
 const items = [
   {
     badge: "Matricula activa",
-    title: "Ciclo Matemáticas",
+    title: "Ciclo Ciencias",
     description:
-      "Ruta enfocada en razonamiento matematico, algebra, aritmetica, geometria y trigonometria con seguimiento constante.",
-    image: "/images/ciclo-mates.webp",
-    href: "/ciclos",
+      "Ruta enfocada en biologia, fisica y quimica con seguimiento constante, practica guiada y evaluaciones semanales.",
+    image: "/images/ciclo-ciencias.svg",
+    href: "/ciclos/ciencias",
     accent: "from-[#7ff6f1] to-[#01b8db]",
   },
   {
@@ -16,7 +16,7 @@ const items = [
     title: "Videoteca",
     description:
       "Accede a cientos de clases grabadas, repasos estratégicos y seminarios gratuitos disponibles 24/7.",
-    image: "/images/ciclo-mates.webp",
+    image: "/images/ciclo-letras.svg",
     href: "/videoteca",
     accent: "from-[#d9fbff] to-[#48d8ea]",
   },
@@ -25,7 +25,7 @@ const items = [
     title: "Recursos",
     description:
       "Material académico descargable, guías premium, exámenes resueltos y bancos de preguntas.",
-    image: "/images/ciclo-mates.webp",
+    image: "/images/ciclo-ciencias.svg",
     href: "/recursos",
     accent: "from-[#8ef8f2] to-[#0eb5cf]",
   },
