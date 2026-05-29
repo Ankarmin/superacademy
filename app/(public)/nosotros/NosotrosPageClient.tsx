@@ -12,17 +12,17 @@ const essenceItems = [
   {
     title: "Misión",
     text: "Brindar formación académica de excelencia que permita a nuestros estudiantes alcanzar sus metas universitarias y profesionales.",
-    icon: "M",
+    icon: "🎯",
   },
   {
     title: "Visión",
     text: "Ser la academia líder en preparación preuniversitaria a nivel nacional, reconocida por sus resultados y calidad educativa.",
-    icon: "V",
+    icon: "🚀",
   },
   {
     title: "Valores",
     text: "Compromiso, excelencia, disciplina, responsabilidad y vocación de servicio.",
-    icon: "A",
+    icon: "🤝",
   },
 ] as const;
 
@@ -31,25 +31,25 @@ const advantageItems = [
     title: "Docentes expertos",
     text: "Profesores especializados en exámenes de admisión.",
     badge: "Docencia",
-    icon: "D",
+    icon: "👩‍🏫",
   },
   {
     title: "Simulacros reales",
     text: "Evaluaciones tipo examen universitario.",
     badge: "Evaluación",
-    icon: "S",
+    icon: "📝",
   },
   {
     title: "Material exclusivo",
     text: "Guías, resúmenes y videoclases.",
     badge: "Recursos",
-    icon: "R",
+    icon: "📚",
   },
   {
     title: "Acompañamiento",
     text: "Seguimiento personalizado al estudiante.",
     badge: "Seguimiento",
-    icon: "A",
+    icon: "🌟",
   },
 ] as const;
 
@@ -97,7 +97,7 @@ export default function NosotrosPageClient() {
             <div className="absolute -inset-3 bg-gradient-to-r from-[#c8fbff] to-primary blur-2xl opacity-30 transition group-hover:opacity-50" />
             <div className="relative rounded-3xl overflow-hidden shadow-2xl">
               <Image
-                src="/images/ciclo-mates.webp"
+                src="/images/ciclo-ciencias.svg"
                 alt="Estudiantes en clase"
                 className="h-auto w-full object-cover transition duration-700 group-hover:scale-105"
                 width={1000}
@@ -157,7 +157,7 @@ export default function NosotrosPageClient() {
                 key={item.title}
                 className="group relative overflow-hidden rounded-3xl border border-[#d8eef3] bg-[#f4fdff] p-7 shadow transition-all hover:-translate-y-2 hover:shadow-2xl dark:border-white/10 dark:bg-white/5 dark:shadow-none"
               >
-                <span className="absolute right-4 top-4 rounded-full bg-primary/14 px-3 py-1 text-xs font-semibold text-slate-950 transition group-hover:bg-primary group-hover:text-white">
+                <span className="absolute right-4 top-4 rounded-full bg-primary/14 px-3 py-1 text-xs font-semibold text-slate-950 transition group-hover:bg-primary group-hover:text-white dark:text-white">
                   {item.badge}
                 </span>
 
