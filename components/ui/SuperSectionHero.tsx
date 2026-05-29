@@ -10,7 +10,7 @@ export default function SuperSectionHero({
   description,
 }: SuperSectionHeroProps) {
   return (
-    <div className="mx-auto max-w-5xl text-center">
+    <div className="mx-auto max-w-5xl text-center" data-scroll-reveal="hero">
       <h1 className="text-4xl font-extrabold tracking-tight text-slate-950 dark:text-white sm:text-5xl md:text-6xl lg:text-7xl">
         {titleStart} <span className="text-primary">{titleAccent}</span>
       </h1>
