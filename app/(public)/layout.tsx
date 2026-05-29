@@ -1,6 +1,7 @@
 import Header from "../../components/layout/Header";
 import Footer from "../../components/layout/Footer";
 import SocialWidget from "../../components/SocialWidget";
+import ScrollRevealController from "../../components/ui/ScrollRevealController";
 import dynamic from "next/dynamic";
 
 const WhatsAppWidget = dynamic(
@@ -21,6 +22,7 @@ export default function PublicLayout({
       <Footer />
       <WhatsAppWidget />
       <SocialWidget />
+      <ScrollRevealController />
     </div>
   );
 }
