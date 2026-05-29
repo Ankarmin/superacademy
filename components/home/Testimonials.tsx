@@ -81,7 +81,7 @@ export default function Testimonials() {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_25%_30%,rgba(46,244,237,0.18),transparent_60%)] dark:bg-[radial-gradient(circle_at_25%_30%,rgba(1,184,219,0.16),transparent_56%)]" />
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6">
-        <div className="mx-auto mb-12 max-w-2xl text-center sm:mb-14">
+        <div className="mx-auto mb-12 max-w-2xl text-center sm:mb-14" data-scroll-reveal="soft">
           <h2 className="mb-4 text-3xl font-extrabold text-slate-950 dark:text-white md:text-4xl">
             Nuestros resultados hablan por nosotros
           </h2>
@@ -91,7 +91,7 @@ export default function Testimonials() {
           </p>
         </div>
 
-        <div className="px-2 sm:px-3 lg:px-4">
+        <div className="px-2 sm:px-3 lg:px-4" data-scroll-reveal>
           <Swiper
             modules={[Autoplay, Pagination]}
             spaceBetween={24}

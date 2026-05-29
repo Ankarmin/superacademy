@@ -41,7 +41,7 @@ export default function FeaturedCards() {
       <div className="absolute top-1/2 right-1/3 h-2 w-2 rounded-full bg-primary/35 blur-sm animate-floatFast" />
 
         <div className="container relative z-10 mx-auto px-4 sm:px-6">
-          <div className="mx-auto mb-12 max-w-2xl text-center sm:mb-16">
+          <div className="mx-auto mb-12 max-w-2xl text-center sm:mb-16" data-scroll-reveal="soft">
           <h2 className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-4xl">
             Todo lo que necesitas para ingresar
           </h2>
@@ -52,12 +52,13 @@ export default function FeaturedCards() {
           </p>
         </div>
 
-        <div className="grid gap-6 perspective-[1200px] sm:grid-cols-2 lg:gap-8 xl:grid-cols-3 xl:gap-10">
+        <div className="grid gap-6 perspective-[1200px] sm:grid-cols-2 lg:gap-8 xl:grid-cols-3 xl:gap-10" data-scroll-reveal-stagger>
           {items.map((item, index) => (
             <Link
               key={item.title}
               href={item.href}
               className="group relative block h-full"
+              data-scroll-reveal
             >
               <div className="relative flex h-full transform-gpu flex-col overflow-hidden rounded-[28px] bg-white shadow-[0_20px_60px_rgba(0,0,0,0.08)] transition-all duration-700 will-change-transform group-hover:-translate-y-4 group-hover:rotateX-[4deg] group-hover:rotateY-[-3deg] hover:shadow-[0_35px_90px_rgba(0,0,0,0.15)] dark:bg-[#081624] dark:shadow-[0_24px_70px_rgba(0,0,0,0.24)]">
                 <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-[1400ms] bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none" />
