@@ -128,10 +128,14 @@ export default function RecursosPage() {
             description="Explora nuestros recursos con una navegacion clara por tipo de material y acceso. Cada recurso aparece en tarjetas ordenadas para una lectura mas rapida y directa."
           />
 
-          <div className="mt-12 grid gap-6 sm:mt-14 sm:grid-cols-2 lg:gap-8 xl:grid-cols-3 xl:gap-10">
+          <div
+            className="mt-12 grid gap-6 sm:mt-14 sm:grid-cols-2 lg:gap-8 xl:grid-cols-3 xl:gap-10"
+            data-scroll-reveal-stagger
+          >
             {recursos.map((recurso, index) => (
               <article
                 key={recurso.id}
+                data-scroll-reveal
                 className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-[#d8eef3] bg-white/85 shadow-xl dark:border-white/10 dark:bg-[#081624]/86 dark:shadow-[0_18px_56px_rgba(0,0,0,0.22)]"
               >
                 <div className="relative h-44 overflow-hidden">
