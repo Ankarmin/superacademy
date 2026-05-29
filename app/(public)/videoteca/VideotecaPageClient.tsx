@@ -80,7 +80,10 @@ export default function VideotecaPageClient() {
           />
 
           <div className="mt-12 flex flex-col gap-8 sm:mt-14 lg:flex-row lg:gap-10">
-            <aside className="w-full rounded-3xl border border-[#d8eef3] bg-[#f4fdff] p-5 shadow-xl backdrop-blur-xl dark:border-white/10 dark:bg-[#081624] dark:shadow-[0_18px_56px_rgba(0,0,0,0.22)] lg:sticky lg:top-32 lg:h-[70vh] lg:w-80 lg:shrink-0 lg:overflow-y-auto lg:p-6">
+            <aside
+              className="w-full rounded-3xl border border-[#d8eef3] bg-[#f4fdff] p-5 shadow-xl backdrop-blur-xl dark:border-white/10 dark:bg-[#081624] dark:shadow-[0_18px_56px_rgba(0,0,0,0.22)] lg:sticky lg:top-32 lg:h-[70vh] lg:w-80 lg:shrink-0 lg:overflow-y-auto lg:p-6"
+              data-scroll-reveal
+            >
               <div className="space-y-3">
                 {validCourses.map((curso) => {
                   const isActive = cursoActivo?.id === curso.id;
@@ -108,7 +111,7 @@ export default function VideotecaPageClient() {
 
             <section className="relative flex-1">
               <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                <div ref={courseSummaryRef} className="min-w-0">
+                <div ref={courseSummaryRef} className="min-w-0" data-scroll-reveal="soft">
                   <h2 className="break-words text-2xl font-extrabold text-slate-950 dark:text-white sm:text-3xl">
                     {courseHeading}
                   </h2>
@@ -175,12 +178,14 @@ export default function VideotecaPageClient() {
                       className={`grid gap-5 sm:grid-cols-2 sm:gap-6 xl:grid-cols-3 xl:gap-8 ${
                         videoActivo ? "blur-md brightness-50" : ""
                       }`}
+                      data-scroll-reveal-stagger
                     >
                       {visibleVideos.map((video) => (
                         <button
                           type="button"
                           key={video.id}
                           onClick={() => handleVideoOpen(video)}
+                          data-scroll-reveal
                           className="group relative overflow-hidden rounded-2xl border border-[#d8eef3] bg-white text-left shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:border-white/10 dark:bg-[#081624] dark:shadow-[0_18px_56px_rgba(0,0,0,0.22)]"
                         >
                           <div className="relative h-44 overflow-hidden">
@@ -209,7 +214,7 @@ export default function VideotecaPageClient() {
                       ))}
                     </div>
                   ) : (
-                    <div className="rounded-[2rem] border border-dashed border-[#bfdfe8] bg-[#f8fcff] px-6 py-10 text-center dark:border-white/10 dark:bg-white/5">
+                    <div className="rounded-[2rem] border border-dashed border-[#bfdfe8] bg-[#f8fcff] px-6 py-10 text-center dark:border-white/10 dark:bg-white/5" data-scroll-reveal="soft">
                       <p className="text-lg font-bold text-slate-950 dark:text-white">Este curso aún no tiene videos visibles</p>
                       <p className="mx-auto mt-3 max-w-xl text-sm leading-7 text-slate-600 dark:text-slate-300">
                         Selecciona otro curso desde la columna izquierda mientras seguimos ampliando esta videoteca.
@@ -217,7 +222,7 @@ export default function VideotecaPageClient() {
                     </div>
                   )
                 ) : (
-                  <div className="rounded-[2rem] border border-dashed border-[#bfdfe8] bg-[#f8fcff] px-6 py-10 text-center dark:border-white/10 dark:bg-white/5">
+                  <div className="rounded-[2rem] border border-dashed border-[#bfdfe8] bg-[#f8fcff] px-6 py-10 text-center dark:border-white/10 dark:bg-white/5" data-scroll-reveal="soft">
                     <Film className="mx-auto h-10 w-10 text-primary" />
                     <p className="mt-4 text-lg font-bold text-slate-950 dark:text-white">Selecciona un curso para empezar</p>
                     <p className="mx-auto mt-3 max-w-xl text-sm leading-7 text-slate-600 dark:text-slate-300">
