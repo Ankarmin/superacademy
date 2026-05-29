@@ -15,6 +15,8 @@ const enrollmentWhatsappUrl = buildWhatsAppUrl(
   "Hola, estoy interesado/a en matricularme. Podria proporcionarme mas informacion por favor.",
 );
 
+const activeNavigationLinkClassName = "text-primary dark:text-cyan-200";
+
 export default function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -127,7 +129,7 @@ export default function Header() {
                     <span
                       className={`relative z-10 transition-colors duration-300 ${
                         active
-                          ? "text-primary"
+                          ? activeNavigationLinkClassName
                           : "text-gray-700 group-hover:text-transparent dark:text-slate-200"
                       }`}
                     >
@@ -256,7 +258,7 @@ export default function Header() {
                         onClick={() => setOpen(false)}
                         className={`group flex min-h-[64px] items-center justify-center px-4 py-4 text-center text-sm font-bold uppercase tracking-[0.1em] transition sm:min-h-[72px] sm:text-[0.95rem] ${
                           active
-                            ? "text-primary dark:text-cyan-200"
+                            ? activeNavigationLinkClassName
                             : "text-slate-900 hover:text-primary dark:text-white dark:hover:text-cyan-200"
                         }`}
                       >
