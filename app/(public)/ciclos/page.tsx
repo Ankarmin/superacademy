@@ -26,10 +26,14 @@ export default function CyclesPage() {
             description="Explora nuestros ciclos en un formato compacto y claro, pensado para crecer sin perder orden cuando agreguemos nuevas opciones."
           />
 
-          <div className="mx-auto mt-14 grid max-w-6xl gap-6 sm:grid-cols-2 xl:grid-cols-3">
+          <div
+            className="mx-auto mt-14 grid max-w-6xl gap-6 sm:grid-cols-2 xl:grid-cols-3"
+            data-scroll-reveal-stagger
+          >
             {cyclePrograms.map((program, index) => (
               <article
                 key={program.slug}
+                data-scroll-reveal
                 className="group overflow-hidden rounded-[1.75rem] border border-[#d8eef3] bg-white shadow-[0_18px_48px_rgba(15,23,42,0.08)] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_24px_56px_rgba(15,23,42,0.12)] dark:border-white/10 dark:bg-[#081624] dark:shadow-[0_24px_70px_rgba(0,0,0,0.24)]"
               >
                 <div className="relative h-52 overflow-hidden bg-[linear-gradient(180deg,#effdff_0%,#d6f8ff_100%)] p-4 dark:bg-[linear-gradient(180deg,#082137_0%,#0a2b40_100%)]">

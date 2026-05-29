@@ -51,7 +51,7 @@ export default async function CicloPage({ params }: CicloPageProps) {
     <div className="bg-white transition-colors dark:bg-[#04111d]">
       <section className="bg-[linear-gradient(180deg,#e9fcff_0%,#9ef4fb_100%)] py-16 text-slate-950 dark:bg-[linear-gradient(180deg,#082137_0%,#0a3f59_100%)] dark:text-white sm:py-20">
         <div className="container mx-auto grid gap-10 px-6 lg:grid-cols-[1.4fr_0.9fr] lg:items-center">
-          <div>
+          <div data-scroll-reveal="hero">
             <span className="rounded-full bg-white/70 px-4 py-2 text-sm font-semibold text-primary dark:bg-white/10 dark:text-cyan-100">
               {program.badge}
             </span>
@@ -75,7 +75,7 @@ export default async function CicloPage({ params }: CicloPageProps) {
             </div>
           </div>
 
-          <div className="rounded-3xl border border-white/75 bg-white/55 p-8 backdrop-blur dark:border-white/10 dark:bg-white/10">
+          <div className="rounded-3xl border border-white/75 bg-white/55 p-8 backdrop-blur dark:border-white/10 dark:bg-white/10" data-scroll-reveal>
             <div className="space-y-5 text-sm text-slate-700 dark:text-slate-200">
               <div className="flex items-center gap-3">
                 <Clock3 className="h-4 w-4 text-primary" />
@@ -105,7 +105,7 @@ export default async function CicloPage({ params }: CicloPageProps) {
 
       <section className="bg-[linear-gradient(180deg,#ffffff_0%,#f2fcff_100%)] py-16 transition-colors dark:bg-[linear-gradient(180deg,#04111d_0%,#071b2b_100%)] sm:py-20">
         <div className="container mx-auto px-6">
-          <article className="rounded-3xl border border-[#d8eef3] bg-white p-8 shadow-sm dark:border-white/10 dark:bg-[#081624] dark:shadow-[0_18px_56px_rgba(0,0,0,0.22)]">
+          <article className="rounded-3xl border border-[#d8eef3] bg-white p-8 shadow-sm dark:border-white/10 dark:bg-[#081624] dark:shadow-[0_18px_56px_rgba(0,0,0,0.22)]" data-scroll-reveal="soft">
             <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white">
               Lo que incluye este ciclo
             </h2>
@@ -134,8 +134,8 @@ export default async function CicloPage({ params }: CicloPageProps) {
           </article>
         </div>
 
-        <div className="container mx-auto mt-8 grid gap-8 px-6 lg:grid-cols-[0.95fr_1.05fr]">
-          <article className="overflow-hidden rounded-3xl border border-[#d8eef3] bg-white shadow-sm dark:border-white/10 dark:bg-[#081624] dark:shadow-[0_18px_56px_rgba(0,0,0,0.22)]">
+        <div className="container mx-auto mt-8 grid gap-8 px-6 lg:grid-cols-[0.95fr_1.05fr]" data-scroll-reveal-stagger>
+          <article className="overflow-hidden rounded-3xl border border-[#d8eef3] bg-white shadow-sm dark:border-white/10 dark:bg-[#081624] dark:shadow-[0_18px_56px_rgba(0,0,0,0.22)]" data-scroll-reveal>
             <Image
               src={program.image}
               alt={`Afiche de ${program.title}`}
@@ -148,7 +148,7 @@ export default async function CicloPage({ params }: CicloPageProps) {
             />
           </article>
 
-          <article className="rounded-3xl border border-[#d8eef3] bg-white p-8 shadow-sm dark:border-white/10 dark:bg-[#081624] dark:shadow-[0_18px_56px_rgba(0,0,0,0.22)]">
+          <article className="rounded-3xl border border-[#d8eef3] bg-white p-8 shadow-sm dark:border-white/10 dark:bg-[#081624] dark:shadow-[0_18px_56px_rgba(0,0,0,0.22)]" data-scroll-reveal>
             <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white">
               Resumen rapido
             </h2>
