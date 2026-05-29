@@ -14,12 +14,12 @@ export default function TermsPage() {
     <div className="bg-white transition-colors dark:bg-[#04111d]">
       <section className="bg-white py-16 transition-colors dark:bg-[#04111d] sm:py-20">
         <div className="container mx-auto max-w-4xl px-6">
-          <h1 className="mb-8 text-4xl font-extrabold tracking-tight text-slate-950 dark:text-white sm:text-5xl">
+          <h1 className="mb-8 text-4xl font-extrabold tracking-tight text-slate-950 dark:text-white sm:text-5xl" data-scroll-reveal="hero">
             Terminos y Condiciones
           </h1>
 
-          <div className="space-y-6">
-            <section className="rounded-3xl border border-[#d8eef3] bg-white p-8 shadow-sm dark:border-white/10 dark:bg-[#081624] dark:shadow-[0_18px_56px_rgba(0,0,0,0.22)]">
+          <div className="space-y-6" data-scroll-reveal-stagger>
+            <section className="rounded-3xl border border-[#d8eef3] bg-white p-8 shadow-sm dark:border-white/10 dark:bg-[#081624] dark:shadow-[0_18px_56px_rgba(0,0,0,0.22)]" data-scroll-reveal>
               <h2 className="text-xl font-bold text-slate-950 dark:text-white">Uso del sitio</h2>
               <p className="mt-3 leading-8 text-slate-600 dark:text-slate-300">
                 Este sitio presenta información general sobre programas,
@@ -28,7 +28,7 @@ export default function TermsPage() {
               </p>
             </section>
 
-            <section className="rounded-3xl border border-[#d8eef3] bg-white p-8 shadow-sm dark:border-white/10 dark:bg-[#081624] dark:shadow-[0_18px_56px_rgba(0,0,0,0.22)]">
+            <section className="rounded-3xl border border-[#d8eef3] bg-white p-8 shadow-sm dark:border-white/10 dark:bg-[#081624] dark:shadow-[0_18px_56px_rgba(0,0,0,0.22)]" data-scroll-reveal>
               <h2 className="text-xl font-bold text-slate-950 dark:text-white">Información comercial</h2>
               <p className="mt-3 leading-8 text-slate-600 dark:text-slate-300">
                 Horarios, vacantes, precios, promociones y modalidad pueden variar
@@ -37,7 +37,7 @@ export default function TermsPage() {
               </p>
             </section>
 
-            <section className="rounded-3xl border border-[#d8eef3] bg-white p-8 shadow-sm dark:border-white/10 dark:bg-[#081624] dark:shadow-[0_18px_56px_rgba(0,0,0,0.22)]">
+            <section className="rounded-3xl border border-[#d8eef3] bg-white p-8 shadow-sm dark:border-white/10 dark:bg-[#081624] dark:shadow-[0_18px_56px_rgba(0,0,0,0.22)]" data-scroll-reveal>
               <h2 className="text-xl font-bold text-slate-950 dark:text-white">Propiedad intelectual</h2>
               <p className="mt-3 leading-8 text-slate-600 dark:text-slate-300">
                 Textos, imágenes, recursos y materiales mostrados en este sitio no
