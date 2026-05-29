@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import localFont from "next/font/local";
+import { Bricolage_Grotesque, Instrument_Sans } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { THEME_COLORS } from "@/lib/theme";
@@ -51,9 +51,16 @@ const themeScript = `(() => {
   }
 })();`;
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
+const instrumentSans = Instrument_Sans({
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
+});
+
+const bricolageGrotesque = Bricolage_Grotesque({
+  subsets: ["latin"],
+  variable: "--font-heading",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -142,7 +149,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} bg-[var(--page-bg)] text-[var(--page-fg)] antialiased transition-colors duration-300`}
+        className={`${instrumentSans.variable} ${bricolageGrotesque.variable} bg-[var(--page-bg)] text-[var(--page-fg)] antialiased transition-colors duration-300`}
       >
         <a
           href="#main-content"
