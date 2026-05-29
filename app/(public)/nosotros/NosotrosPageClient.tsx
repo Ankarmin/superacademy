@@ -60,7 +60,7 @@ export default function NosotrosPageClient() {
         <div className="pointer-events-none absolute -top-32 left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-cyan-400/10 blur-3xl" />
 
         <div className="container relative z-10 mx-auto grid items-center gap-10 px-6 lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)] lg:gap-14 xl:gap-20">
-          <div className="mx-auto w-full max-w-xl lg:mx-0 lg:max-w-none">
+          <div className="mx-auto w-full max-w-xl lg:mx-0 lg:max-w-none" data-scroll-reveal="hero">
             <h1 className="mb-6 text-4xl font-extrabold leading-tight tracking-tight text-slate-950 dark:text-white sm:text-5xl lg:text-6xl xl:text-7xl">
               Educación moderna,
               <span className="block text-primary">resultados reales</span>
@@ -78,10 +78,11 @@ export default function NosotrosPageClient() {
               metas academicas exigentes.
             </p>
 
-            <div className="mt-8 grid gap-4 sm:grid-cols-3 sm:gap-6">
+            <div className="mt-8 grid gap-4 sm:grid-cols-3 sm:gap-6" data-scroll-reveal-stagger>
               {stats.map((stat) => (
                 <div
                   key={stat.label}
+                  data-scroll-reveal="soft"
                   className="group rounded-2xl border border-[#d8eef3] bg-[#f4fdff] p-5 text-center shadow transition-all hover:-translate-y-1 hover:shadow-xl dark:border-white/10 dark:bg-white/5 dark:shadow-none"
                 >
                   <div className="text-2xl font-extrabold text-primary group-hover:scale-110 transition">
@@ -93,7 +94,7 @@ export default function NosotrosPageClient() {
             </div>
           </div>
 
-          <div className="group relative mx-auto w-full max-w-[420px] sm:max-w-[520px] lg:max-w-none">
+          <div className="group relative mx-auto w-full max-w-[420px] sm:max-w-[520px] lg:max-w-none" data-scroll-reveal="soft">
             <div className="absolute -inset-3 bg-gradient-to-r from-[#c8fbff] to-primary blur-2xl opacity-30 transition group-hover:opacity-50" />
             <div className="relative rounded-3xl overflow-hidden shadow-2xl">
               <Image
@@ -114,16 +115,17 @@ export default function NosotrosPageClient() {
 
       <section className="relative bg-[linear-gradient(180deg,#f2fcff_0%,#ffffff_100%)] py-16 transition-colors dark:bg-[linear-gradient(180deg,#071b2b_0%,#04111d_100%)] sm:py-20">
         <div className="container mx-auto px-6 relative z-10">
-          <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-14">
+          <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-14" data-scroll-reveal="soft">
             <h2 className="text-3xl font-extrabold text-slate-950 dark:text-white md:text-4xl">
               Lo que nos mueve cada día
             </h2>
           </div>
 
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10" data-scroll-reveal-stagger>
             {essenceItems.map((item) => (
               <div
                 key={item.title}
+                data-scroll-reveal
                 className="group relative overflow-hidden rounded-3xl border border-[#d8eef3] bg-white p-8 shadow-lg transition-all hover:-translate-y-3 hover:shadow-2xl dark:border-white/10 dark:bg-[#081624] dark:shadow-[0_18px_56px_rgba(0,0,0,0.22)]"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-[#c8fbff]/40 to-primary/10 opacity-0 transition group-hover:opacity-100" />
@@ -145,16 +147,17 @@ export default function NosotrosPageClient() {
         <div className="pointer-events-none absolute right-0 top-1/3 h-[500px] w-[500px] rounded-full bg-cyan-300/10 blur-3xl" />
 
         <div className="container mx-auto px-6 relative z-10">
-          <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-14">
+          <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-14" data-scroll-reveal="soft">
             <h2 className="text-3xl font-extrabold text-slate-950 dark:text-white md:text-4xl">
               ¿Por qué elegir SuperAcademy?
             </h2>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8" data-scroll-reveal-stagger>
             {advantageItems.map((item) => (
               <div
                 key={item.title}
+                data-scroll-reveal
                 className="group relative overflow-hidden rounded-3xl border border-[#d8eef3] bg-[#f4fdff] p-7 shadow transition-all hover:-translate-y-2 hover:shadow-2xl dark:border-white/10 dark:bg-white/5 dark:shadow-none"
               >
                 <span className="absolute right-4 top-4 rounded-full bg-primary/14 px-3 py-1 text-xs font-semibold text-slate-950 transition group-hover:bg-primary group-hover:text-white dark:text-white">
@@ -183,7 +186,7 @@ export default function NosotrosPageClient() {
         <div className="absolute -top-20 -left-20 w-[400px] h-[400px] bg-white/10 blur-3xl rounded-full animate-pulse" />
         <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-white/10 blur-3xl rounded-full animate-pulse delay-1000" />
 
-        <div className="container relative z-10 mx-auto max-w-3xl px-6 text-center">
+        <div className="container relative z-10 mx-auto max-w-3xl px-6 text-center" data-scroll-reveal="hero">
           <h2 className="text-3xl md:text-5xl font-extrabold mb-6 leading-tight">
             Tu ingreso empieza aquí
           </h2>
