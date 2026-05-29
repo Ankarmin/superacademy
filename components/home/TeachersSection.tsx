@@ -209,7 +209,11 @@ export default function TeachersSection() {
           description="Explora nuestra plana docente con una navegacion clara por areas y cursos. Cada profesor aparece en tarjetas cuadradas para una lectura mas ordenada y directa."
         />
 
-        <div ref={stickyShellRef} className="relative mx-auto mt-12 max-w-7xl sm:mt-14">
+        <div
+          ref={stickyShellRef}
+          className="relative mx-auto mt-12 max-w-7xl sm:mt-14"
+          data-scroll-reveal
+        >
           <div
             aria-hidden="true"
             className={stickyState.mode === "static" ? "hidden" : "block pb-6"}
@@ -281,6 +285,7 @@ export default function TeachersSection() {
             {currentArea.courses.map((course, index) => (
               <section
                 key={`${currentArea.id}-${course.name}`}
+                data-scroll-reveal="soft"
                 className={`rounded-[30px] border border-slate-200/80 p-5 shadow-[0_18px_50px_rgba(15,23,42,0.06)] md:p-8 ${
                   index % 2 === 0
                     ? "bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(248,250,252,0.92))] dark:bg-[linear-gradient(180deg,rgba(8,22,36,0.98),rgba(8,22,36,0.92))]"
