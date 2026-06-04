@@ -40,7 +40,7 @@ export default function FeaturedCards() {
       <div className="absolute bottom-20 right-16 h-3 w-3 rounded-full bg-[#7ff6f1]/40 blur-sm animate-floatMedium" />
       <div className="absolute top-1/2 right-1/3 h-2 w-2 rounded-full bg-primary/35 blur-sm animate-floatFast" />
 
-        <div className="container relative z-10 mx-auto px-4 sm:px-6">
+        <div className="container relative z-10 mx-auto page-gutter">
           <div className="mx-auto mb-12 max-w-2xl text-center sm:mb-16" data-scroll-reveal="soft">
           <h2 className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-4xl">
             Todo lo que necesitas para ingresar

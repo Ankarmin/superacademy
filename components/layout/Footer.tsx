@@ -31,7 +31,7 @@ export default function Footer() {
       <div className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,#78fff0_0%,#01b8db_45%,#7ceff7_100%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(1,184,219,0.08),transparent_26%),radial-gradient(circle_at_bottom_right,rgba(1,184,219,0.05),transparent_28%)] dark:bg-[radial-gradient(circle_at_top_left,rgba(1,184,219,0.14),transparent_24%),radial-gradient(circle_at_bottom_right,rgba(127,246,241,0.08),transparent_26%)]" />
 
-      <div className="container relative z-10 mx-auto px-6 pt-12 pb-8 sm:pt-14 sm:pb-9 lg:pt-16 lg:pb-10">
+      <div className="container relative z-10 mx-auto page-gutter pt-12 pb-8 sm:pt-14 sm:pb-9 lg:pt-16 lg:pb-10">
         <div className="grid gap-8 border-b border-slate-200/80 pb-8 dark:border-white/10 sm:gap-10 sm:pb-10 lg:grid-cols-[minmax(0,1.2fr)_repeat(3,minmax(0,0.72fr))] lg:items-start lg:gap-14 xl:grid-cols-[minmax(0,1.28fr)_repeat(3,minmax(0,0.78fr))] xl:gap-16">
           <div className="max-w-md space-y-5 lg:max-w-lg lg:pr-6">
             <Link href="/" className="inline-flex max-w-full items-center gap-4">

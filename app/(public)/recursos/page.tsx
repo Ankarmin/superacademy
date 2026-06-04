@@ -121,7 +121,7 @@ export default function RecursosPage() {
   return (
     <div className="overflow-hidden bg-white transition-colors dark:bg-[#04111d]">
       <section id="recursos" className="relative z-10 bg-white py-16 transition-colors dark:bg-[#04111d] sm:py-20">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto page-gutter">
           <SuperSectionHero
             titleStart="Nuestros"
             titleAccent="SuperRecursos"

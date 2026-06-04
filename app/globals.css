@@ -138,6 +138,25 @@ h6,
   transform: translateY(0);
 }
 
+.page-gutter {
+  padding-left: max(2rem, env(safe-area-inset-left));
+  padding-right: max(2rem, env(safe-area-inset-right));
+}
+
+@media (min-width: 640px) {
+  .page-gutter {
+    padding-left: max(3rem, env(safe-area-inset-left));
+    padding-right: max(3rem, env(safe-area-inset-right));
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-gutter {
+    padding-left: max(4rem, env(safe-area-inset-left));
+    padding-right: max(4rem, env(safe-area-inset-right));
+  }
+}
+
 @theme {
   --color-primary: #0b6f86;
   --color-secondary: #01b8db;

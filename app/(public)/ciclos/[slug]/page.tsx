@@ -50,7 +50,7 @@ export default async function CicloPage({ params }: CicloPageProps) {
   return (
     <div className="bg-white transition-colors dark:bg-[#04111d]">
       <section className="bg-[linear-gradient(180deg,#e9fcff_0%,#9ef4fb_100%)] py-16 text-slate-950 dark:bg-[linear-gradient(180deg,#082137_0%,#0a3f59_100%)] dark:text-white sm:py-20">
-        <div className="container mx-auto grid gap-10 px-6 lg:grid-cols-[1.4fr_0.9fr] lg:items-center">
+        <div className="container mx-auto grid gap-10 page-gutter lg:grid-cols-[1.4fr_0.9fr] lg:items-center">
           <div data-scroll-reveal="hero">
             <span className="rounded-full bg-white/70 px-4 py-2 text-sm font-semibold text-primary dark:bg-white/10 dark:text-cyan-100">
               {program.badge}
@@ -104,7 +104,7 @@ export default async function CicloPage({ params }: CicloPageProps) {
       </section>
 
       <section className="bg-[linear-gradient(180deg,#ffffff_0%,#f2fcff_100%)] py-16 transition-colors dark:bg-[linear-gradient(180deg,#04111d_0%,#071b2b_100%)] sm:py-20">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto page-gutter">
           <article className="rounded-3xl border border-[#d8eef3] bg-white p-8 shadow-sm dark:border-white/10 dark:bg-[#081624] dark:shadow-[0_18px_56px_rgba(0,0,0,0.22)]" data-scroll-reveal="soft">
             <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white">
               Lo que incluye este ciclo
@@ -134,7 +134,7 @@ export default async function CicloPage({ params }: CicloPageProps) {
           </article>
         </div>
 
-        <div className="container mx-auto mt-8 grid gap-8 px-6 lg:grid-cols-[0.95fr_1.05fr]" data-scroll-reveal-stagger>
+        <div className="container mx-auto mt-8 grid gap-8 page-gutter lg:grid-cols-[0.95fr_1.05fr]" data-scroll-reveal-stagger>
           <article className="overflow-hidden rounded-3xl border border-[#d8eef3] bg-white shadow-sm dark:border-white/10 dark:bg-[#081624] dark:shadow-[0_18px_56px_rgba(0,0,0,0.22)]" data-scroll-reveal>
             <Image
               src={program.image}

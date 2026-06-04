@@ -202,7 +202,7 @@ export default function TeachersSection() {
     >
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_12%_18%,rgba(1,184,219,0.18),transparent_26%),radial-gradient(circle_at_88%_10%,rgba(14,165,233,0.12),transparent_24%)] dark:bg-[radial-gradient(circle_at_12%_18%,rgba(1,184,219,0.14),transparent_24%),radial-gradient(circle_at_88%_10%,rgba(14,165,233,0.08),transparent_22%)]" />
 
-      <div className="container relative z-10 mx-auto px-6">
+      <div className="container relative z-10 mx-auto page-gutter">
         <SuperSectionHero
           titleStart="Nuestros"
           titleAccent="SuperDocentes"

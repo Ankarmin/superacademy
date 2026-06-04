@@ -108,7 +108,7 @@ export default function ModalShell({
 
   return (
     <div
-      className="fixed inset-0 z-[90] flex items-center justify-center bg-slate-950/72 px-3 py-4 backdrop-blur-sm transition-colors dark:bg-[#01060d]/84 sm:px-4 sm:py-8"
+      className="page-gutter fixed inset-0 z-[90] flex items-center justify-center bg-slate-950/72 py-4 backdrop-blur-sm transition-colors dark:bg-[#01060d]/84 sm:py-8"
       onClick={onClose}
       onKeyDown={handleOverlayKeyDown}
     >

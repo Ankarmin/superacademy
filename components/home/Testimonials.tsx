@@ -80,7 +80,7 @@ export default function Testimonials() {
     <section id="testimonials" className="relative overflow-hidden bg-[linear-gradient(180deg,#f2fcff_0%,#ffffff_100%)] py-20 transition-colors dark:bg-[linear-gradient(180deg,#071b2b_0%,#04111d_100%)] sm:py-24">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_25%_30%,rgba(46,244,237,0.18),transparent_60%)] dark:bg-[radial-gradient(circle_at_25%_30%,rgba(1,184,219,0.16),transparent_56%)]" />
 
-      <div className="container relative z-10 mx-auto px-4 sm:px-6">
+      <div className="container relative z-10 mx-auto page-gutter">
         <div className="mx-auto mb-12 max-w-2xl text-center sm:mb-14" data-scroll-reveal="soft">
           <h2 className="mb-4 text-3xl font-extrabold text-slate-950 dark:text-white md:text-4xl">
             Nuestros resultados hablan por nosotros

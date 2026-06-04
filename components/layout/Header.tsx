@@ -99,7 +99,7 @@ export default function Header() {
       <header className="fixed top-0 left-0 right-0 z-50 border-b border-slate-200/70 bg-white/85 shadow-[0_4px_30px_rgba(0,0,0,0.06)] backdrop-blur-xl transition-colors dark:border-white/10 dark:bg-[#051321]/78 dark:shadow-[0_8px_36px_rgba(0,0,0,0.32)]">
         <nav
           aria-label="Principal"
-          className="relative z-20 container mx-auto grid h-[80px] grid-cols-[1fr_auto] items-center gap-3 px-4 sm:px-6 md:px-6 lg:h-[88px] lg:grid-cols-[auto_1fr_auto] lg:gap-6 lg:px-8"
+          className="relative z-20 container mx-auto grid h-[80px] grid-cols-[1fr_auto] items-center gap-3 page-gutter lg:h-[88px] lg:grid-cols-[auto_1fr_auto] lg:gap-6"
         >
           <Link
             href="/"
@@ -241,7 +241,7 @@ export default function Header() {
           }`}
           onClick={(event) => event.stopPropagation()}
         >
-          <div className="mobile-nav-surface flex h-full flex-col overflow-y-auto px-5 pb-8 pt-[96px] text-slate-950 shadow-[-22px_0_60px_rgba(3,20,39,0.16)] transition-colors dark:text-white dark:shadow-[-24px_0_70px_rgba(0,0,0,0.42)] sm:px-6">
+          <div className="mobile-nav-surface page-gutter flex h-full flex-col overflow-y-auto pb-8 pt-[96px] text-slate-950 shadow-[-22px_0_60px_rgba(3,20,39,0.16)] transition-colors dark:text-white dark:shadow-[-24px_0_70px_rgba(0,0,0,0.42)]">
             <div className="mx-auto flex h-full w-full max-w-[34rem] flex-col items-center justify-start">
               <ul className="mt-3 flex w-full flex-col border-y border-slate-200/90 dark:border-white/10">
                 {publicNavigationLinks.map((link) => {

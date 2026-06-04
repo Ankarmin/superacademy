@@ -19,7 +19,7 @@ export default function CyclesPage() {
   return (
     <div className="bg-white transition-colors dark:bg-[#04111d]">
       <section className="bg-white py-16 transition-colors dark:bg-[#04111d] sm:py-20">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto page-gutter">
           <SuperSectionHero
             titleStart="Nuestros"
             titleAccent="SuperCiclos"

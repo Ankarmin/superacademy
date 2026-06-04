@@ -72,7 +72,7 @@ export default function VideotecaPageClient() {
   return (
     <div className="overflow-hidden bg-white transition-colors dark:bg-[#04111d]">
       <section id="videos" className="relative bg-white py-16 transition-colors dark:bg-[#04111d] sm:py-20">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto page-gutter">
           <SuperSectionHero
             titleStart="Nuestra"
             titleAccent="SuperVideoteca"

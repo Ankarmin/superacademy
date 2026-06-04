@@ -13,7 +13,7 @@ export default function PrivacyPolicyPage() {
   return (
     <div className="bg-white transition-colors dark:bg-[#04111d]">
       <section className="bg-white py-16 transition-colors dark:bg-[#04111d] sm:py-20">
-        <div className="container mx-auto max-w-4xl px-6">
+        <div className="container mx-auto max-w-4xl page-gutter">
           <h1 className="mb-8 text-4xl font-extrabold tracking-tight text-slate-950 dark:text-white sm:text-5xl" data-scroll-reveal="hero">
             Politica de Privacidad
           </h1>

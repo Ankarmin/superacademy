@@ -59,7 +59,7 @@ export default function NosotrosPageClient() {
       <section className="relative bg-white py-16 transition-colors dark:bg-[#04111d] sm:py-20">
         <div className="pointer-events-none absolute -top-32 left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-cyan-400/10 blur-3xl" />
 
-        <div className="container relative z-10 mx-auto grid items-center gap-10 px-6 lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)] lg:gap-14 xl:gap-20">
+        <div className="container relative z-10 mx-auto grid items-center gap-10 page-gutter lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)] lg:gap-14 xl:gap-20">
           <div className="mx-auto w-full max-w-xl lg:mx-0 lg:max-w-none" data-scroll-reveal="hero">
             <h1 className="mb-6 text-4xl font-extrabold leading-tight tracking-tight text-slate-950 dark:text-white sm:text-5xl lg:text-6xl xl:text-7xl">
               Educación moderna,
@@ -114,7 +114,7 @@ export default function NosotrosPageClient() {
       </section>
 
       <section className="relative bg-[linear-gradient(180deg,#f2fcff_0%,#ffffff_100%)] py-16 transition-colors dark:bg-[linear-gradient(180deg,#071b2b_0%,#04111d_100%)] sm:py-20">
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto page-gutter relative z-10">
           <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-14" data-scroll-reveal="soft">
             <h2 className="text-3xl font-extrabold text-slate-950 dark:text-white md:text-4xl">
               Lo que nos mueve cada día
@@ -146,7 +146,7 @@ export default function NosotrosPageClient() {
       <section className="relative bg-white py-16 transition-colors dark:bg-[#04111d] sm:py-20">
         <div className="pointer-events-none absolute right-0 top-1/3 h-[500px] w-[500px] rounded-full bg-cyan-300/10 blur-3xl" />
 
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto page-gutter relative z-10">
           <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-14" data-scroll-reveal="soft">
             <h2 className="text-3xl font-extrabold text-slate-950 dark:text-white md:text-4xl">
               ¿Por qué elegir SuperAcademy?
@@ -186,7 +186,7 @@ export default function NosotrosPageClient() {
         <div className="absolute -top-20 -left-20 w-[400px] h-[400px] bg-white/10 blur-3xl rounded-full animate-pulse" />
         <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-white/10 blur-3xl rounded-full animate-pulse delay-1000" />
 
-        <div className="container relative z-10 mx-auto max-w-3xl px-6 text-center" data-scroll-reveal="hero">
+        <div className="container relative z-10 mx-auto max-w-3xl page-gutter text-center" data-scroll-reveal="hero">
           <h2 className="text-3xl md:text-5xl font-extrabold mb-6 leading-tight">
             Tu ingreso empieza aquí
           </h2>
