@@ -14,25 +14,31 @@ import "swiper/css/effect-fade";
 const slides = [
   {
     title: "Prepárate para ingresar a la universidad que sueñas",
+    titleLines: ["Prepárate para", "ingresar a la", "universidad que sueñas"],
     description:
       "Programas intensivos, docentes expertos y resultados comprobados.",
     image: "/images/home-1.webp",
     cta: "/ciclos",
     ctaLabel: "Ver ciclos",
+    compactTitle: false,
   },
   {
     title: "Ciclo de Ciencias con horario nocturno",
+    titleLines: ["Ciclo de Ciencias", "con horario", "nocturno"],
     description: "Refuerza biologia, fisica y quimica con evaluaciones de control, practica guiada y seguimiento semanal.",
     image: "/images/home-2.webp",
     cta: "/ciclos/ciencias",
     ctaLabel: "Ver ciclo disponible",
+    compactTitle: false,
   },
   {
     title: "Clases grabadas, material gratuito y acompañamiento",
+    titleLines: ["Clases grabadas,", "material gratuito y", "acompañamiento"],
     description: "Accede a nuestra videoteca y recursos exclusivos.",
     image: "/images/home-3.webp",
     cta: "/videoteca",
     ctaLabel: "Entrar a videoteca",
+    compactTitle: true,
   },
 ];
 
@@ -71,10 +77,13 @@ export default function Slider() {
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>
-            {({ isActive }) => (
-              <div className="relative h-full w-full overflow-hidden">
+            {({ isActive }) => {
+              const titleText = slide.titleLines.join("\n");
+
+              return (
+                <div className="relative h-full w-full overflow-hidden">
                 <div
-                  className={`absolute inset-0 transition-transform duration-[6000ms] ease-out will-change-transform ${
+                  className={`absolute -inset-2 transition-transform duration-[6000ms] ease-out will-change-transform ${
                     isActive ? "scale-[1.06]" : "scale-100"
                   }`}
                 >
@@ -83,35 +92,40 @@ export default function Slider() {
                     alt={slide.title}
                     fill
                     priority={index === 0}
-                    loading="eager"
+                    loading={index === 0 ? "eager" : "lazy"}
                     fetchPriority={index === 0 ? "high" : "auto"}
                     sizes="100vw"
                     className="object-cover"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#effdff]/90 via-[#bff7ff]/72 to-[#01b8db]/78 dark:from-[#04111d]/92 dark:via-[#071a2a]/78 dark:to-[#0a5d7d]/84" />
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(255,255,255,0.26),transparent_60%)] dark:bg-[radial-gradient(circle_at_30%_40%,rgba(127,246,241,0.12),transparent_60%)]" />
                 </div>
 
-                <div className="absolute inset-0 bg-gradient-to-br from-[#effdff]/90 via-[#bff7ff]/72 to-[#01b8db]/78 dark:from-[#04111d]/92 dark:via-[#071a2a]/78 dark:to-[#0a5d7d]/84" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(255,255,255,0.26),transparent_60%)] dark:bg-[radial-gradient(circle_at_30%_40%,rgba(127,246,241,0.12),transparent_60%)]" />
-
-                <div className="relative z-10 container mx-auto flex h-full items-center px-4 sm:px-6">
-                  <div className="w-full max-w-xl space-y-5 rounded-[28px] border border-white/60 bg-white/72 p-5 shadow-[0_0_35px_rgba(1,184,219,.18)] backdrop-blur-md transition-all duration-700 dark:border-cyan-300/10 dark:bg-[#081624]/72 dark:shadow-[0_0_40px_rgba(1,184,219,.14)] sm:p-7 md:p-10">
+                <div className="relative z-10 container mx-auto flex h-full items-center page-gutter">
+                  <div className="w-full max-w-[42rem] space-y-5 overflow-hidden rounded-[28px] border border-white/60 bg-white/72 p-6 shadow-[0_0_35px_rgba(1,184,219,.18)] backdrop-blur-md transition-all duration-700 dark:border-cyan-300/10 dark:bg-[#081624]/72 dark:shadow-[0_0_40px_rgba(1,184,219,.14)] sm:p-8 md:p-10">
                     <h1
-                        className={`text-[2rem] font-extrabold leading-[1.05] text-slate-950 transition-all duration-700 delay-200 dark:text-white sm:text-5xl md:text-6xl ${
+                        className={`whitespace-pre-line pr-4 font-extrabold leading-[1.04] text-slate-950 transition-all duration-700 delay-200 dark:text-white ${
+                          slide.compactTitle
+                            ? "text-[1.6rem] sm:text-[2.9rem] md:text-[3.5rem]"
+                            : "text-[1.8rem] sm:text-[3.2rem] md:text-[4rem]"
+                        } ${
                           isActive
                             ? "opacity-100 translate-y-0"
                             : "opacity-0 translate-y-6"
-                      }`}
+                        }`}
                     >
                       {isActive && !prefersReducedMotion ? (
-                        <Typewriter
-                          words={[slide.title]}
-                          cursor
-                          cursorStyle="|"
-                          typeSpeed={38}
-                          deleteSpeed={0}
-                          delaySpeed={800}
-                        />
-                      ) : slide.title}
+                        <span className="inline pr-[0.24em]">
+                          <Typewriter
+                            words={[titleText]}
+                            cursor
+                            cursorStyle="|"
+                            typeSpeed={38}
+                            deleteSpeed={0}
+                            delaySpeed={800}
+                          />
+                        </span>
+                      ) : titleText}
                     </h1>
 
                     <p
@@ -148,8 +162,9 @@ export default function Slider() {
                     </div>
                   </div>
                 </div>
-              </div>
-            )}
+                </div>
+              );
+            }}
           </SwiperSlide>
         ))}
       </Swiper>
