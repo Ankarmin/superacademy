@@ -3,7 +3,7 @@ import { socialLinks } from "@/lib/site";
 
 export default function SocialWidget() {
   return (
-    <div className="fixed right-4 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-center gap-3 rounded-xl border border-slate-200/60 bg-white/72 p-3 backdrop-blur-xl shadow-xl transition-colors dark:border-white/10 dark:bg-slate-950/28 lg:flex xl:right-6 xl:gap-4 xl:p-4">
+    <div className="fixed right-0 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-center gap-3 rounded-l-xl rounded-r-none border border-r-0 border-[#8debf7]/90 bg-white/72 p-3 shadow-[0_18px_44px_rgba(15,23,42,0.14),0_0_0_1px_rgba(255,255,255,0.42)_inset,0_0_0_1px_rgba(1,184,219,0.22),0_0_26px_rgba(1,184,219,0.18)] backdrop-blur-xl transition-colors dark:border-cyan-200/18 dark:bg-slate-950/28 dark:shadow-[0_18px_44px_rgba(0,0,0,0.34),0_0_0_1px_rgba(127,246,241,0.08)_inset,0_0_24px_rgba(1,184,219,0.18)] lg:flex xl:gap-4 xl:p-4">
       {socialLinks.map((socialLink) => {
         const presentation = socialLinkPresentation[socialLink.key];
         const Icon = presentation.icon;
